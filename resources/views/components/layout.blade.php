@@ -396,20 +396,20 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col">
-                            <!-- <div class="flex items-center">
+                        <!-- <div class="flex flex-col">
+                            <div class="flex items-center">
                                 <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
                                 <label for="remember-me" class="ml-2 block text-sm text-gray-900">
                                     Remember me
                                 </label>
-                            </div> -->
+                            </div>
 
                             <div class="text-sm self-end">
                                 <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
                                     Forgot your password?
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="flex justify-center">
                             <button type="submit" class="group relative h-12 w-1/2 flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
