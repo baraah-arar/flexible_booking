@@ -1,0 +1,86 @@
+:root {
+	--color-primary: #818cf8;
+	--bg-dark: #111828; 
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.overlay.hidden:target{
+	display: flex;
+}
+
+.logo-img{
+	/* width: 200px; */
+	height: 65px;
+}
+
+.bgdark{
+	background-color: var(--bg-dark);
+}
+
+.graghp-text{
+	-webkit-text-stroke-width: 1px;
+    text-shadow: 0.08em 0.05em 0 var(--color-primary);
+    color: transparent !important;
+    -webkit-text-stroke-color: #111827;
+    /* font-size: 1rem; */
+	letter-spacing: 3px;
+    font-weight: 900;
+}
+
+.bg-dotted{
+	position: relative;
+}
+
+.bg-dotted:before{
+	content:'';
+	width:20%;
+	height: 7%;
+	position: absolute;
+	justify-self: end;
+	top:0;
+	background-image: radial-gradient(#19191c 10%, transparent 0), radial-gradient(#19191c 10%, transparent 0);
+    background-size: 7px 5px;
+    background-position: 11px 13px, 0px 6px;
+}
+
+.outline-txt{
+	color: transparent !important;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--bg-dark);
+    /* -webkit-transition: all 0.3s ease-in-out; */
+    /* transition: all 0.3s ease-in-out; */
+}
+
+.bg-contact{
+	background-repeat: no-repeat;
+	background-size: 2.3rem;
+	background-position-y: 15%, 70%, 1%, 90%, 29%, 100%;
+	background-position-x: 90%, 2%, 95%, 17%, 99%, 6%;
+}
+
+.card-img{
+	width: 16px;
+	height: 16px;
+}
+
+.slide-img{
+	transition: all 1.5s ease;
+	opacity: 0;;
+}
+
+.slide-img.active{
+	transform: translateY(0%) scale(1);
+	opacity: 1;
+}
+
+.slide-img{
+	transform: translateY(100%) scale(0.90);
+	opacity: 0;
+}
+
+/* .btn{
+	@apply bg-blue-500;
+} */

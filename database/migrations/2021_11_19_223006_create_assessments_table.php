@@ -14,16 +14,16 @@ class CreateAssessmentsTable extends Migration
     public function up()
     {
         Schema::create('assessments', function (Blueprint $table) {
-            $table->increments('ass_id');
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('bkg_id')->unsigned();
             $table->integer('value');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('user_profiles')
+            $table->foreign('user_id')->references('id')->on('user_profiles')
             ->onDelete('cascade');
 
-            $table->foreign('bkg_id')->references('bkg_id')->on('bookings')
+            $table->foreign('bkg_id')->references('id')->on('bookings')
             ->onDelete('cascade');
         });
     }

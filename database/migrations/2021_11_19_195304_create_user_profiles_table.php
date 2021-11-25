@@ -14,11 +14,11 @@ class CreateUserProfilesTable extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
-            $table->increments('user_id');
+            $table->increments('id');
             $table->string('f_name');
             $table->string('l_name');
-            $table->integer('phone');
-            $table->string('email');
+            $table->string('phone')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->boolean('is_manager')->default(false);
             // we use true when the user is manager and false for other users

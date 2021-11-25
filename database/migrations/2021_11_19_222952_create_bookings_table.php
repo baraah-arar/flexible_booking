@@ -14,7 +14,7 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->increments('bkg_id');
+            $table->increments('id');
             $table->integer('plc_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->date('start_date');
@@ -23,10 +23,10 @@ class CreateBookingsTable extends Migration
             $table->integer('cost');
             $table->timestamps();
 
-            $table->foreign('plc_id')->references('plc_id')->on('places')
+            $table->foreign('plc_id')->references('id')->on('places')
             ->onDelete('cascade');
 
-            $table->foreign('user_id')->references('user_id')->on('user_profiles')
+            $table->foreign('user_id')->references('id')->on('user_profiles')
             ->onDelete('cascade');
         });
     }

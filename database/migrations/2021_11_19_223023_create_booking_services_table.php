@@ -14,15 +14,15 @@ class CreateBookingServicesTable extends Migration
     public function up()
     {
         Schema::create('booking_services', function (Blueprint $table) {
-            $table->increments('bkg_srv_id');
+            $table->increments('id');
             $table->integer('srv_id')->unsigned();
             $table->integer('bkg_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('srv_id')->references('srv_id')->on('services')
+            $table->foreign('srv_id')->references('id')->on('services')
             ->onDelete('cascade');
 
-            $table->foreign('bkg_id')->references('bkg_id')->on('bookings')
+            $table->foreign('bkg_id')->references('id')->on('bookings')
             ->onDelete('cascade');
         });
     }
