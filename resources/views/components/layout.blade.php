@@ -27,10 +27,34 @@
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Services</a>
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Contact us</a>
                             @auth
-                                <form method="POST" action="/logout">
-                                    @csrf
-                                    <button type="submit" class="text-sm font-bold uppercase">logout{{auth()->user()->f_name}}</button>
-                                </form>
+                                <div class="relative ">
+                                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" type="button">
+                                    {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}} 
+                                    <!-- <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> -->
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdownDivider" class="absolute bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow w-44">
+                                    <ul class="py-1" aria-labelledby="dropdownDividerButton">
+                                    <li>
+                                        <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Bookings</a>
+                                    </li>
+                                    </ul>
+                                    <div class="py-1">
+                                        <form method="POST" action="/logout">
+                                            @csrf
+                                            <button type="submit" class="text-sm text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Logout</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                                
                             @else                  
                                 <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
                             @endauth                        
