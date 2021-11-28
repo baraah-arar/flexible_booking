@@ -53,13 +53,9 @@ class RegisterController extends Controller
 
     
 
-    // public function withValidator($validator)
-    // {
-    //     if ($validator->fails()) {
-    //         return $redirect = '/#register';
-    //     } else {
-    //         return redirect('/#login-modal');
-    //     }
+    public function verifyByEmail()
+    {
+        
 
-    // }
+    }
 }
