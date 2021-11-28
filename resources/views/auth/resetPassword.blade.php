@@ -26,7 +26,7 @@
                     <p class="text-sm text-gray-500">Please Enter your Email so we can send reset link to your email.</p>
                     <form class="mt-8 space-y-6" action="/reset-password" method="POST">
                         @csrf
-                        <input type="hidden" name="remember" value="true">
+                        <input type="hidden" name="token" value="{{$token}}">
                         <div class="rounded-md shadow-sm -space-y-px">
                             <div class="flex flex-col space-y-2 mb-4">
                                 <label for="email" class="sr-only">Email address</label>

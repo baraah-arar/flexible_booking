@@ -57,5 +57,13 @@
                 </div>
             </div>
         </div>
+        @if(session()->has('success'))
+            <div class="flash-msg fixed top-3 flex w-full justify-center">
+                <p class="bg-green-400 opacity-95 shadow-md text-white flex items-center justify-between space-x-2 py-2 md:py-4 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto fixed top-3">
+                    {{session('success')}}
+                    <a href="#" id="close-flash-msg" class="close text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a>
+                </p>
+            </div>
+        @endif
     </body>
 </html>
