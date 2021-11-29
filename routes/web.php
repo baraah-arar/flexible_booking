@@ -19,12 +19,14 @@ use App\Http\Controllers\ForgotPasswordController;
 Route::get('/', function () {
     return view('components/layout');
 });
-
+// register && login 
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('verify-account/{token}', [RegisterController::class, 'verifyByEmail']);
+Route::get('verify-account', [RegisterController::class, 'verifyByEmailForm'])->name('verify.get');
+Route::get('verify-account/sendcode', [RegisterController::class, 'sendCodeVerify']);
+Route::post('verify-account', [RegisterController::class, 'verifyByEmail'])->name('verify.post');
 
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionsController::class, 'store'])->middleware('guest');

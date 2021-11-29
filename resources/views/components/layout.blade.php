@@ -363,6 +363,17 @@
                     </div>
                 </div>
             </div>
+            @auth
+            @if(auth()->user()->status == null)
+                <div class="flash-msg fixed bottom-14 flex w-full justify-center">
+                    <p class="bg-red-400 opacity-95 shadow-md text-white justify-center flex items-center space-x-2 py-2 md:py-2 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto">
+                        <span>Your account nis not verified.</span>
+                        <a href="verify-account" id="verify-flash-msg" class="verify text-white text-sm md:text-lg items-center p-2 w-30 h-12 flex justify-center rounded bg-red-500">Verify Now</a>
+                        <!-- <a href="#" id="close-flash-msg" class="close text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a> -->
+                    </p>
+                </div>
+            @endif
+            @endauth
         </div>
         <!-- register modal -->
         <div class="overlay hidden flex items-center justify-center fixed inset-0 w-screen min-h-screen bg-opacity-80 bg-gray-700" id="register">
