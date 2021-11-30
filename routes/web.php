@@ -17,7 +17,7 @@ use App\Http\Controllers\ForgotPasswordController;
 */
 
 Route::get('/', function () {
-    return view('components/layout');
+    return view('components/mainContent');
 });
 // register && login 
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');

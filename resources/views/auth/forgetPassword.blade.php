@@ -1,26 +1,12 @@
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    </head>
-    <body class="antialiased">
+<x-layout>
 <!-- forgot passowrd modal -->
-    <div class="overlay flex items-center justify-center fixed inset-0 w-screen min-h-screen bg-opacity-80 bg-gray-700" id="login-modal">
+        <div class="overlay flex items-center justify-center w-screen" id="forgot-modal">
             <a href="#" class="cancel"></a>
             <div class="modal flex flex-col space-y-8 rounded md:w-3/5 w-11/12 bg-gray-200 p-8">
                 <div class="modal-header flex justify-between">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">Reset Password</h1>
-                    <a href="#" class="close text-xl">&times;</a>
+                    <!-- <a href="#" class="close text-xl">&times;</a> -->
                 </div>
                 <div class="modal-body">
                     <p class="text-sm text-gray-500">Please Enter your Email so we can send reset link to your email.</p>
@@ -65,5 +51,4 @@
                 </p>
             </div>
         @endif
-    </body>
-</html>
+</x-layout>
