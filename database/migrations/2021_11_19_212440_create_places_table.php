@@ -13,6 +13,7 @@ class CreatePlacesTable extends Migration
      */
     public function up()
     {
+        // add status field
         Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');

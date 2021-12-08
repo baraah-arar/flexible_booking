@@ -21,7 +21,7 @@
                 <!-- nav -->
                 <nav>
                     <div class="md:mt-8 flex justify-between items-center md:pt-8 sm:pt-0 sm:px-6 lg:px-8">
-                        <image src="./images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
+                        <image src="/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
                         <div class="hidden md:flex space-x-1">                    
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-gray-700 border-b-2 hover:border-gray-700 hover:text-gray-900">Home</a>
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Services</a>
