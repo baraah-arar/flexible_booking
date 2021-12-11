@@ -1,6 +1,6 @@
 :root {
 	--color-primary: #818cf8;
-	--bg-dark: #111828; 
+	--bg-dark: #111828;
 }
 
 @tailwind base;
@@ -131,3 +131,11 @@
 /* .btn{
 	@apply bg-blue-500;
 } */
+
+
+/*
+
+ */
+
+
+/*User profile*/
