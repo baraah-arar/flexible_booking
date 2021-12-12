@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div id="res" class="col-md-8" >
     <div class="portlet light bordered">
         <div class="portlet-title tabbable-line">
             <div class="caption caption-md" style="margin-bottom: 20px; padding-left: 14px">

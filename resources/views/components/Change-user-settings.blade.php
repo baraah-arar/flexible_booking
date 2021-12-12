@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div id="edit" class="col-md-8" style="display: none">
     <div class="portlet light bordered">
         <div class="portlet-title tabbable-line">
             <div class="caption caption-md" style="margin-bottom: 20px; padding-left: 14px">
@@ -61,5 +61,4 @@
             </div>
         </div>
     </div>
-
 </div>

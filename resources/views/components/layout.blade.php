@@ -14,22 +14,22 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center px-4 md:px-0 py-8 md:pt-0">
-        
-            
+
+
 
             <div class="flex flex-col min-h-screen w-4/5 max-w-6xl mx-auto">
                 <!-- nav -->
                 <nav>
                     <div class="md:mt-8 flex justify-between items-center md:pt-8 sm:pt-0 sm:px-6 lg:px-8">
                         <image src="/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
-                        <div class="hidden md:flex space-x-1">                    
+                        <div class="hidden md:flex space-x-1">
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-gray-700 border-b-2 hover:border-gray-700 hover:text-gray-900">Home</a>
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Services</a>
                             <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Contact us</a>
                             @auth
                                 <div class="relative ">
                                 <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" class="uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" type="button">
-                                    {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}} 
+                                    {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}}
                                     <!-- <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> -->
                                 </button>
 
@@ -54,10 +54,10 @@
                                     </div>
                                 </div>
                                 </div>
-                                
-                            @else                  
+
+                            @else
                                 <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
-                            @endauth                        
+                            @endauth
                         </div>
                         <!-- humberger icon -->
                         <div class="-mr-2 flex items-center md:hidden">
@@ -87,17 +87,17 @@
                                 <div class="flex flex-col px-2 flex-grow flex-shrink-0 pb-3 space-y-1">
                                     <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-gray-700 border-b-2 hover:border-gray-700 hover:text-gray-900">Home</a>
                                     <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Services</a>
-                                    <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Contact us</a>                   
-                                    <a href="" class="py-2 text-base px-4 text-white text-center font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a> 
+                                    <a href="" class="px-3 py-2 text-base font-medium text-gray-700 border-transparent border-b-2 hover:border-gray-700 hover:text-gray-900">Contact us</a>
+                                    <a href="" class="py-2 text-base px-4 text-white text-center font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
                                 </div>
                             </div>
-                        </div>                            
+                        </div>
                     </div>
                 </nav>
                 <!-- main content -->
                 <div class="flex flex-col items-center mt-12 md:mt-8 flex-shrink-0 flex-grow dark:bg-gray-800 overflow-hidden sm:px-6 lg:px-8">
                    {{$slot}}
-                    
+
                 </div>
                 <!-- footer -->
                 <div class="footer flex flex-col md:flex-row justify-center mt-4 items-center sm:justify-between sm:px-6 lg:px-8">
@@ -312,7 +312,7 @@
                 btn.addEventListener('click', () => mob_nav.classList.toggle('hidden'));
             });
 
-            // on scroll animation -2- intersection observer 
+            // on scroll animation -2- intersection observer
             const sliderImages = document.querySelectorAll('.slide-img');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
