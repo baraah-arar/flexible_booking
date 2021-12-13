@@ -114,7 +114,7 @@
                 }
             }
 
-            // on scroll animation -2- intersection observer 
+            // on scroll animation -2- intersection observer
             const sliderImages = document.querySelectorAll('.slide-img');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

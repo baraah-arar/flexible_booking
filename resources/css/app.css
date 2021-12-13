@@ -1,6 +1,6 @@
 :root {
 	--color-primary: #818cf8;
-	--bg-dark: #111828; 
+	--bg-dark: #111828;
 }
 
 @tailwind base;
@@ -173,3 +173,11 @@ nav .nav-item:hover::before, nav .nav-item.active::before {
 /* .btn{
 	@apply bg-blue-500;
 } */
+
+
+/*
+
+ */
+
+
+/*User profile*/
