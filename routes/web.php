@@ -18,14 +18,18 @@ use App\Http\Controllers\ForgotPasswordController;
 
 Route::get('/', function () {
     return view('components/mainContent');
-});
+})->name('home');
 
-Route::get('/services', function () {
+Route::get('/services/Individual', function () {
     return view('components/services');
-});
+})->name('ind');
 
 Route::get('/services/book-service', function(){
     return view('components/bookForm');
+});
+
+Route::get('/contact', function(){
+    return view('contact');
 });
 // register && login 
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');

@@ -1,8 +1,6 @@
 <x-layout>
 <div class="flex md:flex-row flex-col md:space-x-4 md:space-y-0 space-y-8 justify-between items-center w-full my-8">
-    <div>
-        <h1 class="text-gray-300 font-bold text-6xl md:text-8xl lg:text-9xl">Places</h1>
-    </div>
+    <x-page-title>Places</x-page-title>
     <div class="flex space-x-4">
         <button class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">Individual</button>
         <button class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">Privte office</button>
@@ -11,8 +9,8 @@
 </div>
 <div class="hor-card services-card my-8 md:grid grid-cols-1 md:grid-cols-3">
                             <div class="img-sec w-full h-full">
-                                <div style="background-image:url('./images/indv.svg')" class="row-start-1 col-start-1 col-span-2 bg-cover bg-no-repeat bg-center h-full w-full"></div>
-                                <!-- <div style="background-image:url('./images/worker.png')" class="row-start-1 mt-10 col-start-2 col-span-2 bg-contain bg-no-repeat bg-center h-32 w-auto"></div> -->
+                                <div style="background-image:url('/images/indv.svg')" class="row-start-1 col-start-1 col-span-2 bg-cover bg-no-repeat bg-center h-full w-full"></div>
+                                <!-- <div style="background-image:url('/images/worker.png')" class="row-start-1 mt-10 col-start-2 col-span-2 bg-contain bg-no-repeat bg-center h-32 w-auto"></div> -->
                             </div>
                             <div class="body-sec my-8 flex flex-col bg-gray-200 shadow p-8 opacity-80">
                                 <div class="card-body my-4 flex flex-col">
