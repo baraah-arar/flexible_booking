@@ -72,20 +72,34 @@ nav .nav-item:hover::before, nav .nav-item.active::before {
     font-weight: 900;
 }
 
-.bg-dotted{
+.bg-dotted, .bg-dotted-lg{
 	position: relative;
+	z-index: 1;
+}
+
+.bg-dotted:before, .bg-dotted-lg:before{
+	content:'';
+	position: absolute;
+	justify-self: end;
+	background-image: radial-gradient(#19191c 10%, transparent 0), radial-gradient(#19191c 10%, transparent 0);
+    background-size: 8px 5px;
+    background-position: 11px 13px, 0px 6px;
 }
 
 .bg-dotted:before{
-	content:'';
+	top:0;
 	width:20%;
 	height: 7%;
-	position: absolute;
-	justify-self: end;
-	top:0;
-	background-image: radial-gradient(#19191c 10%, transparent 0), radial-gradient(#19191c 10%, transparent 0);
-    background-size: 7px 5px;
-    background-position: 11px 13px, 0px 6px;
+}
+
+.bg-dotted-lg:before{
+	bottom: -15px;
+	left: -40px;
+	right: -40px;
+	width: 70%;
+	height: 16%;
+	z-index: 0;
+	background-image: radial-gradient(#a5b4fc 10%, transparent 0), radial-gradient(#a5b4fc 10%, transparent 0);
 }
 
 .outline-txt{
