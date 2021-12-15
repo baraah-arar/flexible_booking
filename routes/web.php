@@ -26,7 +26,7 @@ Route::get('/services/Individual', function () {
 })->name('ind');
 
 Route::get('/user-profile', function () {
-    return view('components/userProfile');
+    return view('userProfile');
 });
 
 Route::get('/services/book-service', function(){
@@ -38,7 +38,7 @@ Route::get('/contact', function(){
 });
 
 Route::post('/contact', [OpinionController::class, 'create']);
-// register && login 
+// register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');

@@ -1,64 +1,56 @@
-<div id="edit" class="col-md-8" style="display: none">
-    <div class="portlet light bordered">
-        <div class="portlet-title tabbable-line">
-            <div class="caption caption-md" style="margin-bottom: 20px; padding-left: 14px">
-                <i class="icon-globe theme-font hide"></i>
-                <span class="caption-subject font-blue-madison bold uppercase">Edit settings</span>
+    <div id="edit">
+    <form action="#" method="POST">
+        <div class="shadow overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="first-name" class="block text-sm font-medium text-gray-700">First
+                            name</label>
+                        <input type="text" name="first-name" id="first-name" autocomplete="given-name"
+                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="last-name" class="block text-sm font-medium text-gray-700">Last
+                            name</label>
+                        <input type="text" name="last-name" id="last-name" autocomplete="family-name"
+                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-4">
+                        <label for="email-address" class="block text-sm font-medium text-gray-700">Email
+                            address</label>
+                        <input type="text" name="email-address" id="email-address" autocomplete="email"
+                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+
+                    <div class="col-span-6">
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone
+                            number</label>
+                        <input type="number" name="phone" id="phone"
+                               autocomplete="phone"
+                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="text" name="password" id="password" autocomplete="given-name"
+                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm password</label>
+                        <input type="text" name="confirm-password" id="confirm-password" autocomplete="password"
+                               class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button type="submit"
+                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Save
+                </button>
             </div>
         </div>
-        <div class="portlet-body">
-            <div class="col-lg-8 pb-5">
-                <form class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="account-fn">First Name</label>
-                            <input class="form-control" type="text" id="account-fn" value="Daniel" required="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="account-ln">Last Name</label>
-                            <input class="form-control" type="text" id="account-ln" value="Adams" required="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="account-email">E-mail Address</label>
-                            <input class="form-control" type="email" id="account-email"
-                                   value="daniel.adams@example.com" disabled="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="account-phone">Phone Number</label>
-                            <input class="form-control" type="text" id="account-phone"
-                                   value="+7 (805) 348 95 72" required="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="account-pass">New Password</label>
-                            <input class="form-control" type="password" id="account-pass">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="account-confirm-pass">Confirm Password</label>
-                            <input class="form-control" type="password" id="account-confirm-pass">
-                        </div>
-                    </div>
-                    <div class="col-12" style="padding-left: 14px">
-                        <hr class="mt-2 mb-3">
-                        <div class="d-flex flex-wrap justify-content-between align-items-center">
-                            <button class="btn btn-style-1 btn-primary" type="button" data-toast=""
-                                    data-toast-position="topRight" data-toast-type="success"
-                                    data-toast-icon="fe-icon-check-circle" data-toast-title="Success!"
-                                    data-toast-message="Your profile updated successfuly.">Update Profile
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </form>
+
 </div>

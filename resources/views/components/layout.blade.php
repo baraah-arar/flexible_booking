@@ -10,13 +10,13 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center px-4 md:px-0 py-8 md:pt-0">        
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center px-4 md:px-0 py-8 md:pt-0">
             <div class="flex flex-col min-h-screen w-4/5 max-w-6xl mx-auto">
                 <!-- nav -->
                 @include('_headerNav')
                 <!-- main content -->
                 <div class="flex flex-col items-center mt-12 md:mt-8 flex-shrink-0 flex-grow dark:bg-gray-800 overflow-hidden sm:px-6 lg:px-8">
-                   {{$slot}}                    
+                   {{$slot}}
                 </div>
                 <!-- footer -->
                 <div class="footer flex flex-col md:flex-row justify-center mt-4 items-center sm:justify-between sm:px-6 lg:px-8">
@@ -62,7 +62,7 @@
         <!-- register modal -->
         <x-register-modal/>
         <!-- login modal -->
-        <x-login-modal/>  
+        <x-login-modal/>
         @if(session()->has('success'))
             <div class="flash-msg fixed top-3 z-10 flex w-full justify-center">
                 <p class="bg-green-400 opacity-95 shadow-md text-white flex items-center justify-between space-x-2 py-2 md:py-4 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto fixed top-3">
@@ -88,7 +88,7 @@
             //     btn.addEventListener('click', () => mob_nav.classList.toggle('hidden'));
             // });
 
-            // toggling            
+            // toggling
             window.addEventListener('click', (e) => {
                 // console.log(e.target.parentElement);
                 // toogle mob nav
@@ -97,7 +97,7 @@
                     mob_nav.classList.toggle('hidden');
                 }
                 // toggle dropdown
-                const dropdown_items = document.querySelectorAll('.dropdownButton');                
+                const dropdown_items = document.querySelectorAll('.dropdownButton');
                 [...dropdown_items].map(btn => {
                     if(e.target.classList.contains('dropdownButton') && btn === e.target  || btn === checkParents(e.target,'dropdownButton')){
                         const drop_div = btn.nextElementSibling ;
@@ -114,7 +114,7 @@
             });
             // check parents
             function checkParents(elem, elemClass){
-                while(elem.parentElement){                    
+                while(elem.parentElement){
                     if(elem.parentElement.classList.contains('dropdownButton')) {
                         return elem.parentElement;
                     }
@@ -137,6 +137,17 @@
             sliderImages.forEach(elem => {
                 observer.observe(elem);
             });
+
+            //side bar choice _user-profile_
+            function showRes() {
+                document.getElementById("res").style.display = "inline";
+                document.getElementById("edit").style.display = "none"
+            }
+
+            function showEdit() {
+                document.getElementById("res").style.display = "none";
+                document.getElementById("edit").style.display = "inline"
+            }
         </script>
     </body>
 </html>
