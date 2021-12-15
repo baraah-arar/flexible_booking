@@ -11,6 +11,10 @@
 	display: flex;
 }
 
+.overlay{
+	z-index: 10000;
+}
+
 .logo-img{
 	/* width: 200px; */
 	height: 65px;

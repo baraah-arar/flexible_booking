@@ -23,8 +23,23 @@ class OpinionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        // ddd(request()->all());
+        $attributes = request()->validate([
+            'title' => 'required',
+            'body'  => 'required',
+        ]);
+        if(auth()->guest()){
+            $msg = '<span>please <a class="font-medium underline" href="/contact#login-modal" >login</a> before sending your message</span>';
+            // abort(403);
+            return back()
+                ->withInput()
+                ->with('failed',$msg);
+        };
+        $attributes['user_id'] = auth()->user()->id;
+        Opinion::create($attributes);
+        return back()
+                ->with('success','your message is sent thank you');
     }
 
     /**

@@ -9,7 +9,7 @@ class Opinion extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','description','user_id'
+        'title','body','user_id'
     ];
     public function UserProfile()
     {

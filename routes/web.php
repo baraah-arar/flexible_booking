@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\OpinionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::get('/services/book-service', function(){
 Route::get('/contact', function(){
     return view('contact');
 });
+
+Route::post('/contact', [OpinionController::class, 'create']);
 // register && login 
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');

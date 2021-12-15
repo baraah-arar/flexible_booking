@@ -7,7 +7,7 @@
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
                 <x-form.form-group type="email" label="Email Adress" name="email"></x-form.form-group>
-                <x-form.form-group type="password" label="Password" name="passowrd"></x-form.form-group>
+                <x-form.form-group type="password" label="Password" name="password"></x-form.form-group>
             </div>
             <div class="flex flex-col">
                 <!-- <div class="flex items-center">
