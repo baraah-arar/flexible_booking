@@ -13,7 +13,7 @@ class CreateBookingsTable extends Migration
      */
     public function up()
     {
-        // add payment plane
+        // add payment plane, date must be datetime
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('plc_id')->unsigned();

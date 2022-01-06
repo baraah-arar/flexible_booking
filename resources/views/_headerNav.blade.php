@@ -11,8 +11,8 @@
                 </x-nav-item>
                 <x-dropdown>
                     <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individaule desktop</x-ddown-item>
-                    <x-ddown-item href="/services" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
-                    <x-ddown-item href="/services" :active="request()->is('*' . 'meet')">Meeting Room</x-ddown-item>
+                    <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
+                    <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">Meeting Room</x-ddown-item>
                 </x-dropdown>
             </x-ddown-flex>
             <x-nav-item href="/contact" :active="request()->is('contact')">contact us</x-nav-item>
@@ -58,8 +58,8 @@
                         </x-nav-item>
                         <x-dropdown>
                             <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individaule desktop</x-ddown-item>
-                            <x-ddown-item href="/services" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
-                            <x-ddown-item href="/services" :active="request()->is('*' . 'meet')">Meeting Room</x-ddown-item>
+                            <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
+                            <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">Meeting Room</x-ddown-item>
                         </x-dropdown>
                     </x-ddown-flex>
                     <x-nav-item href="/contact" :active="request()->is('contact')">contact us</x-nav-item>

@@ -53,7 +53,7 @@
             </button>
           </div>
         </div>
-      </form>
+    </form>
     <!-- <div class="flex space-x-4">
         <button class="border-2 border-gray-300 text-sm text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">Hours</button>
         <button class="border-2 border-gray-300 text-sm text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">Weekly</button>

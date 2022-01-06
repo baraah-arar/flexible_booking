@@ -11,9 +11,7 @@ class RegisterController extends Controller
 {
     // public function __construct(){
     //     $this->redirectRoute = route('view_register');
-    // }
-
-    
+    // }    
     protected $redirect = '/#register';
 
     public function create(){
