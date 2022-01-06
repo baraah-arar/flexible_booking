@@ -16,6 +16,7 @@ class CreateOpinionsTable extends Migration
         Schema::create('opinions', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title')->nullable();
+            $table->text('type')->nullable();
             $table->longText('body');
             $table->integer('user_id')->unsigned();
             $table->timestamps();

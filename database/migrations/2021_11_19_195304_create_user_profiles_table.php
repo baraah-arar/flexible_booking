@@ -20,7 +20,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('is_manager')->default(false);
+            $table->boolean('role')->default(false);
             // we use true when the user is manager and false for other users
             $table->string('status')->nullable();
             $table->timestamps();

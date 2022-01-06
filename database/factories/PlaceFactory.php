@@ -18,6 +18,8 @@ class PlaceFactory extends Factory
             'plc_type'  => $this->faker->slug,
             'price'     => $this->faker->numberBetween(25, 50),
             'description'  => $this->faker->paragraph,
+            'status' => 'available',
+            'capacity'  => $this->faker->numberBetween(1, 100),
         ];
     }
 }

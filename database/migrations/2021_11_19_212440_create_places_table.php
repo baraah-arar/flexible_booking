@@ -13,12 +13,15 @@ class CreatePlacesTable extends Migration
      */
     public function up()
     {
+        // add status field
         Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
+            $table->text('title')->unique();
             $table->text('plc_type');
+            $table->text('status');
             $table->integer('price');
-            $table->longText('description')->nullable();
+            $table->integer('capacity');
+            $table->longText('description');
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -13,10 +13,12 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
+        // add status field
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
             $table->integer('price');
+            $table->text('status');
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
