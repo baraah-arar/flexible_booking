@@ -105,6 +105,7 @@ class BookingController extends Controller
 
         $attributes['cost'] = $cost;
         $attributes['status'] = 'bending';
+        $attributes['payment_plan'] = 'hours';
         // Booking::create($attributes);
         $item = Booking::firstOrCreate($attributes);
 
