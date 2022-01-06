@@ -15,6 +15,7 @@ class OpinionFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
+            'type' => 'complement',
             'body'  => $this->faker->paragraph,
             'user_id' => \App\Models\UserProfile::factory(),
         ];

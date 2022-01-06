@@ -9,7 +9,12 @@ class Place extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title','plc_type','price','description'
+        'title','plc_type','price','description','image','status','capacity',
     ];
 
+    public function getPath()
+    {
+        $url = 'uploads/'.$this->image;
+        return $url;
+    }
 }

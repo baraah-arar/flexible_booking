@@ -9,7 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'plc_id','user_id','start_date','end_date','cost', 'status'
+        'plc_id','user_id','start_date','end_date','payment_plan','status','cost'
     ];
     public function UserProfile()
     {

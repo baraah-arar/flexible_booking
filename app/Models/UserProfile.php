@@ -10,7 +10,7 @@ class UserProfile extends Authenticatable
 {
     use HasFactory;
     protected $fillable = [
-        'f_name','l_name','phone','email','password'
+        'f_name','l_name','phone','email','password','role','status',
     ];
 
     // public function getUser_idAttribute($f_name){
@@ -20,4 +20,6 @@ class UserProfile extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+
+
 }

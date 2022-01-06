@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Opinion extends Model
 {
     use HasFactory;
+
+
     protected $fillable = [
-        'title','body','user_id'
+        'title','body','user_id','type',
     ];
     public function UserProfile()
     {

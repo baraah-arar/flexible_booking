@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserProfile;
 use Illuminate\Support\Str;
-use DB;
-use Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
 {
@@ -51,7 +51,7 @@ class ForgotPasswordController extends Controller
     }
 
     public function submitResetPasswordForm(){
-        // validate 
+        // validate
         $attributes = request()->validate([
             'email' => 'required|email',
             'password' => 'required|min:8|max:255|confirmed',

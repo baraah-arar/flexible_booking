@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opinion;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
-class OpinionController extends Controller
+
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class OpinionController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.index');
     }
 
     /**
@@ -23,24 +24,8 @@ class OpinionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        // ddd(request()->all());
-        $attributes = request()->validate([
-            'title' => 'required',
-            'body'  => 'required',
-            'type'  => 'required',
-        ]);
-        if(auth()->guest()){
-            $msg = '<span>please <a class="font-medium underline" href="/contact#login-modal" >login</a> before sending your message</span>';
-            // abort(403);
-            return back()
-                ->withInput()
-                ->with('failed',$msg);
-        };
-        $attributes['user_id'] = auth()->user()->id;
-        Opinion::create($attributes);
-        return back()
-                ->with('success','your message is sent thank you');
+    {
+        //
     }
 
     /**
@@ -57,21 +42,21 @@ class OpinionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Opinion $opinion)
+    public function show()
     {
-        //
+      //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Opinion $opinion)
+    public function edit($id)
     {
         //
     }
@@ -80,10 +65,10 @@ class OpinionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Opinion  $opinion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Opinion $opinion)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -91,10 +76,10 @@ class OpinionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Opinion  $opinion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Opinion $opinion)
+    public function destroy($id)
     {
         //
     }

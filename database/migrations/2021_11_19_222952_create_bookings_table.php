@@ -18,9 +18,10 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->integer('plc_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->string('status');
+            $table->text('payment_plan');
             $table->integer('cost');
             $table->timestamps();
 

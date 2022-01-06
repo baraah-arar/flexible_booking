@@ -8,6 +8,7 @@ use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\BookingController;
 use App\Models\Place;
 
+use App\Http\Controllers\DashboardPlacesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,16 @@ Route::get('/services/book-service', function(){
 // contact && send feedback
 Route::get('/contact', function(){return view('contact');});
 Route::post('/contact', [OpinionController::class, 'create']);
+
+
+// route for admin dashboard
+Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard.index');
+
+Route::resource('dashboard/users', 'App\Http\Controllers\DashboardUsersController');
+Route::get('dashboard/users', 'App\Http\Controllers\DashboardUsersController@index')->name('dashboard.users');
+
+Route::resource('dashboard/places', 'App\Http\Controllers\DashboardPlacesController');
+Route::get('dashboard/places', 'App\Http\Controllers\DashboardPlacesController@index')->name('dashboard.places_index');
 
 // register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');

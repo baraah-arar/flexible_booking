@@ -19,6 +19,7 @@ class BookingFactory extends Factory
             'start_date' => $this->faker->date,
             'end_date' => $this->faker->date,
             'status' => 'pending',
+            'payment_plan' => 'hours',
             'cost' => $this->faker->numberBetween(10,70),
         ];
     }

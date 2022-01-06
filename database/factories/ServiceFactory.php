@@ -16,6 +16,8 @@ class ServiceFactory extends Factory
         return [
             'name' => $this->faker->name,
             'price' => $this->faker->numberBetween(25,50),
+            'status' => 'available',
+            'description'=>  $this->faker->paragraph,
         ];
     }
 }
