@@ -6,29 +6,33 @@
                 <form action="{{$action}}" method="put" class="flex items-center justify-center">
                     @csrf
                     <div class="flex items-center justify-center mx-2">
-                        <input type="text" vlaue="" name="start_date" id="checkIn" class="border-b-2 border-gray-200 h-8">
-                        <svg class="w-6 h-8 border-b-2 border-gray-200 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        <label for="date-from" class="sr-only">from</label>
+                        <label for="date-from" class="p-4 w-1/5">from</label>
+                        <input type="text" vlaue="" name="start_date" id="checkIn" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                        <svg class="svg-date-focus w-8 h-10 border-b border-gray-300 text-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                     </div>
                      <div class="flex items-center justify-center mx-2">
-                        <input type="text" vlaue="" name="end_date" id="checkOut" class="border-b-2 border-gray-200 h-8">
-                        <svg class="w-6 h-8 border-b-2 border-gray-200 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        <label for="checkOut" class="sr-only">to</label>
+                        <label for="checkOut" class="p-4 w-1/5">to</label>
+                        <input type="text" vlaue="" name="end_date" id="checkOut" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                        <svg class="svg-date-focus w-8 h-10 border-b border-gray-300 text-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                     </div>
-                    <button type="button" value="Book" class="calender_btn mx-2">Check Time</button>
+                    <button type="button" value="Book" class="calender_btn mx-2 self-end py-2 px-2 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Check Time</button>
                 </form>
                 <div class="error_message text-red-400 text-xs font-medium"></div>
             </div>
             <div class="calendar_head flex items-center justify-center mt-8">
-                <button class="before" data-type='prevMonth' value="">pm
+                <button class="before action_date" data-type='prevMonth' value="">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
                 </button>
-                <button class="before mx-2" data-type='prevWeek' value="">pw
+                <button class="before action_date  mx-2" data-type='prevWeek' value="">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                 </button>
                 <h3 class="date mx-4">Month 2021</h3>
-                <button class="next mx-2" data-type='nextWeek' value="">nw
+                <button class="next action_date mx-2" data-type='nextWeek' value="">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                 </button>
-                <button class="next" data-type='nextMonth' value="">nm
+                <button class="next action_date" data-type='nextMonth' value="">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                 </button>    
             </div>
@@ -134,8 +138,9 @@
                       
             document.addEventListener('click', (e) => {
                 // console.log(date);
-                
-                if(e.target.dataset.type === 'nextMonth'){
+                let elem = e.target;
+                if(checkParents(e.target, 'action_date')) elem = checkParents(e.target, 'action_date');
+                if(elem.dataset.type === 'nextMonth'){
                     nav_month++;
                     setDateEvent(nav_month, nav_week);
                     // console.log(date.toLocaleString("default", {weekday: "long"}));
@@ -144,14 +149,14 @@
                     // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
                     // init(date);
                 }
-                if(e.target.dataset.type === 'prevMonth'){
+                if(elem.dataset.type === 'prevMonth'){
                     nav_month--;
                     setDateEvent(nav_month, nav_week);
                     // date.setMonth(date.getMonth() + nav_month); 
                     // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
                     // init(date);
                 }
-                if(e.target.dataset.type === 'nextWeek'){
+                if(elem.dataset.type === 'nextWeek'){
                     nav_week += 7;
                     setDateEvent(nav_month, nav_week);
                     // date.setDate(date.getDate() + nav_week);
@@ -160,7 +165,7 @@
                     // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
                     // init(date);
                 }
-                if(e.target.dataset.type === 'prevWeek'){
+                if(elem.dataset.type === 'prevWeek'){
                     nav_week -= 7;
                     setDateEvent(nav_month, nav_week);
                     // date.setDate(date.getDate() + nav_week);
