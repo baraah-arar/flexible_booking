@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserProfileController extends Controller
 {
@@ -14,7 +16,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('userProfile');
     }
 
     /**
@@ -69,7 +71,20 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, UserProfile $userProfile)
     {
-        //
+        // ddd(request()->all());
+        $rules =[
+            'f_name'   => 'required|max:255',
+            'l_name'   => 'required|max:255',
+            'phone'    => ['required','min:9','max:12',Rule::unique('user_profiles','phone')->ignore(auth()->user()->id)],
+            'email'    => 'required|email|max:255|unique:user_profiles,email,' . auth()->user()->id,
+        ];
+        $validator = Validator::make(request()->all(), $rules);
+        if($validator->fails()){
+            return back()->withErrors($validator)->withInput();
+        };
+        UserProfile::where('id', auth()->user()->id)->update(request()->except(['_token']));
+        return back()->with('success', 'your information updated successfuly');
+
     }
 
     /**

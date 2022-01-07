@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\UserProfileController;
 use App\Models\Place;
 
 use App\Http\Controllers\DashboardPlacesController;
@@ -29,9 +30,8 @@ Route::get('/services/private', [BookingController::class, 'index']);
 Route::get('/services/meeting', [BookingController::class, 'index']);
 
 
-Route::get('/user-profile', function () {
-    return view('userProfile');
-});
+Route::get('/profile', [UserProfileController::class, 'index']);
+Route::post('/profile', [UserProfileController::class, 'update']);
 
 Route::get('/services/book-service', function(){
     return view('components/bookForm');

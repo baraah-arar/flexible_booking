@@ -3,7 +3,7 @@
     <div class="flex flex-col justify-center h-screen">
         <div class="relative w-full h-full flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 mx-auto border border-white bg-white">
             <div class="w-full md:w-1/3 bg-white grid place-items-center">
-                <img src="{{\Storage::url($place->image)}}" alt="" />
+                <img src="{{asset('storage/' . $place->image)}}" alt="" />
            </div>
 
                 <div class="w-full md:w-2/3 rounded overflow-hidden shadow-lg bg-white flex flex-col space-y-2 p-3">

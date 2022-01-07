@@ -1,8 +1,14 @@
     <div id="edit">
-    <form action="#" method="POST">
+    <form action="#" method="POST" class="editSUserInfo">
         <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
-                <div class="grid grid-cols-6 gap-6">
+                @csrf
+                <x-form.form-group type="text" label="first name" name="f_name" value="{{auth()->user()->f_name}}"/>
+                <x-form.form-group type="text" label="last name" name="l_name" value="{{auth()->user()->l_name}}" />
+                <x-form.form-group type="text" label="phone number" name="phone" value="{{auth()->user()->phone}}"/>
+                <x-form.form-group type="email" label="email" name="email" value="{{auth()->user()->email}}"/>
+                <a class="reset-passowrd">Reset Passowrd</a>
+                <!-- <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
                         <label for="first-name" class="block text-sm font-medium text-gray-700">First
                             name</label>
@@ -42,7 +48,7 @@
                         <input type="text" name="confirm-password" id="confirm-password" autocomplete="password"
                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button type="submit"
