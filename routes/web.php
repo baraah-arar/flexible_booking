@@ -29,9 +29,13 @@ Route::get('/services/Individual', [BookingController::class, 'index'])->name('i
 Route::get('/services/private', [BookingController::class, 'index']);
 Route::get('/services/meeting', [BookingController::class, 'index']);
 
-
+// User Profile Edit && Reset Password
 Route::get('/profile', [UserProfileController::class, 'index']);
 Route::post('/profile', [UserProfileController::class, 'update']);
+Route::get('/profile/resetPassword', [UserProfileController::class, 'displayresetForm']);
+Route::post('/profile/resetPassword', [UserProfileController::class, 'profileResetPassword']);
+
+
 
 Route::get('/services/book-service', function(){
     return view('components/bookForm');

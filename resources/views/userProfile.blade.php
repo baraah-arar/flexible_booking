@@ -23,9 +23,9 @@
             </div>
             <div id="user-sidebar" class="mt-5 md:mt-0 md:col-span-2 ml-px ">
                 {{--Edit settings--}}
-                <x-Change-user-settings></x-Change-user-settings>
+                <x-UserProfileSections.Change-user-settings></x-UserProfileSections.Change-user-settings>
                 {{--my reservations--}}
-                <x-Crud-user-reservations></x-Crud-user-reservations>
+                <x-UserProfileSections.Crud-user-reservations></x-UserProfileSections.Crud-user-reservations>
             </div>
         </div>
     </div>
