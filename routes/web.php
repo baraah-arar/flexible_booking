@@ -9,6 +9,8 @@ use App\Http\Controllers\BookingController;
 use App\Models\Place;
 
 use App\Http\Controllers\DashboardPlacesController;
+use App\Models\Opinion;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +52,14 @@ Route::get('dashboard/users', 'App\Http\Controllers\DashboardUsersController@ind
 Route::resource('dashboard/places', 'App\Http\Controllers\DashboardPlacesController');
 Route::get('dashboard/places', 'App\Http\Controllers\DashboardPlacesController@index')->name('dashboard.places_index');
 
+Route::resource('dashboard/services', 'App\Http\Controllers\DashboardServicesController');
+Route::get('dashboard/services', 'App\Http\Controllers\DashboardServicesController@index')->name('dashboard.services_index');
+
+Route::resource('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController');
+Route::get('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController@index')->name('dashboard.opinions_index');
+Route::get('dashboard/author/{id}', 'App\Http\Controllers\DashboardUsersController@author')->name('author.opinions');
+
+
 // register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
@@ -77,5 +87,5 @@ Route::patch('/services/meeting', [BookingController::class, 'createextraservice
 // extras booking
 Route::get('/services/extras', function(){
     return view('components/extras-modal');
-    
+
 });

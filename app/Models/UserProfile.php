@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserProfile extends Authenticatable
 {
+    protected $table = 'user_profiles';
     use HasFactory;
     protected $fillable = [
         'f_name','l_name','phone','email','password','role','status',
@@ -21,5 +22,9 @@ class UserProfile extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+    public function opinions()
+    {
+        return $this->hasMany('App\Models\Opinion', 'user_id');
+    }
 
 }

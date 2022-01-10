@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DashboardPlaceRequest;
+
 use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +16,7 @@ class DashboardPlacesController extends Controller
      */
     public function index()
     {
-        $places = Place::latest()->paginate(15);
+        $places = Place::latest()->get();
         return view('dashboard.places.places', compact('places'));
     }
 
@@ -97,7 +97,7 @@ class DashboardPlacesController extends Controller
     public function update(Request $request, Place $place)
     {
         $attributes = request()->validate([
-            'title'=>'required|unique:places,title,'. $place->id,
+            'title'=>'required|unique:places,title,' . $place->id,
             'plc_type'=>'required',
             'status'=>'required',
             'capacity'=>'required',

@@ -45,9 +45,9 @@
 
                         <a href="{{ route('dashboard.places_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Places</a>
 
-                        <a href="#" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
+                        <a href="{{ route('dashboard.opinions_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
 
-                        <a href="#" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="{{ route('dashboard.services_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
 
 
 
@@ -102,9 +102,9 @@
 
                   <a href="{{ route('dashboard.places_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Places</a>
 
-                  <a href="#" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
+                  <a href="{{ route('dashboard.opinions_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
 
-                  <a href="#" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                  <a href="{{ route('dashboard.services_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
 
 
                 </div>

@@ -9,7 +9,7 @@
 		<div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 			<div class="max-w-md mx-auto">
 				<div>
-					<h1 class="text-2xl text-indigo-700 font-semibold">Add Person</h1>
+					<h1 class="text-2xl text-indigo-700 font-semibold">Edit Person</h1>
 				</div>
 				<div class="divide-y divide-gray-200">
                     <form action="{{ route('users.update',$user->id)}}" method="POST">

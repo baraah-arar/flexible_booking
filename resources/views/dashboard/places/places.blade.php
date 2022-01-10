@@ -15,11 +15,18 @@
 <body class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
     <div class="container mx-auto">
       <div class="flex flex-wrap -mx-4">
+        {{-- @php
+        $i=0;
+        @endphp --}}
         @foreach ($places as $item)
         <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+            {{-- <div class="hidden">
+                {{++$i}}
+             </div> --}}
           <a href="{{ route('places.show',$item->id)}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-          <div class="relative pb-48 overflow-hidden">
-            <img class="absolute inset-0 h-full w-full object-cover" src="{{\Storage::url($item->image)}}" alt="">
+
+            <div class="relative pb-48 overflow-hidden">
+            <img class="absolute inset-0 h-full w-full object-cover" src="{{asset('storage/' . $item->image)}}" alt="">
           </div>
           <div class="p-4">
             <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{ $item->plc_type}}</span>
@@ -104,3 +111,5 @@
 </script>
   </body>
 </x-layoutdashboard>
+
+{{-- {{$places->links()}} --}}

@@ -184,8 +184,8 @@
 <script>
     setTimeout(()=> document.querySelector('.flash-msg').classList.add('hidden'),3000)
 </script>
-</body>
-    </html>
+
+
 </x-layoutdashboard>
 
 

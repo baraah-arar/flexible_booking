@@ -4,46 +4,32 @@
             <div class="body mt-20 mx-8">
                 <div class="md:flex items-top my-8 justify-between">
                     <div class="w-full items-top md:w-1/2 mr-auto" style="text-shadow: 0 20px 50px hsla(0,0%,0%,8);">
-                        <h1 class="text-4xl font-bold text-white tracking-wide">PLACE</h1>
+                        <h1 class="text-4xl font-bold text-white tracking-wide">SERVICE</h1>
                         <p class="text-gray-200 mb-8">
-                            On this page, you can add any indivdual place, meeting room or private office so that it can be reserved for customers.
+                            On this page, you can add any any service so that it can be reserved for customers.
                         </p>
-                        <span class="text-white ">Click Here To Return <a href="{{ route('dashboard.places_index')}}" class="text-gray-900 text-lg ml-2 font-bold">Places</a></span>
+                        <span class="text-white ">Click Here To Return <a href="{{ route('dashboard.services_index')}}" class="text-gray-900 text-lg ml-2 font-bold">Services</a></span>
                     </div>
                     <div class="w-full md:max-w-md mt-6">
                         <div class="card bg-white shadow-md rounded-lg px-4 py-4 mb-6 ">
-                            <form action="{{ route('places.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('services.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex items-center justify-center">
                                     <h2 class="text-2xl font-bold tracking-wide">
-                                        Add Place
+                                        Add Service
                                     </h2>
                                 </div>
-                                  <label for="title" class="inline-block  text-gray-500">Title:</label>
-                                  <input  id="title" name="title" type="text" value="{{ old('title')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
-                                     @error('title')
+                                  <label for="name" class="inline-block  text-gray-500">Name:</label>
+                                  <input  id="name" name="name" type="text" value="{{ old('name')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
+                                     @error('name')
                                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                      @enderror
 
-                                   <label for="plc_type" class="inline-block  text-gray-500">Type</label>
-                                  <select id="plc_type" name="plc_type" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none">
-                                      <option value="individual" {{ old('plc_type') == "individual" ? 'selected' : '' }} >Individual</option>
-                                      <option value="private" {{ old('plc_type') == "private" ? 'selected' : '' }} >Private Office</option>
-                                      <option value="meeting" {{ old('plc_type') == "meeting" ? 'selected' : '' }} >Meeting Room</option>
-                                  </select>
-
                                   <label for="status" class="inline-block  text-gray-500">Status</label>
                                   <select id="status" name="status" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none">
-                                      <option value="out of service" {{ old('status') == "out of service" ? 'selected' : '' }} >Out Of Service</option>
                                       <option value="available" {{ old('status') == "available" ? 'selected' : '' }} >Available</option>
                                       <option value="unavailable" {{ old('status') == "unavailable" ? 'selected' : '' }} >Unavailable</option>
                                   </select>
-
-                                  <label for="capacity"  class="inline-block text-gray-500">Capacity:</label>
-                                  <input id="capacity" name="capacity" type="number" value="{{ old('capacity')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
-                                       @error('capacity')
-                                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                                       @enderror
 
                                   <label for="price"  class="inline-block text-gray-500">Price:</label>
                                   <input id="price" name="price" type="number" value="{{ old('price')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
@@ -80,7 +66,7 @@
 
 
                                <div class=" px-2 py-3 bg-white text-right sm:px-6 flex justify-between">
-                                    <a href="{{ route('places.create')}}" class="inline-flex w-20 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <a href="{{ route('services.create')}}" class="inline-flex w-20 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Cancel
                                       </a>
                                    <button type="submit" class="  inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

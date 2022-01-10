@@ -66,6 +66,15 @@ class DashboardUsersController extends Controller
          return view('dashboard.users.show',compact('user'));
 
     }
+    public function author($id)
+    {
+
+        $user = UserProfile::with('opinions')->find($id);
+    //     if ($user.lenght()==0) abort(404);
+    //    else
+        return view('dashboard.opinions.user_opinions', ['opinions' => $user->opinions]);
+
+    }
 
     /**
      * Show the form for editing the specified resource.
