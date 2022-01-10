@@ -258,6 +258,10 @@ button.book.opened{
 	@apply cursor-pointer bg-green-400 rounded-lg p-2 text-center text-indigo-900 text-lg font-medium
 }
 
+.editSUserInfo.disable .submitEdit{
+	@apply cursor-not-allowed bg-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-gray-600
+}
+
 /* calendar */
 .calendar{
 	max-width: 80vw;

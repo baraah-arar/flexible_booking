@@ -26,5 +26,9 @@ class UserProfile extends Authenticatable
     {
         return $this->hasMany('App\Models\Opinion', 'user_id');
     }
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'user_id');
+    }
+
 
 }

@@ -12,8 +12,13 @@ class Service extends Model
         'name','price','description','image','status'
     ];
 
-    public function booking()
+    // public function booking()
+    // {
+    //     return $this->BelongsToMany('App\Models\booking', 'bkg_id');
+    // }
+
+    public function bookings()
     {
-        return $this->BelongsToMany('App\Models\booking');
+        return $this->BelongsToMany(Booking::class, BookingService::class ,'srv_id','bkg_id');
     }
 }

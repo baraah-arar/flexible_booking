@@ -6,6 +6,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\UserProfileController;
 use App\Models\Place;
 
 use App\Http\Controllers\DashboardPlacesController;
@@ -30,10 +31,14 @@ Route::get('/services/Individual', [BookingController::class, 'index'])->name('i
 Route::get('/services/private', [BookingController::class, 'index']);
 Route::get('/services/meeting', [BookingController::class, 'index']);
 
+// User Profile Edit && Reset Password
+Route::get('/profile', [UserProfileController::class, 'index']);
+Route::post('/profile', [UserProfileController::class, 'update']);
+Route::get('/profile/resetPassword', [UserProfileController::class, 'displayresetForm']);
+Route::post('/profile/resetPassword', [UserProfileController::class, 'profileResetPassword']);
+Route::get('/reservations', function(){return view('components/UserProfileSections/Crud-user-reservations');});
 
-Route::get('/user-profile', function () {
-    return view('userProfile');
-});
+
 
 Route::get('/services/book-service', function(){
     return view('components/bookForm');

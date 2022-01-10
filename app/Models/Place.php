@@ -17,4 +17,8 @@ class Place extends Model
         $url = 'uploads/'.$this->image;
         return $url;
     }
+
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'plc_id');
+    } 
 }
