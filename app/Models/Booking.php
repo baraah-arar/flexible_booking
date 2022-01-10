@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Place;
 
 class Booking extends Model
 {
@@ -11,19 +12,20 @@ class Booking extends Model
     protected $fillable = [
         'plc_id','user_id','start_date','end_date','payment_plan','status','cost'
     ];
-    public function UserProfile()
+
+    public function user()
     {
-        return $this->belongsTo('App\Models\UserProfile','user_id');
+        return $this->belongsTo(UserProfile::class, 'user_id');
     }
+
     public function place()
     {
-        return $this->belongsTo('App\Models\place','plc_id');
+        return $this->belongsTo(Place::class, 'plc_id');
     }
 
-
-    public function service()
+    public function services()
     {
-        return $this->BelongsToMany('App\Models\service');
+        return $this->BelongsToMany(Service::class, BookingService::class ,'bkg_id','srv_id');
     }
 }
 

@@ -34,6 +34,7 @@ Route::get('/profile', [UserProfileController::class, 'index']);
 Route::post('/profile', [UserProfileController::class, 'update']);
 Route::get('/profile/resetPassword', [UserProfileController::class, 'displayresetForm']);
 Route::post('/profile/resetPassword', [UserProfileController::class, 'profileResetPassword']);
+Route::get('/reservations', function(){return view('components/UserProfileSections/Crud-user-reservations');});
 
 
 

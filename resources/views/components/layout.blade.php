@@ -139,16 +139,16 @@
                 observer.observe(elem);
             });
 
-            //side bar choice _user-profile_
-            function showRes() {
-                document.getElementById("res").style.display = "inline";
-                document.getElementById("edit").style.display = "none"
-            }
+            // //side bar choice _user-profile_
+            // function showRes() {
+            //     document.getElementById("res").style.display = "inline";
+            //     document.getElementById("edit").style.display = "none"
+            // }
 
-            function showEdit() {
-                document.getElementById("res").style.display = "none";
-                document.getElementById("edit").style.display = "inline"
-            }
+            // function showEdit() {
+            //     document.getElementById("res").style.display = "none";
+            //     document.getElementById("edit").style.display = "inline"
+            // }
         </script>
     </body>
 </html>

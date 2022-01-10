@@ -1,3 +1,4 @@
+<x-userProfile>
 <div id="edit">
     <form action="#" method="POST" class="editSUserInfo disable">
         <div class="shadow overflow-hidden sm:rounded-md">
@@ -60,6 +61,7 @@
     </form>
 </div>
 <script>
+    // this code for activate save changes on input focus
     document.querySelector('.editSUserInfo').addEventListener('submit', (e) => {
         e.target.classList.contains('disable') && e.preventDefault();
         });
@@ -67,7 +69,6 @@
         elem.addEventListener('focus', (e) => {
             if(e.target.nodeName == 'INPUT'){
                 document.querySelector('.editSUserInfo').classList.remove('disable');
-                // document.querySelector('.editSUserInfo').addEventListener('submit', e => {return true});
                 document.querySelector('.editSUserInfo .submitEdit').classList.add('enable');
             }else{
                 document.querySelector('.editSUserInfo').classList.add('disable');
@@ -76,3 +77,4 @@
         })
     })
 </script>
+</x-userProfile>

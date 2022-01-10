@@ -21,5 +21,9 @@ class UserProfile extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+    public function bookings(){
+        return $this->hasMany(Booking::class, 'user_id');
+    } 
+
 
 }

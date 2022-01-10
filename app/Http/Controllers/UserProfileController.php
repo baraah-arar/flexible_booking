@@ -17,7 +17,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        return view('userProfile');
+        return view('components/UserProfileSections.Change-user-settings');
     }
 
     /**
