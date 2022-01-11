@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
@@ -27,11 +27,17 @@ class UserProfileController extends Controller
      */
     public function displayresetForm()
     {
+        //
         return view('components/UserProfileSections.reset-password');
     }
 
-    public function profileResetPassword()
-    {
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function profileResetPassword(){
         // ddd(bcrypt(request()->old_password));
         $attributes = [
             'old_password' => 'required',
@@ -46,10 +52,11 @@ class UserProfileController extends Controller
         };
         if(!Hash::check(request()->old_password, auth()->user()->password))
             return back()->withErrors(['old_password' => 'the given password does\'nt match current password' ]);
-        
+
         UserProfile::where('id', auth()->user()->id)
                     ->update(['password' => bcrypt(request()->password)]);
-        return back()->with('success', 'your password updated successfuly');
+        auth()->logout();
+        return redirect('/')->with('success', 'your password updated successfuly. Please login again');
     }
 
     /**
@@ -58,9 +65,10 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfile $userProfile)
+    public function showReservation($id)
     {
-        //
+        $reservations = auth()->user()->bookings->where('id',$id)[0];
+        return view('components/UserProfileSections/user-reservations', ['reservations' => $reservations]);
     }
 
     /**
@@ -96,7 +104,6 @@ class UserProfileController extends Controller
         };
         UserProfile::where('id', auth()->user()->id)->update(request()->except(['_token']));
         return back()->with('success', 'your information updated successfuly');
-
     }
 
     /**

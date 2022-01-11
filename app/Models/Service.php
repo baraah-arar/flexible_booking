@@ -19,6 +19,6 @@ class Service extends Model
 
     public function bookings()
     {
-        return $this->BelongsToMany(Booking::class, BookingService::class ,'srv_id','bkg_id');
+        return $this->BelongsToMany(Booking::class, BookingService::class ,'srv_id','bkg_id')->withPivot('status');
     }
 }

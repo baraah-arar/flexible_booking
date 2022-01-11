@@ -91,7 +91,7 @@
 </div>
 
 @foreach($places as $place)
-<div class="hor-card services-card booking card-number my-16 gap-x-4 grid grid-cols-1 md:grid-cols-2" data-num-plc="0{{$loop->index + 1}}">
+<div class="hor-card services-card booking card-number w-full my-16 gap-x-4 grid grid-cols-1 md:grid-cols-2" data-num-plc="0{{$loop->index + 1}}">
     <div class="img-sec ">
         <div style="background-image:url('/images/mr0.png')" class="  bg-cover bg-no-repeat bg-center h-full w-full"></div>
             <!-- <div style="background-image:url('/images/worker.png')" class="row-start-1 mt-10 col-start-2 col-span-2 bg-contain bg-no-repeat bg-center h-32 w-auto"></div> -->
