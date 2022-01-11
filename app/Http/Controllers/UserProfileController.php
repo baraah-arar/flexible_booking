@@ -66,9 +66,10 @@ class UserProfileController extends Controller
      * @param  \App\Models\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfile $userProfile)
+    public function showReservation($id)
     {
-        //
+        $reservations = auth()->user()->bookings->where('id',$id)[0];
+        return view('components/UserProfileSections/user-reservations', ['reservations' => $reservations]);
     }
 
     /**

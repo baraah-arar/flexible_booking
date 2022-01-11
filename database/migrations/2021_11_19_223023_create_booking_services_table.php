@@ -17,6 +17,7 @@ class CreateBookingServicesTable extends Migration
             $table->increments('id');
             $table->integer('srv_id')->unsigned();
             $table->integer('bkg_id')->unsigned();
+            $table->string('status')->default('pending');
             $table->timestamps();
 
             $table->foreign('srv_id')->references('id')->on('services')

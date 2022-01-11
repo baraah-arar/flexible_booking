@@ -9,7 +9,7 @@ class BookingService extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'srv_id','bkg_id'
+        'srv_id','bkg_id', 'status'
     ];
 
 }
