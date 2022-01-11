@@ -62,8 +62,11 @@ Route::get('dashboard/services', 'App\Http\Controllers\DashboardServicesControll
 
 Route::resource('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController');
 Route::get('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController@index')->name('dashboard.opinions_index');
+
 Route::get('dashboard/author/{id}', 'App\Http\Controllers\DashboardUsersController@author')->name('author.opinions');
 
+Route::resource('dashboard/bookings', 'App\Http\Controllers\DashboardBookingController');
+Route::get('dashboard/bookings', 'App\Http\Controllers\DashboardBookingController@index')->name('dashboard.bookings_index');
 
 // register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');

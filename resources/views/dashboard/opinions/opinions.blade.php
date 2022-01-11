@@ -13,8 +13,8 @@
                     <div class="mb-3 xl:w-96">
                       <select class="filter-select appearance-none block w-full px-3  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
                           <option selected>Open this select menu</option>
-                          <option value="Complement">Complement</option>
-                          <option value="Complaint">Complaint</option>
+                          <option  value="Complement">Complement</option>
+                          <option  value="Complaint">Complaint</option>
                       </select>
                     </div>
                   </div>
@@ -131,7 +131,15 @@
       })
     });
   </script>
-
-
+  {{-- <script>
+    function showRes() {
+     document.getElementById("Complement").style.display = "inline";
+      document.getElementById("Complaint").style.display = "none"
+      }
+    function showEdit() {
+     document.getElementById("Complement").style.display = "none";
+     document.getElementById("Complaint").style.display = "inline"
+    }
+</script> --}}
 </x-layoutdashboard>
 {{$opinions->links()}}
