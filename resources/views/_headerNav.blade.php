@@ -24,8 +24,7 @@
                     </button>
                     <x-dropdown :auth="true">
                         <x-ddown-item href="/profile" :active="request()->routeIs('profile')">Profile</x-ddown-item>
-                        <x-ddown-item href="/profile" :active="request()->is('*' . 'settings')">Settings</x-ddown-item>
-                        <x-ddown-item href="/profile" :active="request()->is('*' . 'reservation')">Reservations</x-ddown-item>
+                        <x-ddown-item href="/reservations" :active="request()->is('*' . 'reservations')">Reservations</x-ddown-item>
                     </x-dropdown>                                
                 </x-ddown-flex>                                
             @else                  
@@ -72,8 +71,7 @@
                         </button>
                         <x-dropdown :auth="true">
                             <x-ddown-item href="/profile" :active="request()->routeIs('profile')">Profile</x-ddown-item>
-                            <x-ddown-item href="/profile" :active="request()->is('*' . 'settings')">Settings</x-ddown-item>
-                            <x-ddown-item href="/profile" :active="request()->is('*' . 'reservation')">Reservations</x-ddown-item>
+                            <x-ddown-item href="/reservations" :active="request()->is('*' . 'reservations')">Reservations</x-ddown-item>
                         </x-dropdown>                                
                     </x-ddown-flex>                                
                 @else                  
