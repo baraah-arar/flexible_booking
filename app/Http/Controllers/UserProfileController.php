@@ -38,9 +38,7 @@ class UserProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function profileResetPassword()
-    {
-        //
+    public function profileResetPassword(){
         // ddd(bcrypt(request()->old_password));
         $attributes = [
             'old_password' => 'required',
@@ -58,7 +56,8 @@ class UserProfileController extends Controller
 
         UserProfile::where('id', auth()->user()->id)
                     ->update(['password' => bcrypt(request()->password)]);
-        return back()->with('success', 'your password updated successfuly');
+        auth()->logout();
+        return redirect('/')->with('success', 'your password updated successfuly. Please login again');
     }
 
     /**
