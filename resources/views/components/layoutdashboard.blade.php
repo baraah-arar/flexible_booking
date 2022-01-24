@@ -41,7 +41,7 @@
 
                         <a href="{{ route('dashboard.users')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</a>
 
-                        <a href="#" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Booking</a>
+                        <a href="{{ route('dashboard.bookings_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Booking</a>
 
                         <a href="{{ route('dashboard.places_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Places</a>
 
@@ -98,7 +98,7 @@
 
                   <a href="{{ route('dashboard.users')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</a>
 
-                  <a href="#" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Booking</a>
+                  <a href="{{ route('dashboard.bookings_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Booking</a>
 
                   <a href="{{ route('dashboard.places_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Places</a>
 
