@@ -21,7 +21,7 @@
                 <thead class="bg-gray-50">
                   <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        #
+                        User_ID
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                      Name
@@ -48,13 +48,21 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
 
-                    @php
+                    {{-- @php
                     $i=0;
-                    @endphp
+                    @endphp --}}
                   @foreach ($users as $item)
                      <tr>
-                         <th scope="row">{{++$i}}</th>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                         {{-- <th scope="row">{{++$i}}</th> --}}
+                         <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                              <div class="ml-4">
+                                <div class="text-sm text-gray-500">
+                                    {{ $item->id}}
+                                </div>
+                              </div>
+                            </div>
+                          </td>                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                               <div class="flex-shrink-0 h-10 w-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke=" rgb(129 140 248)">
@@ -130,6 +138,7 @@
                           </td>
                          </tr>
                     @endforeach
+                </tbody>
               </table>
             </div>
           </div>

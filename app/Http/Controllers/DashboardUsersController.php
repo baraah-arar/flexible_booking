@@ -70,8 +70,6 @@ class DashboardUsersController extends Controller
     {
 
         $user = UserProfile::with('opinions')->find($id);
-    //     if ($user.lenght()==0) abort(404);
-    //    else
         return view('dashboard.opinions.user_opinions', ['opinions' => $user->opinions]);
 
     }

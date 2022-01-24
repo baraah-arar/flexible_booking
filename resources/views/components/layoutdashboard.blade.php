@@ -41,14 +41,15 @@
 
                         <a href="{{ route('dashboard.users')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</a>
 
-                        <a href="{{ route('dashboard.bookings_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Booking</a>
+                        <a href="{{ route('dashboard.bookings_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Bookings</a>
 
                         <a href="{{ route('dashboard.places_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Places</a>
 
-                        <a href="{{ route('dashboard.opinions_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
-
                         <a href="{{ route('dashboard.services_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
 
+                        <a href="{{ route('dashboard.opinions_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
+
+                        <a href="{{ route('dashboard.statistics')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">statistics</a>
 
 
                       </div>
@@ -63,15 +64,11 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg>
                       </button>
-
-
-                      <div class="ml-3 relative">
-                        <button type="button" class="bg-gray-900 p-1 rounded-full text-indigo-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                        <a href="{{ route('home')}}" class="bg-gray-900 p-1 rounded-full text-indigo-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                               </svg>
-                          </button>
-                        </div>
+                         </a>
                     </div>
                   </div>
                   <div class="-mr-2 flex md:hidden">
@@ -80,11 +77,11 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg>
                     </button>
-                    <button type="button" class="bg-gray-900 p-1 rounded-full text-indigo-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <a href="{{ route('home')}}" class="bg-gray-900 p-1 rounded-full text-indigo-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
-                    </button>
+                    </a>
 
                   </div>
                 </div>
@@ -98,14 +95,15 @@
 
                   <a href="{{ route('dashboard.users')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</a>
 
-                  <a href="{{ route('dashboard.bookings_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Booking</a>
+                  <a href="{{ route('dashboard.bookings_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Bookings</a>
 
                   <a href="{{ route('dashboard.places_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Places</a>
 
-                  <a href="{{ route('dashboard.opinions_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
-
                   <a href="{{ route('dashboard.services_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
 
+                  <a href="{{ route('dashboard.opinions_index')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Opinions</a>
+
+                  <a href="{{ route('dashboard.statistics')}}" class="text-indigo-300 hover:bg-indigo-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">statistics</a>
 
                 </div>
 

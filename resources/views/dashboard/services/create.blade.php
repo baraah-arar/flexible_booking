@@ -1,17 +1,17 @@
 <x-layoutdashboard>
-    <div class=" bg-cover border-t-2 border-blue-600 h-full" style="background-image: url('https://ik.imagekit.io/q5edmtudmz/peter-lloyd-680526-unsplash_TYZn4kayG.jpg');">
+    <div class=" bg-cover border-t-2  h-full" style="background-image: url('https://www.mexatk.com/wp-content/uploads/2019/01/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%D8%A7%D8%AA-%D9%85%D9%83%D8%AA%D8%A8-%D9%85%D8%AE%D8%AA%D9%84%D9%81%D8%A9-2.jpg');">
         <div class="content px-8 py-2">
             <div class="body mt-20 mx-8">
                 <div class="md:flex items-top my-8 justify-between">
-                    <div class="w-full items-top md:w-1/2 mr-auto" style="text-shadow: 0 20px 50px hsla(0,0%,0%,8);">
-                        <h1 class="text-4xl font-bold text-white tracking-wide">SERVICE</h1>
-                        <p class="text-gray-200 mb-8">
+                    <div class="w-full items-top md:w-1/2 my-20 mr-auto" style="text-shadow: 0 20px 50px hsla(0,0%,0%,8);">
+                        <h1 class="text-4xl font-bold text-black tracking-wide">SERVICE</h1>
+                        <p class="text-black mb-8">
                             On this page, you can add any any service so that it can be reserved for customers.
                         </p>
-                        <span class="text-white ">Click Here To Return <a href="{{ route('dashboard.services_index')}}" class="text-gray-900 text-lg ml-2 font-bold">Services</a></span>
+                        <span class="text-black ">Click Here To Return <a href="{{ route('dashboard.services_index')}}" class="text-gray-900 text-xl ml-2 font-bold">Services</a></span>
                     </div>
                     <div class="w-full md:max-w-md mt-6">
-                        <div class="card bg-white shadow-md rounded-lg px-4 py-4 mb-6 ">
+                        <div class="card bg-gray-100 shadow-md rounded-lg px-4 py-4 mb-6 ">
                             <form action="{{ route('services.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex items-center justify-center">
@@ -65,7 +65,7 @@
                             </div>
 
 
-                               <div class=" px-2 py-3 bg-white text-right sm:px-6 flex justify-between">
+                               <div class=" px-2 py-3 bg-gray-100 text-right sm:px-6 flex justify-between">
                                     <a href="{{ route('services.create')}}" class="inline-flex w-20 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Cancel
                                       </a>
