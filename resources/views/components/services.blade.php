@@ -51,7 +51,7 @@
                 </div>
                 <div class="flex items-center mt-6 text-gray-900 text-base text-lg font-medium">
                     @php
-                        $i=1;
+                        $i=0;
                         $value=0;
                         $avg = 0;
                         foreach($places as $place){
