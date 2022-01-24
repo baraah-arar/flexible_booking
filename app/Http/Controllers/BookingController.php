@@ -21,7 +21,7 @@ class BookingController extends Controller
     {
         $type = (substr(request()->fullurl(), strpos(request()->fullurl(), 'services/') + 9));
         return view('components/services', 
-            ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out-of-service')->get(),
+            ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out_of_service')->get(),
             'services' => Service::all()]);
     }
 
@@ -103,7 +103,7 @@ class BookingController extends Controller
         $start  = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
         $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
         $diff_in_hours  = Carbon::parse($end)->diffInHours(Carbon::parse($start));
-        $places = Place::where('plc_type', 'individual')->where('status', '!=', 'out-of-service')->get();
+        $places = Place::where('plc_type', 'individual')->where('status', '!=', 'out_of_service')->get();
         foreach($places as $index => $place){
             $placeBookings = $place->bookings;
             if(isset($placeBookings)){
@@ -144,7 +144,7 @@ class BookingController extends Controller
                 "data" => "please login to your account."
             ]);
         };
-        if(auth()->user()->status != 'null'){
+        if(auth()->user()->status != 'active'){
             $msg = '<span>failed please activate your account.</span>';
             // abort(403);
             session()->flash('failed', $msg);
@@ -195,7 +195,7 @@ class BookingController extends Controller
                 "data" => $attributes
             ]);
         };
-        if(auth()->user()->status != 'null'){
+        if(auth()->user()->status != 'active'){
             $msg = '<span>failed please activate your account.</span>';
             // abort(403);
             session()->flash('failed', $msg);

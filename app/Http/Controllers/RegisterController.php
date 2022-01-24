@@ -47,7 +47,7 @@ class RegisterController extends Controller
         // login the new user
         auth()->login($user);
         // redirect after creating new user
-        return redirect('/')->with('success', 'Your account has been created successfully.');
+        return back()->with('success', 'Your account has been created successfully.');
     }
 
     public function verifyByEmailForm(){
