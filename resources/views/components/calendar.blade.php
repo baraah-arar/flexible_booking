@@ -1,7 +1,7 @@
 @props(['action'])
 <x-modal-overlay id="calendar-overlay">
     <x-modal-header closeDes=''>click to set start & end time for your reservation</x-modal-header>
-<div class="calendar_cont">
+<div class="calendar_cont flex flex-col">
             <div class="calendar_form mt-8 flex flex-col items-center justify-center">
                 <form action="{{$action}}" method="put" class="flex items-center justify-center">
                     @csrf
@@ -39,6 +39,9 @@
         	<div class="calendar">
         		<div class="empty"></div>
         	</div>
+            <button class="close mx-2 self-end py-2 px-2 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Ok
+            </button>
         </div>
 </x-modal-overlay>
     	<script type="text/javascript">
@@ -67,24 +70,17 @@
     		}
 
             function init(date){
-                // date = new Date();
                 header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
-                // console.log(new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate());
-                // console.log(date.toLocaleString("default", {weekday: "long"}));
-                console.log(date);
+                // console.log(date);
                 mapDayNumMon(date);
                 fillDateTimeCells(date);
             }
 
             function mapDayNumMon(date){
-                // console.log(date.toDateString());
                 const temp_date_week = date;
                 const head_elems = document.querySelectorAll('.head');
                 const current_day = temp_date_week.toLocaleString("default", {weekday: "long"});
-                let curr_day_index = days_arr.indexOf(current_day) - 1;             
-                // const options = {weekday:'short', day: 'numeric', month: 'short', year:'numeric'};
-                // console.log(start_from_day);
-                // console.log(date.toLocaleString('en-us', options));
+                let curr_day_index = days_arr.indexOf(current_day) - 1;
                 temp_date_week.setDate(temp_date_week.getDate() - curr_day_index);
                 console.log(curr_day_index);
                 for(i=1; i<head_elems.length; i++){                
@@ -95,9 +91,11 @@
                         head_elems[i].removeChild(head_elems[i].querySelector('.dayNumber'));
                     day_num_span.textContent = `${temp_date_week.getDate()}`;
                     head_elems[i].appendChild(day_num_span);
-                    console.log(date);
+                    console.log(temp_date_week.toDateString());
+                    let todayDate = new Date;
+                    console.log(temp_date_week.toDateString() == todayDate.toDateString());
                     head_elems[i].dataset.dateTime = temp_date_week.toDateString();
-                    // console.log(head_elems[i].dataset.dateTime);
+                    if(temp_date_week.toDateString() == todayDate.toDateString()) head_elems[i].classList.add('font-bold', 'text-indigo-600', 'shadow-md');
                     temp_date_week.setDate(temp_date_week.getDate() + 1);
                 }
             }
@@ -131,47 +129,27 @@
 
             initLoad();
             init(new Date());
-            // console.log(date.getFullYear() + 1);
-            // console.log(date.toLocaleString("default", {month: "long"}));
             var nav_month = 0;
             var nav_week  = 0;
                       
             document.addEventListener('click', (e) => {
-                // console.log(date);
                 let elem = e.target;
                 if(checkParents(e.target, 'action_date')) elem = checkParents(e.target, 'action_date');
                 if(elem.dataset.type === 'nextMonth'){
                     nav_month++;
                     setDateEvent(nav_month, nav_week);
-                    // console.log(date.toLocaleString("default", {weekday: "long"}));
-                    // console.log(date.getFullYear()); 
-                    // console.log(date);
-                    // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
-                    // init(date);
                 }
                 if(elem.dataset.type === 'prevMonth'){
                     nav_month--;
                     setDateEvent(nav_month, nav_week);
-                    // date.setMonth(date.getMonth() + nav_month); 
-                    // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
-                    // init(date);
                 }
                 if(elem.dataset.type === 'nextWeek'){
                     nav_week += 7;
                     setDateEvent(nav_month, nav_week);
-                    // date.setDate(date.getDate() + nav_week);
-                    // console.log(date.toLocaleString("default", {month: "long"}));
-                    // console.log(date); 
-                    // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
-                    // init(date);
                 }
                 if(elem.dataset.type === 'prevWeek'){
                     nav_week -= 7;
                     setDateEvent(nav_month, nav_week);
-                    // date.setDate(date.getDate() + nav_week);
-                    // console.log(date);  
-                    // header_date.textContent = `${date.toLocaleString("default", {month: "long"})} ${date.getFullYear()}`;
-                    // init(date);
                 }
             })
 
@@ -183,15 +161,20 @@
                 if(check_in_input.value != '' && check_out_input.value != '')
                     resetValues();
                 else{
-                    if(check_in_input.value == '') { 
-                        check_in_input.value = cell.dataset.dateTime
+                    if(check_in_input.value == ''){
+                        let curr_date = new Date;
+                        if(new Date(cell.dataset.dateTime).toLocaleString() < curr_date.toLocaleString())
+                            document.querySelector('.error_message').innerText = 'Not valid date';
+                        else{
+                            document.querySelector('.error_message').innerText = '';
+                            check_in_input.value = cell.dataset.dateTime;}
                     }else if(new Date(cell.dataset.dateTime) > new Date(check_in_input.value)){
                         check_out_input.value = cell.dataset.dateTime;
                     }else
                         document.querySelector('.error_message').innerText = 'Not valid date';
                 }
             }
-            console.log(new Date('Sun Dec 26 2021 10:00 am') < new Date('Mon Dec 27 2021 11:00 am'));
+            // console.log(new Date('Sun Dec 26 2021 10:00 am') < new Date('Mon Dec 27 2021 11:00 am'));
             function resetValues(){
                 check_in_input.value = '';
                 check_out_input.value = '';

@@ -21,12 +21,22 @@ class BookingController extends Controller
     {
         $type = (substr(request()->fullurl(), strpos(request()->fullurl(), 'services/') + 9));
         return view('components/services', 
-            ['places' => Place::where('plc_type', $type)->get(),
+            ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out-of-service')->get(),
             'services' => Service::all()]);
     }
 
     public function checkAvailability(){
         // ddd(request()->start_date);
+        if(auth()->guest()){
+            $msg = '<span>please <a class="font-medium underline" href="'.url()->current().'#login-modal" >login</a> before Booking this space.</span>';
+            // abort(403);
+            session()->flash('failed', $msg);
+
+            return response()->json([
+                "status" => 'failed',
+                "data" => $msg
+            ]);
+        };
         $attributes = request()->validate([
             'start_date' => 'required',
             'end_date'  => 'required',
@@ -35,33 +45,39 @@ class BookingController extends Controller
         $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
         $plc_id = request()->plc_id;
         // 1- check if two dates exist in booking table with same place
-        $bookings_plc = Booking::where(
-            'plc_id' , $plc_id)
-            ->where('start_date', '>=' , $start)
-            ->where('end_date', '<=' , $end) 
-            ->get();
-        // 2- if yes then return not allowed the place id reserved at the same time
-        // 3- if not calculate the price
-        // 4- 3- calculate the hours between two start&end dates        
-        $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));
-        // 5- 3- calculate the cost depends on hours number (get cost per hour from places table)
-        $plc_cost = Place::where('id', $plc_id)->first('price');
-        $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+        $bookings_plc = Booking::where('plc_id' , $plc_id)->get();
+        if($bookings_plc->count()>0){
+            foreach($bookings_plc as $booking){
+                if($booking->status != 'canceled'){
+                    $oldStart  = Carbon::parse($booking->start_date);
+                    $oldEnd    = Carbon::parse($booking->end_date);
+                    if(Carbon::parse(request()->start_date)->betweenIncluded($oldStart, $oldEnd) || Carbon::parse(request()->end_date)->betweenIncluded($oldStart, $oldEnd)
+                        || $oldStart->betweenIncluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
+                        return response()->json([
+                            "status" => false,
+                            "message" => "unavailable, please choose another time"
+                        ]);
+                    }
+                }
+            }
+        }
+        $plc_cost = Place::where('id', request()->plc_id)->first('price');
+        if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
+            $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
+            $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+            $attributes['duration'] = $diff_in_hours;
+        }
+        elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
+            $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));
+            if($diff_in_days == 0) $diff_in_days = 1;           
+            $cost = intval($plc_cost['price']) * intval($diff_in_days);
+            $attributes['duration'] = $diff_in_days;
+        };
 
         $attributes['plc_id'] = request()->plc_id;
         $attributes['cost']   = $cost;
-        $attributes['numberHours'] = $diff_in_hours;
         // 6- insert new booking row with status bending
         // 7- return success message
-        
-        // if(auth()->guest()){
-        //     $msg = '<span>please <a class="font-medium underline" href="/contact#login-modal" >login</a> before sending your message</span>';
-        //     // abort(403);
-        //     return response()->json([
-        //         "status" => fails,
-        //         "data" => $attributes
-        //     ]);
-        // };
         
         return response()->json([
             "status" => true,
@@ -69,19 +85,98 @@ class BookingController extends Controller
         ]);
     } 
 
+    public function checkAvailabilityIndivi(){
+        if(auth()->guest()){
+            $msg = '<span>please <a class="font-medium underline" href="/contact#login-modal" >login</a> before Booking this space.</span>';
+            // abort(403);
+            session()->flash('failed', $msg);
 
-    /* get hours from two dates
-    $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', '2015-5-5 3:30:34');
-    $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', '2015-5-5 9:30:34');
-    $diff_in_hours = $to->diffInHours($from);
-    print_r($diff_in_hours);// Output: 6
-    */
+            return response()->json([
+                "status" => 'failed',
+                "data" => $attributes
+            ]);
+        };
+        $attributes = request()->validate([
+            'start_date' => 'required',
+            'end_date'  => 'required',
+        ]);
+        $start  = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
+        $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
+        $diff_in_hours  = Carbon::parse($end)->diffInHours(Carbon::parse($start));
+        $places = Place::where('plc_type', 'individual')->where('status', '!=', 'out-of-service')->get();
+        foreach($places as $index => $place){
+            $placeBookings = $place->bookings;
+            if(isset($placeBookings)){
+                foreach($placeBookings as $key => $plcBokking){
+                    if($plcBokking->status == 'pending' || $plcBokking->status == 'confirmed'){
+                        $oldStart = Carbon::parse($plcBokking->start_date);
+                        $oldEnd   = Carbon::parse($plcBokking->end_date);
+                        if(Carbon::parse(request()->start_date)->betweenIncluded($oldStart, $oldEnd) || Carbon::parse(request()->end_date)->betweenIncluded($oldStart, $oldEnd)
+                            || $oldStart->betweenIncluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
+                            $places->forget($index);
+                            break;
+                            // return response()->json([
+                            //     "status" => true,
+                            //     "data" => $places
+                            // ]);
+                        }
+                    }
+                }
+            }
+        }
+        return response()->json([
+            "status" => true,
+            "start"  => $start,
+            "end"    => $end,
+            "hours"  => $diff_in_hours,
+            "data"   => $places->take(5),
+        ]);
+    }
 
-    /* get records between two dates
-        $users = User::whereBetween('created_at',[$request->start_date,$request->end_date])
-        ->get();
+    public function createIndivi(){
+        if(auth()->guest()){
+            $msg = '<span>please <a class="font-medium underline" href="/contact#login-modal" >login</a> before Booking this space.</span>';
+            // abort(403);
+            session()->flash('failed', $msg);
 
-    */
+            return response()->json([
+                "status" => 'failed',
+                "data" => "please login to your account."
+            ]);
+        };
+        if(auth()->user()->status != 'null'){
+            $msg = '<span>failed please activate your account.</span>';
+            // abort(403);
+            session()->flash('failed', $msg);
+
+            return response()->json([
+                "status" => 'failed',
+                "data" => "please activate your account."
+            ]);
+        };
+        $attributes = request()->validate([
+            'start_date' => 'required',
+            'end_date'   => 'required',
+            'plc_id'     => 'required'
+        ]);
+        $start  = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
+        $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
+        $diff_in_hours  = Carbon::parse($end)->diffInHours(Carbon::parse($start));
+        $plc_cost = Place::where('id', request()->plc_id)->first('price');
+        $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+
+        $attributes['cost'] = $cost;
+        $attributes['user_id'] = auth()->user()->id;
+        $attributes['payment_plan'] = 'hours';
+        $attributes['status'] = 'pending';
+        $item = Booking::firstOrCreate($attributes);
+        session()->flash('success', 'Your reservations created successfully, please manage your reservations from your profile');
+        return response()->json([
+            "status" => true,
+            "data" => request()->all()
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -90,22 +185,69 @@ class BookingController extends Controller
      */
     public static function create()
     {
+        if(auth()->guest()){
+            $msg = '<span>please <a class="font-medium underline" href="/contact#login-modal" >login</a> before sending your message</span>';
+            // abort(403);
+            session()->flash('failed', $msg);
+
+            return response()->json([
+                "status" => 'failed',
+                "data" => $attributes
+            ]);
+        };
+        if(auth()->user()->status != 'null'){
+            $msg = '<span>failed please activate your account.</span>';
+            // abort(403);
+            session()->flash('failed', $msg);
+
+            return response()->json([
+                "status" => 'failed',
+                "data" => "please activate your account."
+            ]);
+        };
         $attributes['start_date'] = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
         $attributes['end_date'] = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
-        // $attributes['user_id'] = auth()->user()->id;
-        $attributes['user_id'] = 1;
+        $attributes['user_id'] = auth()->user()->id;
+        $plc_id = request()->plc_id;
+        // $attributes['user_id'] = 1;
         $attributes['plc_id'] = request()->plc_id;
         // recalculate the cost to prevent wrong values
         $start  = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
         $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
-        $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));
-        // 5- 3- calculate the cost depends on hours number (get cost per hour from places table)
+
+        $bookings_plc = Booking::where('plc_id' , $plc_id)->get();
+        if($bookings_plc->count()>0){
+            foreach($bookings_plc as $booking){
+                if($booking->status != 'canceled'){
+                    $oldStart  = Carbon::parse($booking->start_date);
+                    $oldEnd    = Carbon::parse($booking->end_date);
+                    if(Carbon::parse(request()->start_date)->betweenIncluded($oldStart, $oldEnd) || Carbon::parse(request()->end_date)->betweenIncluded($oldStart, $oldEnd)
+                        || $oldStart->betweenIncluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
+                        return response()->json([
+                            "status" => false,
+                            "message" => "unavailable, please choose another time"
+                        ]);
+                    }
+                }
+            }
+        }
         $plc_cost = Place::where('id', request()->plc_id)->first('price');
-        $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+        if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
+            $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
+            $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+            // $attributes['numberHours'] = $diff_in_hours;
+            $attributes['payment_plan'] = 'hours';
+        }
+        elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
+            $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start)); 
+            if($diff_in_days == 0) $diff_in_days = 1;           
+            $cost = intval($plc_cost['price']) * intval($diff_in_days);
+            // $attributes['numberDays'] = $diff_in_days;
+            $attributes['payment_plan'] = 'days';
+        };
 
         $attributes['cost'] = $cost;
-        $attributes['status'] = 'bending';
-        $attributes['payment_plan'] = 'hours';
+        $attributes['status'] = 'pending';
         // Booking::create($attributes);
         $item = Booking::firstOrCreate($attributes);
 
@@ -144,7 +286,15 @@ class BookingController extends Controller
                         "data" => $data
                     ]);
                 }else{
-                    BookingService::create(['srv_id'=> $value, 'bkg_id' => $bkg_id]);
+                    // for test------------
+                        if(BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id])->doesntExist())
+                    //-------------
+                            BookingService::create(['srv_id'=> $value, 'bkg_id' => $bkg_id]);
+                        else
+                            return response()->json([
+                                "status" => false,
+                                "data" => $data
+                            ]);
                 }
             }
         }

@@ -6,8 +6,8 @@
         <div class="hidden md:flex">                    
             <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>                            
             <x-ddown-flex>
-                <x-nav-item :active="request()->is('*' . 'services' . '*')" class="dropdownButton flex">
-                    <x-icons.down-arrow class="icon"/><span>services</apsn>
+                <x-nav-item :active="request()->is('*' . 'services' . '*')" class="dropdownButton flex h-full">
+                    <x-icons.down-arrow class="icon self-center"/><span>services</apsn>
                 </x-nav-item>
                 <x-dropdown>
                     <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individaule desktop</x-ddown-item>

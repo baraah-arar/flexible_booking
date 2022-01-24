@@ -32,13 +32,17 @@ Route::get('/services/private', [BookingController::class, 'index']);
 Route::get('/services/meeting', [BookingController::class, 'index']);
 
 // User Profile Edit && Reset Password
-Route::get('/profile', [UserProfileController::class, 'index']);
-Route::post('/profile', [UserProfileController::class, 'update']);
-Route::get('/profile/resetPassword', [UserProfileController::class, 'displayresetForm']);
-Route::post('/profile/resetPassword', [UserProfileController::class, 'profileResetPassword']);
-Route::get('/reservations', function(){return view('components/UserProfileSections/Crud-user-reservations');});
-Route::get('/reservations/{id}', [UserProfileController::class, 'showReservation']);
-
+Route::get('/profile', [UserProfileController::class, 'index'])->middleware('auth');
+Route::post('/profile', [UserProfileController::class, 'update'])->middleware('auth');
+Route::get('/profile/resetPassword', [UserProfileController::class, 'displayresetForm'])->middleware('auth');
+Route::post('/profile/resetPassword', [UserProfileController::class, 'profileResetPassword'])->middleware('auth');
+Route::get('/reservations', [UserProfileController::class, 'displayreservations'])->middleware('auth');
+Route::post('/reservations', [UserProfileController::class, 'voting'])->middleware('auth');
+Route::get('/reservations/{id}', [UserProfileController::class, 'showReservation'])->middleware('auth');
+Route::put('/reservations/{id}', [UserProfileController::class, 'checkTimeAvailability'])->middleware('auth');
+Route::post('/reservations/{id}', [UserProfileController::class, 'editReservation'])->middleware('auth');
+Route::delete('/reservations/{id}', [UserProfileController::class, 'cancelReservation'])->middleware('auth');
+Route::patch('/reservations/{id}', [BookingController::class, 'createextraservice'])->middleware('auth');
 
 Route::get('/services/book-service', function(){
     return view('components/bookForm');
@@ -70,12 +74,12 @@ Route::get('/#register', function(){return redirect('/#register');})->name('view
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('verify-account', [RegisterController::class, 'verifyByEmailForm'])->name('verify.get')->middleware('auth');;
-Route::get('verify-account/sendcode', [RegisterController::class, 'sendCodeVerify'])->middleware('auth');;
-Route::post('verify-account', [RegisterController::class, 'verifyByEmail'])->name('verify.post')->middleware('auth');;
+Route::get('verify-account', [RegisterController::class, 'verifyByEmailForm'])->name('verify.get')->middleware('auth');
+Route::get('verify-account/sendcode', [RegisterController::class, 'sendCodeVerify'])->middleware('auth');
+Route::post('verify-account', [RegisterController::class, 'verifyByEmail'])->name('verify.post')->middleware('auth');
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+Route::get('login', [SessionsController::class, 'index'])->name('login')->middleware('guest');
+Route::post('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
@@ -83,14 +87,18 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
-// book meeting service
+// book meeting place
 Route::put('/services/meeting', [BookingController::class, 'checkAvailability'])->name('check');
 Route::post('/services/meeting', [BookingController::class, 'create'])->name('book');
 Route::patch('/services/meeting', [BookingController::class, 'createextraservice'])->name('extra.book');
-
-
+// book private place
+Route::put('/services/private', [BookingController::class, 'checkAvailability']);
+Route::post('/services/private', [BookingController::class, 'create'])->name('book');
+Route::patch('/services/private', [BookingController::class, 'createextraservice']);
+// book Individual place
+Route::put('/services/Individual', [BookingController::class, 'checkAvailabilityIndivi']);
+Route::post('/services/Individual', [BookingController::class, 'createIndivi']);
 // extras booking
 Route::get('/services/extras', function(){
     return view('components/extras-modal');
-
 });
