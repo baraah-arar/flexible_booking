@@ -53,7 +53,7 @@
                     <div class="flash-msg z-10 fixed bottom-14 flex w-full justify-center">
                         <p class="bg-red-400 opacity-95 shadow-md text-white justify-center flex items-center space-x-2 py-2 md:py-2 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto">
                             <span>Your account is not verified.</span>
-                            <a href="verify-account" id="verify-flash-msg" class="verify text-white text-sm md:text-lg items-center p-2 w-30 h-12 flex justify-center rounded bg-red-500">Verify Now</a>
+                            <a href="/verify-account" id="verify-flash-msg" class="verify text-white text-sm md:text-lg items-center p-2 w-30 h-12 flex justify-center rounded bg-red-500">Verify Now</a>
                             <!-- <a href="#" id="close-flash-msg" class="close text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a> -->
                         </p>
                     </div>
@@ -68,7 +68,7 @@
             <div class="flash-msg fixed top-3 z-10 flex w-full justify-center">
                 <p class="bg-green-400 opacity-95 shadow-md text-white flex items-center justify-between space-x-2 py-2 md:py-4 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto fixed top-3">
                     {{session('success')}}
-                    <a href="#" id="close-flash-msg" class="close text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a>
+                    <a id="close-flash-msg" class="close cursor-pointer text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a>
                 </p>
             </div>
         @endif
@@ -76,7 +76,7 @@
             <div class="flash-msg fixed top-3 z-10 flex w-full justify-center">
                 <p class="bg-red-400 opacity-95 shadow-md text-white flex items-center justify-between space-x-2 py-2 md:py-4 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto fixed top-3">
                     {!!session('failed')!!}
-                    <a href="#" id="close-flash-msg" class="close text-white text-xl w-10 h-8 flex justify-center rounded bg-red-500">&times;</a>
+                    <a id="close-flash-msg" class="close cursor-pointer text-white text-xl w-10 h-8 flex justify-center rounded bg-red-500">&times;</a>
                 </p>
             </div>
         @endif
@@ -138,6 +138,11 @@
             sliderImages.forEach(elem => {
                 observer.observe(elem);
             });
+            if(document.querySelector('.flash-msg .close')){
+                document.querySelector('.flash-msg .close').addEventListener('click',(e)=>{
+                    e.target.parentElement.classList.add('hidden'); 
+                }) 
+            }
 
             // //side bar choice _user-profile_
             // function showRes() {

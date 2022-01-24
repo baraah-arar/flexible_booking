@@ -1,5 +1,5 @@
 <div class="contact bg-contact py-16 mb-16 grid grid-cols-1 md:grid-cols-2" style="background-image:url(./images/pg1.svg),url(./images/pg2.svg),url(./images/pg3.svg),url(./images/pg4.svg),url(./images/pg6.svg),url(./images/pg7.svg)">
-    <div class="md:w-4/5 justify-self-end flex flex-col justify-center">
+    <div class="md:w-4/5 md:mb-0 mb-8 justify-self-end flex flex-col justify-center">
         <h2 class="text-base font-medium text-2xl text-gray-900 dark:text-white">Contact Us</h2>
         <p class="mt-6 text-base font-medium text-gray-600 dark:text-gray-400 sm:text-lg md:text-lg">We are here to help and answer any question you migth havewe look for ward to hearing from you</p>  
     </div>

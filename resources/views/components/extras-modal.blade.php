@@ -1,7 +1,4 @@
 <x-modal-overlay id="extras-overlay">
-    @foreach($services as $service)
-        
-    @endforeach
     <x-modal-header closeDes=''>Pick any service you want.</x-modal-header>
     <div class="flex flex-wrap">
     @foreach($services as $service)
@@ -15,7 +12,7 @@
                     <p>{{$service->description}}</p>
                 </div>
                 <div class="self-end font-medium min-w-max">
-                    <span>Price: </span> {{$service->price}} $
+                    <span>Price: </span> {{$service->price}} S.P
                 </div>
             </div>
         </a>
