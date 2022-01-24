@@ -51,8 +51,9 @@
                 </div>
                 <div class="flex items-center mt-6 text-gray-900 text-base text-lg font-medium">
                     @php
-                        $i=0;
+                        $i=1;
                         $value=0;
+                        $avg = 0;
                         foreach($places as $place){
                             foreach($place->bookings as $book) {
                                 if(isset($book->assessment->value)){
@@ -61,7 +62,7 @@
                                 };
                             };
                         };
-                        $avg = $value/$i;            
+                        if($value>0) $avg = $value/$i;            
                     @endphp
                     <span class="{{(int)$avg>=1? ' text-yellow-500 ' : ' text-gray-500 ' }}">
                         <svg class="w-5 h-5" fill="currentColor"  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -210,13 +211,14 @@
             @php
                 $i=0;
                 $value=0;
+                $avg = 0;
                 foreach($place->bookings as $book) {
                     if(isset($book->assessment->value)){
                         $value += $book->assessment->value;
                         $i++;
                     };
                 };
-                $avg = $value/$i;            
+                if($value > 0) $avg = $value/$i;            
             @endphp
             <span class="{{(int)$avg>=1? ' text-yellow-500 ' : ' text-gray-500 ' }}">
                 <svg class="w-5 h-5" fill="currentColor"  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
