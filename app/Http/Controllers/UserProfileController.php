@@ -43,7 +43,7 @@ class UserProfileController extends Controller
             foreach(auth()->user()->bookings as $booking){
                 if(Carbon::parse($booking->end_date)->format('Y-m-d H:00:00') < Carbon::now()->format('Y-m-d H:00:00')
                     && $booking->status != 'canceled'){
-                    Booking::where('id', $booking->id)->update(['status' => 'outofdate']);
+                    Booking::where('id', $booking->id)->update(['status' => 'out_of_date']);
                     $services = Booking::where('id', $booking->id)->first()->services;
                     $attributes = ['status','canceled'];
                     foreach($services as $service){
