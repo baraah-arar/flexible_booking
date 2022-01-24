@@ -12,7 +12,7 @@
                 <thead class="bg-gray-50">
                   <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        #
+                        Booking Number
                     </th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Name
@@ -23,9 +23,9 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Place Title
                     </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Services
-                    </th>
+                    </th> --}}
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Start Date
                     </th>
@@ -44,16 +44,28 @@
                     <th scope="col" class="relative px-6 py-3">
                           <span class="sr-only">Confirm</span>
                     </th>
+                    <th scope="col" class="relative px-6 py-3">
+                        <span class="sr-only">Services</span>
+                  </th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-
+{{--
                     @php
                     $i=0;
-                    @endphp
+                    @endphp --}}
                   @foreach ($bookings as $item)
                      <tr>
-                         <th scope="row">{{++$i}}</th>
+                         {{-- <th scope="row">{{++$i}}</th> --}}
+                         <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                              <div class="ml-4">
+                                <div class="text-sm text-gray-500">
+                                    {{ $item->id}}
+                                </div>
+                              </div>
+                            </div>
+                          </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                               <div class="flex-shrink-0 h-10 w-10">
@@ -90,7 +102,7 @@
                               </div>
                             </div>
                           </td>
-                         <td class="px-6 py-4 whitespace-nowrap">
+                         {{-- <td class="px-6 py-4 whitespace-nowrap">
                            <div class="flex items-center">
                               <div class="ml-4">
                                 @foreach ($item->services as $services)
@@ -100,7 +112,7 @@
                                 @endforeach
                               </div>
                             </div>
-                          </td>
+                          </td> --}}
 
                           <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
@@ -138,14 +150,15 @@
                               </div>
                             </div>
                           </td>
-                          <td class="px-6 py-4 whitespace-nowrap">
+                          <td class="px-6 py-4  whitespace-nowrap">
                             <div class="flex items-center">
-                              <div class="ml-4">
+                              <div class="ml-4 ">
+
                                  @if($item->status=="confirmed")
                                   <div class=" bg-green-100 text-green-800 px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
                                     {{ucwords($item->status) }}
                                   </div>
-                                  @elseif($item->status=="bending")
+                                  @elseif($item->status=="pending")
                                   <div class=" bg-red-100 text-red-400 px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
                                     {{ucwords($item->status) }}
                                   </div>
@@ -158,15 +171,28 @@
                             </div>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="#" class="inline-flex w-16 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Confirm</a>
+                            <a href="{{ route('dashboard.booking.confirm',$item->id)}}" class=" {{ $item->status=="pending" ? "active-button bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500" : "disable bg-gray-400 cursor-default " }} inline-flex w-16 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm</a>
+                          </td>
+                          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <a href="{{ route('dashboard.booking.services',$item->id)}}"  class=" bg-indigo-100 hover:bg-indigo-200 focus:ring-indigo-500 inline-flex w-30 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm Services</a>
                           </td>
                          </tr>
                     @endforeach
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+
+<script>
+        var bt = document.querySelectorAll('.disable');
+        [...bt].forEach(element => {
+            element.href="";
+            element.addEventListener("click",e=>e.preventDefault());
+
+        });
+</script>
 
 
 <script>
