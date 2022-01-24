@@ -35,7 +35,7 @@
 
                                   <label for="status" class="inline-block  text-gray-500">Status</label>
                                   <select id="status" name="status" value="{{ $place->status }}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none">
-                                      <option value="out of service" {{ ($place->status=="out of service")? "selected" : "" }} {{ old('status') == "out of service" ? 'selected' : '' }} >Out Of Service</option>
+                                      <option value="out_of_service" {{ ($place->status=="out_of_service")? "selected" : "" }} {{ old('status') == "out_of_service" ? 'selected' : '' }} >Out Of Service</option>
                                       <option value="available"  {{ ($place->status=="available")? "selected" : "" }} {{ old('status') == "available" ? 'selected' : '' }} >Available</option>
                                       <option value="unavailable" {{ ($place->status=="unavailable")? "selected" : "" }} {{ old('status') == "unavailable" ? 'selected' : '' }} >Unavailable</option>
                                   </select>
