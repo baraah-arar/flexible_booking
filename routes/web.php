@@ -77,7 +77,7 @@ Route::get('dashboard/bookings/{id}/confirmservices/{s_id}', 'App\Http\Controlle
 
 // register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+// Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::get('verify-account', [RegisterController::class, 'verifyByEmailForm'])->name('verify.get')->middleware('auth');

@@ -12,8 +12,8 @@
             </p>
         </div>
         <div class="md:self-center flex mt-8">
-                <a href="" class="md:py-4 md:text-lg md:px-10 text-white font-medium py-3 px-8 bg-indigo-600 hover:bg-indigo-700">Individual</a>
-                <a href="" class="md:py-4 md:text-lg md:px-10 text-indigo-700 font-medium py-3 px-8 bg-indigo-200 hover:bg-indigo-300">StartUp</a>
+                <a href="/services/Individual" class="md:py-4 md:text-lg md:px-10 text-white font-medium py-3 px-8 bg-indigo-600 hover:bg-indigo-700">Individual</a>
+                <a href="/services/meeting" class="md:py-4 md:text-lg md:px-10 text-indigo-700 font-medium py-3 px-8 bg-indigo-200 hover:bg-indigo-300">StartUp</a>
         </div>
     </div>
     <div class="flex items-center justify-center my-8">

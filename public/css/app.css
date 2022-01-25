@@ -21068,6 +21068,10 @@ video {
   background-size: contain;
 }
 
+.bg-50\% {
+  background-size: 50% 50%;
+}
+
 .bg-fixed {
   background-attachment: fixed;
 }
@@ -52814,6 +52818,10 @@ button.book.opened:focus {
     background-size: contain;
   }
 
+  .sm\:bg-50\% {
+    background-size: 50% 50%;
+  }
+
   .sm\:bg-fixed {
     background-attachment: fixed;
   }
@@ -84040,6 +84048,10 @@ button.book.opened:focus {
 
   .md\:bg-contain {
     background-size: contain;
+  }
+
+  .md\:bg-50\% {
+    background-size: 50% 50%;
   }
 
   .md\:bg-fixed {
@@ -115270,6 +115282,10 @@ button.book.opened:focus {
     background-size: contain;
   }
 
+  .lg\:bg-50\% {
+    background-size: 50% 50%;
+  }
+
   .lg\:bg-fixed {
     background-attachment: fixed;
   }
@@ -146498,6 +146514,10 @@ button.book.opened:focus {
     background-size: contain;
   }
 
+  .xl\:bg-50\% {
+    background-size: 50% 50%;
+  }
+
   .xl\:bg-fixed {
     background-attachment: fixed;
   }
@@ -177724,6 +177744,10 @@ button.book.opened:focus {
 
   .\32xl\:bg-contain {
     background-size: contain;
+  }
+
+  .\32xl\:bg-50\% {
+    background-size: 50% 50%;
   }
 
   .\32xl\:bg-fixed {

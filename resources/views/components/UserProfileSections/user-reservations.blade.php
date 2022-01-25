@@ -9,13 +9,13 @@
     </h2>
     </div>
     <div class="{{$reservations->status == 'canceled' || $reservations->status == 'outofdate'? 'bg-dotted-ver ': ''}} w-full h-full user-resv-card flex flex-col relative" data-status="{{$reservations->status}}">
-        <div class="thumbnail w-full h-60 md:h-80 bg-center bg-no-repeat bg-cover" style="background-image:url('{{asset('storage/' . $reservations->place->image)}}')">
+        <div class="thumbnail w-full h-60 md:h-80 bg-center bg-no-repeat {{$reservations->place->image != null ? 'bg-cover' : 'bg-50%'}}" style="background-image:url('{{$reservations->place->image != null ? asset('storage/' . $reservations->place->image) : '/images/noimage.svg'}}')">
         </div>
         <div class="resv-card-body flex flex-col flex-wrap md:flex-row my-8">
             <div class="flex flex-col w-full flex-grow">
                 <h1 class="mb-4 text-base text-lg font-bold">{{$reservations->place->title}}</h1>
                 <p class="mb-4">{{$reservations->place->description}}</p>
-                <span class="mb-4">Attendes: {{$reservations->place->capacity}}</span>
+                <span class="mb-4">Guests to: {{$reservations->place->capacity}}</span>
                 <span class="mb-4">Price / Hour: {{$reservations->place->price}} S.P</span>
             </div>
             <div class="form-sec flex flex-col w-full flex-grow mt-4">

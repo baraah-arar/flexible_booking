@@ -114,7 +114,7 @@
 @foreach($places as $place)
 <div class="hor-card services-card booking card-number w-full my-16 gap-x-4 grid grid-cols-1 md:grid-cols-2" data-num-plc="0{{$loop->index + 1}}">
     <div class="img-sec row-start-1 col-start-1 md:col-end-2">
-        <div style="background-image:url('/images/mr0.png')" class="bg-cover bg-no-repeat bg-center h-full w-full"></div>
+        <div style="background-image:url('{{ $place->image != null ? asset('storage/' . $place->image) : '/images/noimage.svg'}}')" class="{{$place->image != null ? 'bg-cover' : 'bg-50%'}} bg-no-repeat bg-center h-full w-full"></div>
             <!-- <div style="background-image:url('/images/worker.png')" class="row-start-1 mt-10 col-start-2 col-span-2 bg-contain bg-no-repeat bg-center h-32 w-auto"></div> -->
     </div>
     <div class="hidden md:row-start-1 row-start-2 col-start-1 col-end-3 md:col-end-2 form-sec shadow-xl bg-gray-100 self-center w-full p-4 flex flex-col justify-start items-start">
@@ -203,6 +203,9 @@
             <p class="text-base mt-4 text-gray-900 dark:text-gray-300 sm:text-lg md:text-lg">
                 {{$place->description}}
             </p>
+            <div class="flex space-x-4 mt-6 text-gray-900 text-base text-lg font-medium">
+                <span>Guests to:</span><span>{{$place->capacity}}</span>
+            </div>
         </div>
         <div class="flex space-x-4 mt-6 text-gray-900 text-base text-lg font-medium">
             <span>Price:</span><span>{{$place->price}} S.P <span class="text-gray-700">{{$place->plc_type == 'meeting'? '/hour' : '/day'}}</span></span>

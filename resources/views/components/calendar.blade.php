@@ -46,7 +46,7 @@
 </x-modal-overlay>
     	<script type="text/javascript">
     		days_arr = ['','Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    		hours_arr = ['','08:00 am', '09:00:00 am', '10:00 am', '11:00 am', '12:00', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm', '06:00 pm', '07:00 pm', '08:00 pm','09:00 pm', '10:00 pm', '11:00 pm'];
+    		hours_arr = ['','08:00 am', '09:00 am', '10:00 am', '11:00 am', '12:00', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm', '06:00 pm', '07:00 pm', '08:00 pm','09:00 pm', '10:00 pm', '11:00 pm'];
     		const calendar_div = document.querySelector('.calendar');
             const header_date = document.querySelector('.calendar_head .date');
 
@@ -93,9 +93,11 @@
                     head_elems[i].appendChild(day_num_span);
                     console.log(temp_date_week.toDateString());
                     let todayDate = new Date;
-                    console.log(temp_date_week.toDateString() == todayDate.toDateString());
+                    // console.log(temp_date_week.toDateString() == todayDate.toDateString());
                     head_elems[i].dataset.dateTime = temp_date_week.toDateString();
-                    if(temp_date_week.toDateString() == todayDate.toDateString()) head_elems[i].classList.add('font-bold', 'text-indigo-600', 'shadow-md');
+                    (temp_date_week.toDateString() == todayDate.toDateString())?
+                        head_elems[i].classList.add('font-bold', 'text-indigo-600', 'shadow-md')
+                        : head_elems[i].classList.remove('font-bold', 'text-indigo-600', 'shadow-md');
                     temp_date_week.setDate(temp_date_week.getDate() + 1);
                 }
             }

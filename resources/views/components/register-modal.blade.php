@@ -2,7 +2,7 @@
     <x-modal-header>We are happy for joining us</x-modal-header>
     <div class="modal-body">
         <p class="text-sm text-gray-500">welcome to our community, please Enter your Information.</p>
-        <form class="mt-8 space-y-6" action="register" method="POST">
+        <form class="mt-8 space-y-6" action="/register" method="POST">
             @csrf
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
