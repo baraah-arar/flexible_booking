@@ -42,6 +42,7 @@ class RegisterController extends Controller
             'email'    => 'required|email|max:255|unique:user_profiles,email',
             'password' => 'required|min:8|max:255',
         ]);
+        $attributes['role'] = 1;
         // creating the new user
         $user = UserProfile::create($attributes);
         // login the new user
