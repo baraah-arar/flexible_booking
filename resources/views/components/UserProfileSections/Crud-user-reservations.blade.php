@@ -39,6 +39,13 @@
                     </thead>
 
                     <tbody class="bg-white">
+                    @if(auth()->user()->bookings->count() <= 0)
+                    <tr>
+                        <td class="p-6 whitespace-no-wrap border-b border-gray-200" colspan="7" >
+                        <h3>You don't have any reservation yet.</h3>
+                        </td>
+                    <tr>
+                    @else
                     @foreach(auth()->user()->bookings as $coll)                        
                     <tr>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -130,6 +137,7 @@
                         @endforeach
                     @endif
                     @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

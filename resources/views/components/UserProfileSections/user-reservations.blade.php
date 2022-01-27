@@ -116,6 +116,10 @@
             // resetCalendarForm();
         });
     });
+    document.querySelector('#extras-overlay button.close').addEventListener('click', ()=>{
+        document.querySelector('#extras-overlay').classList.add('hidden');
+        document.querySelector('#extras-overlay').classList.remove('flex');
+    });
     function resetCalendarForm(){
         const calendar_inputs = document.querySelectorAll('.calendar_form form input'); 
         [...calendar_inputs].map(input => {input.value = '';});

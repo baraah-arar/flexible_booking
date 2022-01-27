@@ -10,8 +10,16 @@
                 </div>
                 <div class="modal-body">
                     <p class="text-sm mb-2 text-gray-500">Code Verification will be sent to our email click send verification.</p>
-                    <a href='verify-account/sendcode' class="underline text-base font-medium text-indigo-600 hover:text-indigo-500">Send Verification Code</a>
-                    <form class="mt-8 space-y-6" action="verify-account" method="POST">
+                    @if(request()->is('*' . 'sendcode'))
+                    <a class="text-base font-medium text-indigo-800">
+                        Verification Code was sended.
+                    </a>
+                    @else
+                    <a href='verify-account/sendcode' class="underline text-base font-medium text-indigo-600 hover:text-indigo-500">
+                        Send Verification Code
+                    </a>
+                    @endif
+                    <form class="mt-8 space-y-6" action="{{route('verify.post')}}" method="POST">
                         @csrf
                         <input type="hidden" name="token" value="">
                         <div class="rounded-md shadow-sm -space-y-px">

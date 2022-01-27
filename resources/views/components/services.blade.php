@@ -110,6 +110,8 @@
         </div>
     </div>
 </div>
+@elseif($places->count() <= 0)
+<h3>No Places Available yet.</h3>
 @else
 @foreach($places as $place)
 <div class="hor-card services-card booking card-number w-full my-16 gap-x-4 grid grid-cols-1 md:grid-cols-2" data-num-plc="0{{$loop->index + 1}}">
