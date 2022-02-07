@@ -1,6 +1,6 @@
 @props(['action'])
 <x-modal-overlay id="calendar-overlay">
-    <x-modal-header closeDes=''>click to set start & end time for your reservation</x-modal-header>
+    <x-modal-header closeDes=''>Click to set start & end time for your reservation</x-modal-header>
 <div class="calendar_cont flex flex-col">
             <div class="calendar_form mt-8 flex flex-col items-center justify-center">
                 <form action="{{$action}}" method="put" class="flex items-center justify-center">
@@ -34,7 +34,7 @@
                 </button>
                 <button class="next action_date" data-type='nextMonth' value="">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                </button>    
+                </button>
             </div>
         	<div class="calendar">
         		<div class="empty"></div>
@@ -58,13 +58,13 @@
     	    		}
         		}
             }
-    		
+
     		function createMainRows(data, c, r){
     			const dayNameDiv = document.createElement('div');
     			c === 0? dayNameDiv.classList.add(`dayName`, `row${r+1}`, `col${c+1}`) : dayNameDiv.classList.add(`cell`,`hour`, `row${r+1}`, `col${c+1}`);
                 r === 0 && dayNameDiv.classList.add('head');
     			const dayNameSpan = document.createElement('Span');
-                r === 0 ? dayNameSpan.textContent = data.substr(0,3) : dayNameSpan.textContent = data;    			
+                r === 0 ? dayNameSpan.textContent = data.substr(0,3) : dayNameSpan.textContent = data;
     			dayNameDiv.appendChild(dayNameSpan);
     			calendar_div.appendChild(dayNameDiv);
     		}
@@ -83,7 +83,7 @@
                 let curr_day_index = days_arr.indexOf(current_day) - 1;
                 temp_date_week.setDate(temp_date_week.getDate() - curr_day_index);
                 console.log(curr_day_index);
-                for(i=1; i<head_elems.length; i++){                
+                for(i=1; i<head_elems.length; i++){
                     head_elems[i].classList.add(`${temp_date_week.getDate()}`);
                     let day_num_span = document.createElement('span');
                     day_num_span.classList.add('dayNumber');
@@ -133,7 +133,7 @@
             init(new Date());
             var nav_month = 0;
             var nav_week  = 0;
-                      
+
             document.addEventListener('click', (e) => {
                 let elem = e.target;
                 if(checkParents(e.target, 'action_date')) elem = checkParents(e.target, 'action_date');

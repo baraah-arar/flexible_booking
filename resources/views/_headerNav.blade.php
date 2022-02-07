@@ -3,14 +3,14 @@
         <!-- logo -->
         <image src="/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
         <!-- main nav -->
-        <div class="hidden md:flex">                    
-            <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>                            
+        <div class="hidden md:flex">
+            <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>
             <x-ddown-flex>
                 <x-nav-item :active="request()->is('*' . 'services' . '*')" class="dropdownButton flex h-full">
-                    <x-icons.down-arrow class="icon self-center"/><span>services</apsn>
+                    <x-icons.down-arrow class="icon self-center"/><span>services</span>
                 </x-nav-item>
                 <x-dropdown>
-                    <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individaule desktop</x-ddown-item>
+                    <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individual desktop</x-ddown-item>
                     <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
                     <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">Meeting Room</x-ddown-item>
                 </x-dropdown>
@@ -19,17 +19,17 @@
             @auth
                 <x-ddown-flex>
                     <button class="dropdownButton uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" type="button">
-                        {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}} 
+                        {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}}
                         <!-- <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> -->
                     </button>
                     <x-dropdown :auth="true">
                         <x-ddown-item href="/profile" :active="request()->is('' . 'profile')">Profile</x-ddown-item>
                         <x-ddown-item href="/reservations" :active="request()->is('reservations' . '*')">Reservations</x-ddown-item>
-                    </x-dropdown>                                
-                </x-ddown-flex>                                
-            @else                  
+                    </x-dropdown>
+                </x-ddown-flex>
+            @else
                 <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
-            @endauth                        
+            @endauth
         </div>
         <!-- humberger icon -->
         <div class="-mr-2 flex items-center md:hidden">
@@ -53,10 +53,10 @@
                     <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>
                     <x-ddown-flex>
                         <x-nav-item :active="request()->is('*' . 'services' . '*')" class="dropdownButton flex">
-                            <x-icons.down-arrow class="icon"/><span>services</apsn>
+                            <x-icons.down-arrow class="icon"/><span>services</span>
                         </x-nav-item>
                         <x-dropdown>
-                            <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individaule desktop</x-ddown-item>
+                            <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individual desktop</x-ddown-item>
                             <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
                             <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">Meeting Room</x-ddown-item>
                         </x-dropdown>
@@ -66,18 +66,18 @@
                 @auth
                     <x-ddown-flex  class="items-end">
                         <button class="dropdownButton uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" type="button">
-                            {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}} 
+                            {{substr(auth()->user()->f_name, 0,1).substr(auth()->user()->l_name, 0,1)}}
                             <!-- <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg> -->
                         </button>
                         <x-dropdown :auth="true">
                             <x-ddown-item href="/profile" :active="request()->is('' . 'profile')">Profile</x-ddown-item>
                             <x-ddown-item href="/reservations" :active="request()->is('reservations' . '*')">Reservations</x-ddown-item>
-                        </x-dropdown>                                
-                    </x-ddown-flex>                                
-                @else                  
+                        </x-dropdown>
+                    </x-ddown-flex>
+                @else
                     <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
-                @endauth               
+                @endauth
             </div>
-        </div>                            
+        </div>
     </div>
 </nav>

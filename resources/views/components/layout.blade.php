@@ -140,20 +140,9 @@
             });
             if(document.querySelector('.flash-msg .close')){
                 document.querySelector('.flash-msg .close').addEventListener('click',(e)=>{
-                    e.target.parentElement.classList.add('hidden'); 
-                }) 
+                    e.target.parentElement.classList.add('hidden');
+                })
             }
-
-            // //side bar choice _user-profile_
-            // function showRes() {
-            //     document.getElementById("res").style.display = "inline";
-            //     document.getElementById("edit").style.display = "none"
-            // }
-
-            // function showEdit() {
-            //     document.getElementById("res").style.display = "none";
-            //     document.getElementById("edit").style.display = "inline"
-            // }
         </script>
     </body>
 </html>

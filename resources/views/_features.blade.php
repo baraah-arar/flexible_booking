@@ -7,7 +7,7 @@
             </div>
         </div>
     </div>
-        <div class="flex flex-wrap items-center justify-between pt-8 my-14">                            
+        <div class="flex flex-wrap items-center justify-between pt-8 my-14">
             <x-feature-card/>
         <div class="card p-2 mb-3 w-full lg:w-1/3 flex flex-col space-y-8">
             <div class="card-header flex flex-col text-center items-center justify-center">
@@ -15,7 +15,7 @@
                 <image src="./images/chart.svg" alt="" class="slide-img h-16"/>
                 <h4 class=" mt-2 text-lg font-medium text-gray-900 dark:text-white">Increase Productivity</h4>
                 <p class="mt-2 text-gray-600 dark:text-gray-400 text-base">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    Get the best places to increase your productivity.</p>
             </div>
         </div>
         <div class="card p-2 mb-3 w-full lg:w-1/3 flex flex-col space-y-8">
@@ -24,7 +24,7 @@
                 <image src="./images/start.svg" alt="" class="slide-img h-16"/>
                 <h4 class=" mt-2 text-lg font-medium text-gray-900 dark:text-white">Reach Professionalism</h4>
                 <p class="mt-2 text-gray-600 dark:text-gray-400 text-base">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                  Achieve your goals with professionalism and creativity.</p>
             </div>
         </div>
     </div>

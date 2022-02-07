@@ -9,7 +9,7 @@
                 <x-form.form-group type="text" label="First Name" name="f_name"></x-form.form-group>
                 <x-form.form-group type="text" label="Last Name" name="l_name"></x-form.form-group>
                 <x-form.form-group type="text" label="Phone Number" name="phone"></x-form.form-group>
-                <x-form.form-group type="email" label="Email Adress" name="email"></x-form.form-group>
+                <x-form.form-group type="email" label="Email Address" name="email"></x-form.form-group>
                 <x-form.form-group type="password" label="password" name="password"></x-form.form-group>
             </div>
             <!-- <div class="flex flex-col">
