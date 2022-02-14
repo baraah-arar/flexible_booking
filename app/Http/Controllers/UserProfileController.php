@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Response;
 
 class UserProfileController extends Controller
 {
@@ -93,6 +94,8 @@ class UserProfileController extends Controller
     public function showReservation($id)
     {
         $reservations = auth()->user()->bookings->where('id',$id)->first();
+        if(!isset($reservations))
+            abort(Response::HTTP_NOT_FOUND);
         $allServices  = Service::all();
         return view('components/UserProfileSections/user-reservations', 
                     ['reservations' => $reservations,

@@ -171,7 +171,9 @@
                             </div>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            @can('update', $item)
                             <a href="{{ route('dashboard.booking.confirm',$item->id)}}" class=" {{ $item->status=="pending" ? "active-button bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500" : "disable bg-gray-400 cursor-default " }} inline-flex w-16 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm</a>
+                            @endcan
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <a href="{{ route('dashboard.booking.services',$item->id)}}"  class=" bg-indigo-100 hover:bg-indigo-200 focus:ring-indigo-500 inline-flex w-30 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm Services</a>

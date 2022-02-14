@@ -1,5 +1,8 @@
 <x-userProfile>
     <div class='flex justify-between mb-2'>
+    @if(!isset($reservations))
+    <h1 class="text-xl font-bold text-gray-700 sm:pr-12"> Page not found</h1>
+    @else    
     <h1 class="text-xl font-bold text-gray-900 sm:pr-12"> Reservation Details</h1>
     <h2 class="rounded-lg px-2 font-medium {{$reservations->status == 'canceled'? 'bg-red-200 ' : ''}}
                 {{$reservations->status == 'outofdate'? 'bg-gray-200 ' : ''}}
@@ -92,8 +95,11 @@
             </div>
             @endif
         </div>
+    
+    @endif
     </div>         
 </x-userProfile>
+
 <x-calendar action="{{URL::current()}}"></x-calendar>
 <x-extras-modal action="{{URL::current()}}" :services="$allServices"></x-extras-modal>
 
@@ -133,7 +139,7 @@
                 $.ajax({
                     url: url,
                     type: 'put',
-                    data: form_data + "&plc_id=" + '{{$reservations->plc_id}}' + "&bkg_id=" + '{{$reservations->id}}',
+                    data: form_data + "&plc_id=" + '{{isset($reservations)? $reservations->plc_id : ''}}' + "&bkg_id=" + '{{isset($reservations)? $reservations->id : ''}}',
                     success: function(data){
                         if(data.status == false)
                             displayErrorMessage(data.message);
@@ -174,13 +180,13 @@
 
     $('.update_form_btn').click(function(){
         // e.preventDefault();
-        console.log('{{$reservations->id}}');
-        var url = $('.confirm_form[data-place-id=' + '{{$reservations->plc_id}}' + ']').attr("action");
-        var form_data = $('.confirm_form[data-place-id=' + '{{$reservations->plc_id}}' + ']').serialize();
+        console.log('{{isset($reservations)? $reservations->id : ''}}');
+        var url = $('.confirm_form[data-place-id=' + '{{isset($reservations)? $reservations->plc_id : ''}}' + ']').attr("action");
+        var form_data = $('.confirm_form[data-place-id=' + '{{isset($reservations)? $reservations->plc_id : ''}}' + ']').serialize();
         $.ajax({
             url: url,
             type: 'post',
-            data: form_data + "&bkg_id=" + '{{$reservations->id}}',
+            data: form_data + "&bkg_id=" + '{{isset($reservations)? $reservations->id : ''}}',
             success: function(data){
                    window.location.reload();
                     // displayErrorMessage(data.message);                          
@@ -193,9 +199,9 @@
 
     $('.cancel_form_btn').click(function(){
         // e.preventDefault();
-        console.log('{{$reservations->id}}');
-        var url = $('.confirm_form[data-place-id=' + '{{$reservations->plc_id}}' + ']').attr("action");
-        var form_data = $('.confirm_form[data-place-id=' + '{{$reservations->plc_id}}' + ']').serialize();
+        console.log('{{isset($reservations)? $reservations->id : ''}}');
+        var url = $('.confirm_form[data-place-id=' + '{{isset($reservations)? $reservations->plc_id : ''}}' + ']').attr("action");
+        var form_data = $('.confirm_form[data-place-id=' + '{{isset($reservations)? $reservations->plc_id : ''}}' + ']').serialize();
         Swal.fire({
             icon: 'warning',
               title: 'Are you sure you want to cancel your reservation?',
@@ -207,7 +213,7 @@
                 $.ajax({
                     url: url,
                     type: 'delete',
-                    data: form_data + "&bkg_id=" + '{{$reservations->id}}',
+                    data: form_data + "&bkg_id=" + '{{isset($reservations)? $reservations->id : ''}}',
                     success: function(data){
                         window.location.reload();                         
                     },
@@ -221,9 +227,9 @@
 
     $('.cancel_extra_btn').click(function(){
         // e.preventDefault();
-        console.log('{{$reservations->id}}');
-        var url = $('.confirm_form[data-place-id=' + '{{$reservations->plc_id}}' + ']').attr("action");
-        // var form_data = $('.confirm_form[data-place-id=' + '{{$reservations->plc_id}}' + ']').serialize();
+        console.log('{{isset($reservations)? $reservations->id : ''}}');
+        var url = $('.confirm_form[data-place-id=' + '{{isset($reservations)? $reservations->plc_id : '' }}' + ']').attr("action");
+        // var form_data = $('.confirm_form[data-place-id=' + '{{isset($reservations)? $reservations->plc_id : ''}}' + ']').serialize();
         // console.log(this.dataset.service);
         var srv_id = this.dataset.service;
         Swal.fire({
@@ -237,7 +243,7 @@
                 $.ajax({
                     url: url,
                     type: 'delete',
-                    data: "&bkg_id=" + '{{$reservations->id}}' + "&srv_id=" + srv_id,
+                    data: "&bkg_id=" + '{{isset($reservations)? $reservations->id : ''}}' + "&srv_id=" + srv_id,
                     success: function(data){
                         window.location.reload();
                             // console.log(data);                          
@@ -251,8 +257,10 @@
     })
 
     // Extra Services
+    if(isset($reservations)){
     eventExtrasbtn();
     handleSelectExtras();
+    }
     function eventExtrasbtn(){
                 const btn = document.querySelector('.extraseervices');
                 btn.addEventListener('click', () => {
@@ -263,7 +271,7 @@
             }
 
             function defineBookedExras(booked){
-                var data = {!! json_encode($reservations->services, JSON_HEX_TAG) !!};
+                var data ={!!isset($reservations)? json_encode($reservations->services, JSON_HEX_TAG) : '' !!};
                 var bookedIDs = JSON.parse(JSON.stringify(data));
                 bookedIDs.forEach(service => {
                     elem = document.querySelector('#extras-overlay').querySelector(`.extra_elem[data-extraid='${service.id}']`);

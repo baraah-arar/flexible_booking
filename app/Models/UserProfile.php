@@ -18,9 +18,9 @@ class UserProfile extends Authenticatable
     //     return ucwords($f_name);
     // }
 
-    public function setRoleAttribute($role){
-        $this->attributes['role'] = 1;
-    }
+    // public function setRoleAttribute($role){
+    //     $this->attributes['role'] = 1;
+    // }
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);

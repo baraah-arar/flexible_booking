@@ -78,7 +78,9 @@
                             </div>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            @can('update', $booking)
                             <a href="{{ route('dashboard.booking.confirm.services',[$booking->id, $item->id])}}" class="  @if ($item->pivot->status=="pending" && $booking->status=="pending" || $booking->status=="confirmed") {{"active-button bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"}} @else {{"disable bg-gray-400 cursor-default "}} @endif inline-flex w-16 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2">Confirm</a>
+                            @endcan
                           </td>
                            @php
                              if ($item->pivot->status !=="canceled")

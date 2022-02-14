@@ -27,6 +27,7 @@ class DashboardPlacesController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Place::class); 
         return view('dashboard.places.create');
     }
 
@@ -38,14 +39,15 @@ class DashboardPlacesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Place::class);
         // $path=request()->file('image')->store('image');
         // return 'done:'.$path;
         $attributes = request()->validate([
             'title'=>'required|unique:places',
             'plc_type'=>'required',
             'status'=>'required',
-            'capacity'=>'required',
-            'price'=>'required',
+            'capacity'=>'required|gt:0',
+            'price'=>'required|gt:-1',
             'description'=>'required|string',
             'image' => 'required|image'
 
@@ -84,6 +86,7 @@ class DashboardPlacesController extends Controller
      */
     public function edit(Place $place)
     {
+        $this->authorize('update', $place);
         return view('dashboard.places.edit',compact('place'));
     }
 
@@ -96,12 +99,13 @@ class DashboardPlacesController extends Controller
      */
     public function update(Request $request, Place $place)
     {
+        $this->authorize('update', $place);
         $attributes = request()->validate([
             'title'=>'required|unique:places,title,' . $place->id,
             'plc_type'=>'required',
             'status'=>'required',
-            'capacity'=>'required',
-            'price'=>'required',
+            'capacity'=>'required|gt:0',
+            'price'=>'required|gt:-1',
             'description'=>'required|string',
             'image' => 'sometimes|nullable|image'
 
@@ -127,6 +131,7 @@ class DashboardPlacesController extends Controller
      */
     public function destroy(Place $place)
     {
+        $this->authorize('delete', $place);
         $place->delete();
         return redirect()->action([DashboardPlacesController::class, 'index']);
 

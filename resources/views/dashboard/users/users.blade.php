@@ -8,6 +8,7 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              @can('create', \App\Models\UserProfile::class)
                 <div class= "m-2 ">
                     <a href="{{ route('users.create')}}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -17,6 +18,7 @@
 
                     </a>
                 </div>
+              @endcan
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
@@ -93,13 +95,13 @@
                             <div class="flex items-center">
                               <div class="ml-4">
                                 <div class="text-sm text-gray-500">
-
-
-                                  @if($item->role==0)
-                                  manager
-                            @else
-                                  customer
-                            @endif
+                                  @if($item->role==2)
+                                    manager
+                                  @elseif($item->role==3)
+                                    Employee
+                                  @else
+                                    customer
+                                  @endif
 
                                 </div>
                               </div>
@@ -124,17 +126,20 @@
                             <a href="{{ route('users.show',$item->id)}}" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Show</a>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          @can('update', $item)
                             <a href="{{ route('users.edit',$item->id)}}" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</a>
+                          @endcan
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          @can('delete', $item)
                             <form data-route="{{ route('users.destroy',$item->id)}}" method="post" class="delete-form text-indigo-600 hover:text-indigo-900" >
                                  @csrf
                                  @method('DELETE')
                             <button type="submit" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                Delete
                             </button>
-
                             </form>
+                            @endcan
                           </td>
                          </tr>
                     @endforeach

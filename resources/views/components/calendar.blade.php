@@ -8,13 +8,13 @@
                     <div class="flex items-center justify-center mx-2">
                         <label for="date-from" class="sr-only">from</label>
                         <label for="date-from" class="p-4 w-1/5">from</label>
-                        <input type="text" vlaue="" name="start_date" id="checkIn" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                        <input type="text" readonly="readonly" vlaue="" name="start_date" id="checkIn" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                         <svg class="svg-date-focus w-8 h-10 border-b border-gray-300 text-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                     </div>
                      <div class="flex items-center justify-center mx-2">
                         <label for="checkOut" class="sr-only">to</label>
                         <label for="checkOut" class="p-4 w-1/5">to</label>
-                        <input type="text" vlaue="" name="end_date" id="checkOut" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                        <input type="text" readonly="readonly" vlaue="" name="end_date" id="checkOut" class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                         <svg class="svg-date-focus w-8 h-10 border-b border-gray-300 text-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                     </div>
                     <button type="button" value="Book" class="calender_btn mx-2 self-end py-2 px-2 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Check Time</button>
@@ -46,7 +46,7 @@
 </x-modal-overlay>
     	<script type="text/javascript">
     		days_arr = ['','Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    		hours_arr = ['','08:00 am', '09:00 am', '10:00 am', '11:00 am', '12:00', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm', '06:00 pm', '07:00 pm', '08:00 pm','09:00 pm', '10:00 pm', '11:00 pm'];
+    		hours_arr = ['','08:00 am', '09:00 am', '10:00 am', '11:00 am', '12:00 pm', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm', '06:00 pm', '07:00 pm', '08:00 pm','09:00 pm', '10:00 pm', '11:00 pm'];
     		const calendar_div = document.querySelector('.calendar');
             const header_date = document.querySelector('.calendar_head .date');
 
@@ -159,7 +159,7 @@
             const check_out_input = document.querySelector('.modal #checkOut');
 
             function hendlePickTime(cell){
-                console.log(check_in_input.value);
+                console.log(cell.dataset.dateTime);
                 if(check_in_input.value != '' && check_out_input.value != '')
                     resetValues();
                 else{

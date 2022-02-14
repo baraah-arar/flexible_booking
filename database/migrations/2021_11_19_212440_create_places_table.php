@@ -13,7 +13,7 @@ class CreatePlacesTable extends Migration
      */
     public function up()
     {
-        // add status field
+        // change datatype for price to decimal(15,2)
         Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title')->unique();

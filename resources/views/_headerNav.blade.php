@@ -1,7 +1,9 @@
 <nav class="">
     <div class="md:mt-8 flex justify-between items-center md:pt-8 sm:pt-0 sm:px-6 lg:px-8">
         <!-- logo -->
-        <image src="/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
+        <a href="/">
+            <image src="/images/logo-f7-ligth.svg" class="w-32 md:w-48 logo-img"/>
+        </a>
         <!-- main nav -->
         <div class="hidden md:flex">
             <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>

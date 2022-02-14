@@ -19,10 +19,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $type = (substr(request()->fullurl(), strpos(request()->fullurl(), 'services/') + 9));
-        return view('components/services', 
-            ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out_of_service')->get(),
-            'services' => Service::all()]);
+        
     }
 
     public function checkAvailability(){

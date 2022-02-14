@@ -32,7 +32,9 @@
                 <div class="flex items-center justify-between h-16">
                   <div class="flex items-center">
                     <div class="flex-shrink-0">
+                      <a href='/'>
                       <img class="h-20 w-20" src="/images/logo-f7-ligth.svg" alt="logo">
+                      </a>
                     </div>
                     <div class="hidden md:block">
                       <div class="ml-10 flex items-baseline space-x-4">

@@ -45,25 +45,31 @@
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
                             </div>
-                        <div class="relative col-span-6 sm:col-span-4">
+                        <!-- <div class="relative col-span-6 sm:col-span-4">
                                 <input  id="password" name="password" type="password"  class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"  />
                                 <label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
                             @error('password')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
-                            </div>
+                            </div> -->
                         <div class="col-span-6 flex sm:col-span-6">
                             <p class=" dark:text-gray-400 ">
-                                Role :
+                                Role:
                             </p>
                             <div class="flex col-span-2 mx-6 items-center">
-                              <input id="role" value="0" {{ ($user->role=="0")? "checked" : "" }} {{ old('role')=="0" ? 'checked='.'"'.'checked'.'"' : '' }}  name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
+                              <input id="role" value="2" name="role" type="radio" {{ $user->role=="2"? "checked" : "" }} {{ old('role')=="2" ? "checked" : "" }}  class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
                               <label for="role" class="ml-3 block text-sm ">
                                 Manager
                               </label>
                             </div>
+                            <div class="flex col-span-2 mx-6 items-center">
+                              <input id="role" value="3" {{ ($user->role=="3")? "checked" : "" }} {{ old('role')=="3" ? 'checked='.'"'.'checked'.'"' : '' }}  name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
+                              <label for="role" class="ml-3 block text-sm ">
+                                Employee
+                              </label>
+                            </div>
                             <div class="flex col-span-2 items-center">
-                             <input id="role" value="1" {{ ($user->role=="1")? "checked" : "" }} {{ old('role')=="1" ? 'checked='.'"'.'checked'.'"' : '' }} name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
+                             <input id="role" value="1" {{ ($user->role=="1")? "checked" : "" }} {{ old('role')=="1" ? "checked" : "" }} name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
                              <label for="role" class="ml-3 block text-sm ">
                                 Customer
                              </label>

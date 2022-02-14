@@ -4,18 +4,18 @@
         <x-page-title>Places</x-page-title>
         @if(!request()->routeIs('ind'))
             <div class="flex space-x-4">
-                <button
+                <a  href="{{URL::current()}}/?search=small"
                     class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
                     Small Room
-                </button>
-                <button
+                </a>
+                <a  href="{{URL::current()}}/?search=medium"
                     class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
                     Medium Room
-                </button>
-                <button
+                </a>
+                <a href="{{URL::current()}}/?search=large"
                     class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
                     Large Room
-                </button>
+                </a>
             </div>
         @endif
     </div>

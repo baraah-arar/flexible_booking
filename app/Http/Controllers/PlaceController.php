@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class PlaceController extends Controller
 {
@@ -14,7 +15,73 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        //
+        {
+            // $type = (substr(request()->fullurl(), strpos(request()->fullurl(), 'services/') + 9));
+            if(strpos(request()->fullurl(), 'private')){
+                $type = 'private';
+                if(request('search') && request('search') === 'small'){
+                    return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)
+                        ->where('status', '!=', 'out_of_service')
+                        ->whereBetween('capacity', [1,3])
+                        ->get(),
+                    'services' => Service::all()]);
+                }if(request('search') && request('search') === 'medium'){
+                    return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)
+                        ->where('status', '!=', 'out_of_service')
+                        ->whereBetween('capacity', [3,5])
+                        ->get(),
+                    'services' => Service::all()]);
+                }
+                if(request('search') && request('search') === 'large'){
+                    return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)
+                        ->where('status', '!=', 'out_of_service')
+                        ->whereBetween('capacity', [5,7])
+                        ->get(),
+                    'services' => Service::all()]);
+                }else{
+                return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out_of_service')->get(),
+                    'services' => Service::all()]);
+                }
+            }
+            if(strpos(request()->fullurl(), 'meeting')){
+                $type = 'meeting';
+                if(request('search') && request('search') === 'small'){
+                    return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)
+                        ->where('status', '!=', 'out_of_service')
+                        ->whereBetween('capacity', [1,25])
+                        ->get(),
+                    'services' => Service::all()]);
+                }if(request('search') && request('search') === 'medium'){
+                    return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)
+                        ->where('status', '!=', 'out_of_service')
+                        ->whereBetween('capacity', [26,50])
+                        ->get(),
+                    'services' => Service::all()]);
+                }
+                if(request('search') && request('search') === 'large'){
+                    return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)
+                        ->where('status', '!=', 'out_of_service')
+                        ->whereBetween('capacity', [51,80])
+                        ->get(),
+                    'services' => Service::all()]);
+                }else{
+                return view('components/services', 
+                    ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out_of_service')->get(),
+                    'services' => Service::all()]);
+                }
+            }else{
+                return view('components/services', 
+                    ['places' => Place::where('plc_type', 'individual')->where('status', '!=', 'out_of_service')->get(),
+                    'services' => Service::all()]);
+            }
+        }
     }
 
     /**

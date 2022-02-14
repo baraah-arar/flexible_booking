@@ -35,7 +35,7 @@
                                   </select>
 
                                   <label for="price"  class="inline-block text-gray-500">Price:</label>
-                                  <input id="price" name="price" type="number" value="{{ $service->price }}" value="{{ old('price')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
+                                  <input id="price" name="price" type="number" min="0" step="any"  value="{{ $service->price }}" value="{{ old('price')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
                                        @error('price')
                                          <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                        @enderror

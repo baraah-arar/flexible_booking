@@ -26,6 +26,7 @@ class DashboardUsersController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', UserProfile::class);
         return view('dashboard.users.create');
     }
 
@@ -37,6 +38,7 @@ class DashboardUsersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', UserProfile::class);
         //ddd($request->all());
         $attributes = request()->validate([
          'f_name'=>'required|max:255',
@@ -82,6 +84,7 @@ class DashboardUsersController extends Controller
      */
     public function edit(Userprofile $user)
     {
+        $this->authorize('update', $user);
         return view('dashboard.users.edit',compact('user'));
     }
 
@@ -94,17 +97,16 @@ class DashboardUsersController extends Controller
      */
     public function update(Request $request, Userprofile $user)
     {
+        $this->authorize('update', $user);
            $attributes = request()->validate([
             'f_name'=>'required|max:255',
             'l_name'=>'required|max:255',
             'phone'=>'required|min:9|max:20',
             'email'=>'required|email|max:255',
-            'password'=>'required|min:8|max:255',
             'role'=>'required',
             'status'=>'required',
-
         ]);
-
+        // dd($attributes);
        $user->update($attributes);
         return redirect()->route('dashboard.users')
         ->with('success','User updated successfully');
@@ -119,6 +121,7 @@ class DashboardUsersController extends Controller
      */
     public function destroy(Userprofile $user)
     {
+        $this->authorize('delete', $user);
         $user->delete();
         return redirect()->action([DashboardUsersController::class, 'index']);
 

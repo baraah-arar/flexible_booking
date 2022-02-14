@@ -4,6 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @can('create', \App\Models\Service::class)
     <div class= "m-2 ">
         <a href="{{ route('services.create')}}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -12,6 +13,7 @@
              Add Service
         </a>
     </div>
+    @endcan
 <body class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
     <div class="container mx-auto">
       <div class="flex flex-wrap -mx-4">
@@ -41,13 +43,15 @@
           </a>
             <div class="mx-4 my-4 flex justify-between">
             <a href="{{ route('services.edit',$item->id)}}" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</a>
+            @can('delete', $item)
             <form data-route="{{ route('services.destroy',$item->id)}}" method="post" class="delete-form text-indigo-600 hover:text-indigo-900" >
                 @csrf
-                @method('DELETE')
+                @method('DELETE', $item)
                 <button type="submit" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Delete
                 </button>
             </form>
+            @endcan
          </div>
 
 

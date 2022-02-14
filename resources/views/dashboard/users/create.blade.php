@@ -53,12 +53,18 @@
                             </div>
                         <div class="col-span-6 flex sm:col-span-6">
                             <p class=" dark:text-gray-400 ">
-                                Role :
+                                Role:
                             </p>
                             <div class="flex col-span-2 mx-6 items-center">
-                              <input id="role" value="0" {{ old('role')=="0" ? 'checked='.'"'.'checked'.'"' : '' }}  name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
+                              <input id="role" value="2" {{ old('role')=="2" ? 'checked='.'"'.'checked'.'"' : '' }}  name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
                               <label for="role" class="ml-3 block text-sm ">
                                 Manager
+                              </label>
+                            </div>
+                            <div class="flex col-span-2 mx-6 items-center">
+                              <input id="role" value="3" {{ old('role')=="3" ? 'checked='.'"'.'checked'.'"' : '' }}  name="role" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
+                              <label for="role" class="ml-3 block text-sm ">
+                                Employee
                               </label>
                             </div>
                             <div class="flex col-span-2 items-center">

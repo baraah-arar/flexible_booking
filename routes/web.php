@@ -7,7 +7,8 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserProfileController;
-use App\Models\Place;
+use App\Http\Controllers\PlaceController;
+// use App\Models\Place;
 
 use App\Http\Controllers\DashboardPlacesController;
 use App\Models\Opinion;
@@ -27,9 +28,9 @@ Route::get('/', function () {
     return view('components/mainContent');
 })->name('home');
 
-Route::get('/services/Individual', [BookingController::class, 'index'])->name('ind');
-Route::get('/services/private', [BookingController::class, 'index']);
-Route::get('/services/meeting', [BookingController::class, 'index']);
+Route::get('/services/Individual', [PlaceController::class, 'index'])->name('ind');
+Route::get('/services/private', [PlaceController::class, 'index']);
+Route::get('/services/meeting', [PlaceController::class, 'index']);
 
 // User Profile Edit && Reset Password
 Route::get('/profile', [UserProfileController::class, 'index'])->middleware('auth');
@@ -53,28 +54,29 @@ Route::post('/contact', [OpinionController::class, 'create']);
 
 
 // route for admin dashboard
-Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard.index');
-Route::get('dashboard/statistics', 'App\Http\Controllers\DashboardController@statistics')->name('dashboard.statistics');
+Route::group(['middleware' => 'admin'], function(){
+    Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard.index');
+    Route::get('dashboard/statistics', 'App\Http\Controllers\DashboardController@statistics')->name('dashboard.statistics');
 
-Route::resource('dashboard/users', 'App\Http\Controllers\DashboardUsersController');
-Route::get('dashboard/users', 'App\Http\Controllers\DashboardUsersController@index')->name('dashboard.users');
+    Route::resource('dashboard/users', 'App\Http\Controllers\DashboardUsersController');
+    Route::get('dashboard/users', 'App\Http\Controllers\DashboardUsersController@index')->name('dashboard.users');
 
-Route::resource('dashboard/places', 'App\Http\Controllers\DashboardPlacesController');
-Route::get('dashboard/places', 'App\Http\Controllers\DashboardPlacesController@index')->name('dashboard.places_index');
+    Route::resource('dashboard/places', 'App\Http\Controllers\DashboardPlacesController');
+    Route::get('dashboard/places', 'App\Http\Controllers\DashboardPlacesController@index')->name('dashboard.places_index');
 
-Route::resource('dashboard/services', 'App\Http\Controllers\DashboardServicesController');
-Route::get('dashboard/services', 'App\Http\Controllers\DashboardServicesController@index')->name('dashboard.services_index');
+    Route::resource('dashboard/services', 'App\Http\Controllers\DashboardServicesController');
+    Route::get('dashboard/services', 'App\Http\Controllers\DashboardServicesController@index')->name('dashboard.services_index');
 
-Route::resource('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController');
-Route::get('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController@index')->name('dashboard.opinions_index');
+    Route::resource('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController');
+    Route::get('dashboard/opinions', 'App\Http\Controllers\DashboardOpinionsController@index')->name('dashboard.opinions_index');
 
-Route::get('dashboard/author/{id}', 'App\Http\Controllers\DashboardUsersController@author')->name('author.opinions');
+    Route::get('dashboard/author/{id}', 'App\Http\Controllers\DashboardUsersController@author')->name('author.opinions');
 
-Route::get('dashboard/bookings', 'App\Http\Controllers\DashboardBookingController@index')->name('dashboard.bookings_index');
-Route::get('dashboard/bookings/{id}', 'App\Http\Controllers\DashboardBookingController@bookingservices')->name('dashboard.booking.services');
-Route::get('dashboard/bookings/{id}/confirm', 'App\Http\Controllers\DashboardBookingController@confirm')->name('dashboard.booking.confirm');
-Route::get('dashboard/bookings/{id}/confirmservices/{s_id}', 'App\Http\Controllers\DashboardBookingController@confirm_services')->name('dashboard.booking.confirm.services');
-
+    Route::get('dashboard/bookings', 'App\Http\Controllers\DashboardBookingController@index')->name('dashboard.bookings_index');
+    Route::get('dashboard/bookings/{id}', 'App\Http\Controllers\DashboardBookingController@bookingservices')->name('dashboard.booking.services');
+    Route::get('dashboard/bookings/{id}/confirm', 'App\Http\Controllers\DashboardBookingController@confirm')->name('dashboard.booking.confirm');
+    Route::get('dashboard/bookings/{id}/confirmservices/{s_id}', 'App\Http\Controllers\DashboardBookingController@confirm_services')->name('dashboard.booking.confirm.services');
+});
 // register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');
 // Route::get('register', [RegisterController::class, 'create'])->middleware('guest');

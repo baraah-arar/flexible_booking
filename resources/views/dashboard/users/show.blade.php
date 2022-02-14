@@ -18,8 +18,10 @@
                             <span class="inline-block rounded-full py-2 text-sm font-semibold px-10 text-gray-700 mb-2">Phone Number :</span><span class="font-bold text-l">{{ $user->phone }}</span><br/>
                             <span class="inline-block rounded-full py-2 text-sm font-semibold px-10 text-gray-700 mb-2">Email :</span><span class="font-bold text-l"> {{ $user->email }}</span><br/>
                             <span class="inline-block rounded-full py-2 text-sm font-semibold px-10 text-gray-700 mb-2">Role :</span><span class="font-bold text-l">
-                              @if ( ($user->role)=="0")
+                              @if ( ($user->role)==2)
                                  Manager
+                              @elseif ( ($user->role)==3)
+                                  Employee
                               @else
                                   Customer
                               @endif
@@ -112,13 +114,14 @@
                                     @endforeach
                                 </tbody>
                               </table>
-
                         </div>
 
                 </div>
                 <div class="mx-4 my-4 flex justify-between">
                     <a href="{{ route('dashboard.users')}}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> Back </a>
+                    @can('update', $user)
                     <a href="{{ route('users.edit',$user->id)}}" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> Edit</a>
+                    @endcan
                   </div>
             </div>
         </div>

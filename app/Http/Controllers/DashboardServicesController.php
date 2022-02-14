@@ -27,6 +27,7 @@ class DashboardServicesController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Service::class);
         return view('dashboard.services.create');
     }
 
@@ -38,10 +39,11 @@ class DashboardServicesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Service::class);
         $attributes = request()->validate([
             'name'=>'required|unique:services',
             'status'=>'required',
-            'price'=>'required',
+            'price'=>'required|gt:-1',
             'description'=>'required|string',
             'image' => 'required|image'
 
@@ -71,6 +73,7 @@ class DashboardServicesController extends Controller
      */
     public function edit(Service $service)
     {
+        $this->authorize('update', $service);
         return view('dashboard.services.edit',compact('service'));
     }
 
@@ -84,10 +87,11 @@ class DashboardServicesController extends Controller
     public function update(Request $request, Service $service)
     {
         //ddd($request->all());
+        $this->authorize('update', $service);
         $attributes = request()->validate([
             'name'=>'required|unique:services,name,'. $service->id,
             'status'=>'required',
-            'price'=>'required',
+            'price'=>'required|gt:-1',
             'description'=>'required|string',
             'image' => 'sometimes|nullable|image'
 
@@ -112,6 +116,7 @@ class DashboardServicesController extends Controller
      */
     public function destroy(Service $service)
     {
+        $this->authorize('delete', $service);
         $service->delete();
         return redirect()->action([DashboardServicesController::class, 'index']);
     }
