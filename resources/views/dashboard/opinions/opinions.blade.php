@@ -10,14 +10,20 @@
             <div class="w-full sm:w-10/12 md:w-1/2 my-1">
 
                 <div class="flex justify-center">
-                    <div class="mb-3 xl:w-96">
-                      <select class="filter-select appearance-none block w-full px-3  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                          <option selected>Open this select menu</option>
-                          <option  value="Complement">Complement</option>
-                          <option  value="Complaint">Complaint</option>
+                    <form method="GET" action="{{URL::current()}}" class="mb-3 w-96 flex">
+                      <select name="type" class="filter-select appearance-none block w-full px-3  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select">
+                          <option disabled selected>Select type to filter opinions</option>
+                          <option  value="Complement" {{request('type') == 'Complement'? 'selected' : ''}}>Complement</option>
+                          <option  value="Complaint" {{request('type') == 'Complaint'? 'selected' : ''}}>Complaint</option>
                       </select>
-                    </div>
+                      <input type="submit" value="Filter" class="text-base px-2 cursor-pointer text-white rounded-sm h-11 -mx-2 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
+                    </form>
                   </div>
+                @if($opinions->count() <= 0)
+                  <h2 class="text-center p-3">
+                    No opinions yet.
+                  </h2>
+                @else
                 @foreach ($opinions as $item)
               <ul class="flex flex-col">
                 <li class="bg-white my-2 opinion-item shadow-lg" x-data="accordion(1)">
@@ -63,6 +69,7 @@
 
               </ul>
               @endforeach
+              @endif
 
             </div>
           </div>

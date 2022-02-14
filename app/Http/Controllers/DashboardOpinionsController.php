@@ -15,7 +15,7 @@ class DashboardOpinionsController extends Controller
      */
     public function index()
     {
-        $opinions = Opinion::latest()->paginate(25);
+        $opinions = Opinion::latest()->filter(request(['type']))->paginate(25);
         return view('dashboard.opinions.opinions', compact('opinions'));
 
     }

@@ -13,6 +13,13 @@ class Opinion extends Model
     protected $fillable = [
         'title','body','user_id','type',
     ];
+
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['type'] ?? false, fn($query, $filter)=> 
+            $query->where('type', $filter)
+    );
+    }
+
     public function author()
     {
         return $this->belongsTo('App\Models\UserProfile','user_id');
