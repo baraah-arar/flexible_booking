@@ -165,7 +165,8 @@
                 else{
                     if(check_in_input.value == ''){
                         let curr_date = new Date;
-                        if(new Date(cell.dataset.dateTime).toLocaleString() < curr_date.toLocaleString())
+                        // console.log(new Date(cell.dataset.dateTime).toLocaleString() < curr_date.toLocaleString());
+                        if(new Date(cell.dataset.dateTime) < curr_date)
                             document.querySelector('.error_message').innerText = 'Not valid date';
                         else{
                             document.querySelector('.error_message').innerText = '';

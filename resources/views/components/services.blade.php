@@ -519,13 +519,12 @@
                 document.querySelector('.calendar_form  .error_message ').innerText = '';
                 const form = document.querySelector(`[data-form-role="confirm_form"][data-place-id="${data.data.plc_id}"]`);
                 const formParent = checkParents(form, 'form-sec');
-                console.log(form);
                 form.querySelector('input#checkIn').value = data.data.start_date;
                 form.querySelector('input#checkOut').value = data.data.end_date;
                 form.querySelector('input#hoursNum').value = data.data.duration;
                 form.querySelector('input#cost').value = data.data.cost;
                 formParent.classList.remove('hidden');
-                // console.log(form.querySelector('input#cost'));
+                window.scroll(0, (formParent.offsetTop));
             }
 
             function displayExtrasBtn(bookID, plcID) {
