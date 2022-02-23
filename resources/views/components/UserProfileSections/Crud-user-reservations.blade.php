@@ -3,7 +3,7 @@
     <div class="flex flex-col">
         <div class="">
             <form method="GET" action="{{URL::current()}}">
-                <input type="text" name="search" placeholder="Search by booking number"
+                <input type="text" name="search" placeholder="Search by reservation number"
                     value="{{request('search')}}"
                     class="appearance-none rounded-none relative block mb-6 h-12 md:w-2/4 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
             </form>
