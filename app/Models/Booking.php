@@ -13,6 +13,12 @@ class Booking extends Model
         'plc_id','user_id','start_date','end_date','payment_plan','status','cost'
     ];
 
+    public function scopeFilter($query){
+        if(request('search') ?? false){ 
+           $query->where('id', intval(request('search')));
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(UserProfile::class, 'user_id');

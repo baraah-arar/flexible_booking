@@ -2,8 +2,12 @@
 <div id="res">
     <div class="flex flex-col">
         <div class="">
-            <div
-                class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+            <form method="GET" action="{{URL::current()}}">
+                <input type="text" name="search" placeholder="Search by booking number"
+                    value="{{request('search')}}"
+                    class="appearance-none rounded-none relative block mb-6 h-12 md:w-2/4 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+            </form>
+            <div class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                 <table class="min-w-full">
                     <thead>
                         <tr>
@@ -39,14 +43,14 @@
                     </thead>
 
                     <tbody class="bg-white">
-                    @if(auth()->user()->bookings->count() <= 0)
+                    @if($reservations->count() <= 0)
                     <tr>
                         <td class="p-6 whitespace-no-wrap border-b border-gray-200" colspan="7" >
                         <h3>You don't have any reservation yet.</h3>
                         </td>
                     <tr>
                     @else
-                    @foreach(auth()->user()->bookings as $coll)                        
+                    @foreach($reservations as $coll)                        
                     <tr>
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <div class="text-sm leading-5 text-gray-500">{{$coll->id}}</div>

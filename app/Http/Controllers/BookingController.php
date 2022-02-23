@@ -48,8 +48,9 @@ class BookingController extends Controller
                 if($booking->status != 'canceled'){
                     $oldStart  = Carbon::parse($booking->start_date);
                     $oldEnd    = Carbon::parse($booking->end_date);
-                    if(Carbon::parse(request()->start_date)->betweenIncluded($oldStart, $oldEnd) || Carbon::parse(request()->end_date)->betweenIncluded($oldStart, $oldEnd)
-                        || $oldStart->betweenIncluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
+                    if(Carbon::parse(request()->start_date)->betweenExcluded($oldStart, $oldEnd) 
+                        || Carbon::parse(request()->end_date)->betweenExcluded($oldStart, $oldEnd)
+                        || $oldStart->betweenExcluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
                         return response()->json([
                             "status" => false,
                             "message" => "unavailable, please choose another time"
@@ -108,8 +109,9 @@ class BookingController extends Controller
                     if($plcBokking->status == 'pending' || $plcBokking->status == 'confirmed'){
                         $oldStart = Carbon::parse($plcBokking->start_date);
                         $oldEnd   = Carbon::parse($plcBokking->end_date);
-                        if(Carbon::parse(request()->start_date)->betweenIncluded($oldStart, $oldEnd) || Carbon::parse(request()->end_date)->betweenIncluded($oldStart, $oldEnd)
-                            || $oldStart->betweenIncluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
+                        if(Carbon::parse(request()->start_date)->betweenExcluded($oldStart, $oldEnd) 
+                            || Carbon::parse(request()->end_date)->betweenExcluded($oldStart, $oldEnd)
+                            || $oldStart->betweenExcluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
                             $places->forget($index);
                             break;
                             // return response()->json([
@@ -218,8 +220,9 @@ class BookingController extends Controller
                 if($booking->status != 'canceled'){
                     $oldStart  = Carbon::parse($booking->start_date);
                     $oldEnd    = Carbon::parse($booking->end_date);
-                    if(Carbon::parse(request()->start_date)->betweenIncluded($oldStart, $oldEnd) || Carbon::parse(request()->end_date)->betweenIncluded($oldStart, $oldEnd)
-                        || $oldStart->betweenIncluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
+                    if(Carbon::parse(request()->start_date)->betweenExcluded($oldStart, $oldEnd) 
+                        || Carbon::parse(request()->end_date)->betweenExcluded($oldStart, $oldEnd)
+                        || $oldStart->betweenExcluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
                         return response()->json([
                             "status" => false,
                             "message" => "unavailable, please choose another time"

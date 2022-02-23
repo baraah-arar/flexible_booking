@@ -54,7 +54,8 @@ class UserProfileController extends Controller
                 }
             }
         };
-        return view('components/UserProfileSections/Crud-user-reservations');
+        $reservations = Booking::where('user_id', auth()->user()->id)->latest()->filter()->get();
+        return view('components/UserProfileSections/Crud-user-reservations', ['reservations'=>$reservations]);
     }
 
     /**
@@ -85,12 +86,6 @@ class UserProfileController extends Controller
         return redirect('/')->with('success', 'your password updated successfuly. Please login again');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\UserProfile  $userProfile
-     * @return \Illuminate\Http\Response
-     */
     public function showReservation($id)
     {
         $reservations = auth()->user()->bookings->where('id',$id)->first();

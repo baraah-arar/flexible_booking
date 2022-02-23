@@ -17,7 +17,7 @@ class Opinion extends Model
     public function scopeFilter($query, array $filters){
         $query->when($filters['type'] ?? false, fn($query, $filter)=> 
             $query->where('type', $filter)
-    );
+        );
     }
 
     public function author()
