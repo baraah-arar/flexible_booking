@@ -54,7 +54,8 @@ Route::post('/contact', [OpinionController::class, 'create']);
 
 
 // route for admin dashboard
-Route::group(['middleware' => 'admin'], function(){
+Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'IsAdmin'], function(){
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard.index');
     Route::get('dashboard/statistics', 'App\Http\Controllers\DashboardController@statistics')->name('dashboard.statistics');
 
@@ -76,6 +77,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('dashboard/bookings/{id}', 'App\Http\Controllers\DashboardBookingController@bookingservices')->name('dashboard.booking.services');
     Route::get('dashboard/bookings/{id}/confirm', 'App\Http\Controllers\DashboardBookingController@confirm')->name('dashboard.booking.confirm');
     Route::get('dashboard/bookings/{id}/confirmservices/{s_id}', 'App\Http\Controllers\DashboardBookingController@confirm_services')->name('dashboard.booking.confirm.services');
+    });
 });
 // register && login
 Route::get('/#register', function(){return redirect('/#register');})->name('view_register')->middleware('guest');

@@ -17,7 +17,8 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || !auth()->user()->role == 2 || !auth()->user()->role == 3){
+        // !auth()->check()
+        if(!(auth()->user()->role == 2 || auth()->user()->role == 3)){
             // abort(code:403);
             abort(Response::HTTP_FORBIDDEN);
         }
