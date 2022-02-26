@@ -22,7 +22,7 @@ class CreateBookingsTable extends Migration
             $table->datetime('end_date');
             $table->string('status');
             $table->text('payment_plan');
-            $table->integer('cost');
+            $table->decimal('cost', 15, 2);
             $table->timestamps();
 
             $table->foreign('plc_id')->references('id')->on('places')

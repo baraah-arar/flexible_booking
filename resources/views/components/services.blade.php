@@ -443,6 +443,7 @@
             });
             $(".confirm_form_btn").click(function (e) {
                 const plc_id = e.target.dataset.placeid;
+                const book_btn = document.querySelector(`button.book[data-placeid="${plc_id}"]`);
                 // const form_confirm = document.querySelector(`[data-form-role="confirm_form"][data-place-id="${plc_id}"]`);
                 var url = $('.confirm_form[data-place-id=' + plc_id + ']').attr("action");
                 var form_data = $('.confirm_form[data-place-id=' + plc_id + ']').serialize();
@@ -459,6 +460,8 @@
                             console.log(data);
                             form.querySelector(".confirm_form_btn").classList.add('hidden');
                             // $(".confirm_succ_msg").removeClass('hidden');
+                            book_btn.classList.add('disableBook');
+                            book_btn.disabled = true;
                             displayExtrasBtn(data.data.id, data.data.plc_id);
                         }
                     },

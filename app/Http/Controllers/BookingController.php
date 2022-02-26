@@ -50,6 +50,7 @@ class BookingController extends Controller
                     $oldEnd    = Carbon::parse($booking->end_date);
                     if(Carbon::parse(request()->start_date)->betweenExcluded($oldStart, $oldEnd) 
                         || Carbon::parse(request()->end_date)->betweenExcluded($oldStart, $oldEnd)
+                        || (Carbon::parse(request()->start_date)->equalTo($oldStart) && Carbon::parse(request()->end_date)->equalTo($oldEnd))
                         || $oldStart->betweenExcluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
                         return response()->json([
                             "status" => false,
@@ -62,7 +63,7 @@ class BookingController extends Controller
         $plc_cost = Place::where('id', request()->plc_id)->first('price');
         if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
             $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
-            $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+            $cost = number_format($plc_cost['price'] * intval($diff_in_hours),2);
             $attributes['duration'] = $diff_in_hours;
         }
         elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
@@ -222,6 +223,7 @@ class BookingController extends Controller
                     $oldEnd    = Carbon::parse($booking->end_date);
                     if(Carbon::parse(request()->start_date)->betweenExcluded($oldStart, $oldEnd) 
                         || Carbon::parse(request()->end_date)->betweenExcluded($oldStart, $oldEnd)
+                        || (Carbon::parse(request()->start_date)->equalTo($oldStart) && Carbon::parse(request()->end_date)->equalTo($oldEnd))
                         || $oldStart->betweenExcluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
                         return response()->json([
                             "status" => false,
@@ -234,7 +236,7 @@ class BookingController extends Controller
         $plc_cost = Place::where('id', request()->plc_id)->first('price');
         if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
             $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
-            $cost = intval($plc_cost['price']) * intval($diff_in_hours);
+            $cost = number_format($plc_cost['price'] * intval($diff_in_hours), 2);
             // $attributes['numberHours'] = $diff_in_hours;
             $attributes['payment_plan'] = 'hours';
         }
@@ -286,9 +288,8 @@ class BookingController extends Controller
                         "data" => $data
                     ]);
                 }else{
-                    // for test------------
-                        if(BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id])->doesntExist())
-                    //-------------
+                        if(BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id])->doesntExist() 
+                            || BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id, 'status' => 'canceled']))
                             BookingService::create(['srv_id'=> $value, 'bkg_id' => $bkg_id]);
                         else
                             return response()->json([

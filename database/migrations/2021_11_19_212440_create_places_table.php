@@ -19,7 +19,7 @@ class CreatePlacesTable extends Migration
             $table->text('title')->unique();
             $table->text('plc_type');
             $table->text('status');
-            $table->integer('price');
+            $table->decimal('price', 15, 2);
             $table->integer('capacity');
             $table->longText('description');
             $table->string('image')->nullable();
