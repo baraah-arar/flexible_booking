@@ -110,8 +110,10 @@ class BookingController extends Controller
                     if($plcBokking->status == 'pending' || $plcBokking->status == 'confirmed'){
                         $oldStart = Carbon::parse($plcBokking->start_date);
                         $oldEnd   = Carbon::parse($plcBokking->end_date);
+                        
                         if(Carbon::parse(request()->start_date)->betweenExcluded($oldStart, $oldEnd) 
                             || Carbon::parse(request()->end_date)->betweenExcluded($oldStart, $oldEnd)
+                            || (Carbon::parse(request()->start_date)->equalTo($oldStart) && Carbon::parse(request()->end_date)->equalTo($oldEnd))
                             || $oldStart->betweenExcluded(Carbon::parse(request()->start_date), Carbon::parse(request()->end_date))){
                             $places->forget($index);
                             break;
