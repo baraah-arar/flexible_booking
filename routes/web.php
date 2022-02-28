@@ -77,6 +77,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('dashboard/bookings/{id}', 'App\Http\Controllers\DashboardBookingController@bookingservices')->name('dashboard.booking.services');
     Route::get('dashboard/bookings/{id}/confirm', 'App\Http\Controllers\DashboardBookingController@confirm')->name('dashboard.booking.confirm');
     Route::get('dashboard/bookings/{id}/confirmservices/{s_id}', 'App\Http\Controllers\DashboardBookingController@confirm_services')->name('dashboard.booking.confirm.services');
+
+    Route::get('dashboard/resetpassword', 'App\Http\Controllers\AdminProfileController@displayresetpassword')->name('dashboard.displayresetpassword');
+    Route::post('dashboard/resetpassword', 'App\Http\Controllers\AdminProfileController@resetpassword')->name('dashboard.resetpassword');
+    Route::get('dashboard/editprofile', 'App\Http\Controllers\AdminProfileController@displayprofile')->name('dashboard.displayprofile');
+    Route::post('dashboard/editprofile', 'App\Http\Controllers\AdminProfileController@editprofile')->name('dashboard.editprofile');
     });
 });
 // register && login

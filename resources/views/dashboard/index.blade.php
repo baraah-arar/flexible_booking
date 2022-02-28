@@ -45,7 +45,7 @@
                 </a>
               </div>
               <div class="mt-3 sm:mt-0 sm:ml-3">
-                <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                <a href="{{ route('dashboard.displayprofile')}}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
                  Profile Information
                 </a>
               </div>
@@ -59,6 +59,8 @@
       <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://c0.wallpaperflare.com/preview/222/411/586/chart-trading-courses-forex.jpg" alt="">
     </div>
   </div>
-
+  <script>
+    setTimeout(()=> document.querySelector('.flash-msg').classList.add('hidden'),3000)
+</script>
 
 </x-layoutdashboard>

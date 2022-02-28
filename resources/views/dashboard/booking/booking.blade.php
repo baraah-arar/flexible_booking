@@ -176,7 +176,7 @@
                             @endcan
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{ route('dashboard.booking.services',$item->id)}}"  class=" bg-indigo-100 hover:bg-indigo-200 focus:ring-indigo-500 inline-flex w-30 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm Services</a>
+                            <a href="{{ route('dashboard.booking.services',$item->id)}}"  class="{{ $item->place->plc_type!="individual" ? "active-service bg-indigo-100 hover:bg-indigo-200 focus:ring-indigo-500" : "disable-service bg-gray-400 cursor-default " }}   inline-flex w-30 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm Services</a>
                           </td>
                          </tr>
                     @endforeach
@@ -189,6 +189,12 @@
 
 <script>
         var bt = document.querySelectorAll('.disable');
+        [...bt].forEach(element => {
+            element.href="";
+            element.addEventListener("click",e=>e.preventDefault());
+
+        });
+        var bt = document.querySelectorAll('.disable-service');
         [...bt].forEach(element => {
             element.href="";
             element.addEventListener("click",e=>e.preventDefault());
