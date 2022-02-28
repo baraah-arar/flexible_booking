@@ -15,7 +15,7 @@
     <div class="mt-12 gap-8 hero grid grid-cols-1 md:grid-cols-2">
         <div class="flex flex-col justify-between">
             <div class="flex flex-col items-center">
-                <div class="text-lg leading-7 font-semibold">
+                <div class="mb-6 text-lg leading-7 font-semibold">
                     <a href="" class="outline-txt mt-4 text-4xl sm:text-5xl md:text-7xl text-gray-900 dark:text-white">Easy, quick, cheap</a>
                 </div>
                 <p class="mt-4 text-base mt-2 text-gray-600 dark:text-gray-400 md:text-lg">
