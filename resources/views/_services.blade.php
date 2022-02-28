@@ -31,7 +31,7 @@
             <div class="card mb-16 w-1/2 flex flex-col space-y-4">
                 <div style="background-image:url('./images/worker.png')" class="slide-img row-start-1 col-start-1 col-span-2 bg-contain bg-no-repeat bg-center h-16 w-16"></div>
                 <a href="" class="text-base font-medium text-gray-700 hover:text-gray-900">Single Space</a>
-                <p class="text-gray-600 dark:text-gray-400 text-base">Book a private desk for your company in a single-desk room.</p>
+                <p class="text-gray-600 dark:text-gray-400 text-base">Book a private office for your company.</p>
             </div>
             <div class="card mb-16 w-1/2 flex flex-col space-y-4">
                 <div style="background-image:url('./images/mt.png')" class="slide-img row-start-1 col-start-1 col-span-2 bg-contain bg-no-repeat bg-center h-16 w-16"></div>
