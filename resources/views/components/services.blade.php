@@ -129,7 +129,7 @@
                         <div class="md:self-center w-full flex flex-wrap justify-center mt-8">
                             <form class="select_indivi">
                                 <fieldset class="order-1 mb-8">
-                                    <div class="select_cont flex flex-col space-x-4">
+                                    <div class="select_cont flex flex-col">
                                         <p class="text-sm font-medium text-gray-600 dark:text-gray-400 sm:text-lg md:text-lg">
                                             Places Available
                                         </p>
@@ -504,8 +504,13 @@
                 const form = document.querySelector('.select_indivi');
                 const select_cont = form.querySelector('.select_cont');
                 select_cont.innerText = '';
-                console.log(data.data);
-                data.data.forEach(place => {
+                let dataArr = new Array;
+                console.log(typeof(data.data) == 'object');
+                if(!Array.isArray(data.data))
+                    dataArr = [data.data[1]];
+                else
+                    dataArr = data.data;
+                dataArr.forEach(place => {
                     const div = document.createElement('div');
                     div.classList.add('flex', 'items-center');
                     div.innerHTML = `<input id="${place.title}" value="${place.id}" name="place" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
