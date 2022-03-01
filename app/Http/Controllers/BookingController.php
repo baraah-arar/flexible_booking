@@ -290,8 +290,8 @@ class BookingController extends Controller
                         "data" => $data
                     ]);
                 }else{
-                        if(BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id])->doesntExist() 
-                            || BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id, 'status' => 'canceled']))
+                        if(BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id])->doesntExist()
+                            || BookingService::where(['srv_id' => $value,'bkg_id' => $bkg_id, 'status' => 'canceled'])->exists())
                             BookingService::create(['srv_id'=> $value, 'bkg_id' => $bkg_id]);
                         else
                             return response()->json([

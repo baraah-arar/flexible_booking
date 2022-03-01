@@ -38,7 +38,7 @@ class PlaceController extends Controller
                     return view('components/services', 
                     ['places' => Place::where('plc_type', $type)
                         ->where('status', '!=', 'out_of_service')
-                        ->whereBetween('capacity', [5,7])
+                        ->where('capacity', '>=', 5)
                         ->get(),
                     'services' => Service::all()]);
                 }else{
@@ -68,7 +68,7 @@ class PlaceController extends Controller
                     return view('components/services', 
                     ['places' => Place::where('plc_type', $type)
                         ->where('status', '!=', 'out_of_service')
-                        ->whereBetween('capacity', [51,80])
+                        ->where('capacity', '>=' , 51)
                         ->get(),
                     'services' => Service::all()]);
                 }else{

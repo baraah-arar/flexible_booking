@@ -91,7 +91,7 @@ class RegisterController extends Controller
                 ->withErrors(['ver-code' => 'Your provided credentails could not be verified.']);
         }else{
             // update user_profile status
-            UserProfile::where('email', auth()->user()->email)->update(['status' => 'activated']);
+            UserProfile::where('email', auth()->user()->email)->update(['status' => 'active']);
             // delete the row from password_resets table
             DB::table('password_resets')->where(['email' => auth()->user()->email])->delete();
             // redirect

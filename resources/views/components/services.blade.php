@@ -157,8 +157,7 @@
                 </div>
                 <div
                     class="hidden md:row-start-1 row-start-2 col-start-1 col-end-3 md:col-end-2 form-sec shadow-xl bg-gray-100 self-center w-full p-4 flex flex-col justify-start items-start">
-                    <p class="text-gray-900 text-base text-lg font-medium pb-4">please choose your perfect time and
-                        date</P>
+                    <p class="text-gray-900 text-base text-md font-medium pb-4">Your booking Information, please confirm it.</P>
                     <form action="{{URL::current()}}" method="POST" class="confirm_form w-full p-4"
                           data-form-role="confirm_form" data-place-id="{{$place->id}}">
                         @csrf
@@ -405,7 +404,7 @@
                 var url = $(".calendar_form form").attr('action');
                 var form_data = $(".calendar_form form").serialize();
                 var plc_id = $(".calender_btn").attr('data-placeid');
-                console.log(plc_id);
+                // console.log(plc_id);
                 if (!plc_id) {
                     $.ajax({
                         url: url,
@@ -499,13 +498,17 @@
             });
 
             function displaySelectBookingForm(data) {
+                if(Object.keys(data.data).length === 0) 
+                    document.querySelector('.calendar_form  .error_message ').innerText = 'no places please select another time';
+                else
+                    document.querySelector('.calendar_form  .error_message ').innerText = "";
+                // return 
                 document.querySelector('.indivd_form #checkIn').value = data.start;
                 document.querySelector('.indivd_form #checkOut').value = data.end;
                 const form = document.querySelector('.select_indivi');
                 const select_cont = form.querySelector('.select_cont');
                 select_cont.innerText = '';
                 let dataArr = new Array;
-                console.log(typeof(data.data) == 'object');
                 if(!Array.isArray(data.data))
                     dataArr = [data.data[1]];
                 else
@@ -556,6 +559,7 @@
             function eventExtrasbtn(form) {
                 const btn = form.querySelector('.extraseervices');
                 btn.addEventListener('click', () => {
+                    if(btn.dataset.active === 'notactive') return;
                     document.querySelector('#extras-overlay').classList.toggle('hidden');
                     document.querySelector('#extras-overlay').querySelector('.book_extra_btn').dataset.bookid = btn.dataset.bookid;
                 })
@@ -633,9 +637,18 @@
                         booked_extra.classList.add('booked-extra');
                         parent_div.appendChild(booked_extra);
                     });
+                    parent_div.querySelector(`.extraseervices[data-bookID="${bookID}"]`).dataset.active = 'notactive';
+                    parent_div.querySelector(`.extraseervices[data-bookID="${bookID}"]`).classList.add('cursor-not-allowed', 'bg-indigo-300');
+                    const info_elem = document.createElement('p');
+                    // <p class="text-gray-500 flex items-center justify-between px-2">
+                    //                     To manage your reservation please visit your <a href="/reservations" class="underline"> profile </a>.
+                    //                 </p>
+                    info_elem.classList.add('text-gray-500', 'px-2', 'py-4', 'text-sm');
+                    info_elem.innerHTML = `To manage your reservation please visit your <a href="/reservations" class="underline"> profile </a>`;
                     const done_btn = document.createElement('div');
                     done_btn.innerText = 'done';
                     done_btn.classList.add('doneRefresh');
+                    parent_div.appendChild(info_elem);
                     parent_div.appendChild(done_btn);
                     parent_div.querySelector('.doneRefresh').addEventListener('click', () => {
                         window.location.href = '{{URL::current()}}';
