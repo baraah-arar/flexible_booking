@@ -1,9 +1,9 @@
 
 <x-layout>
 <!-- verify Account modal -->
-        <div class="overlay flex items-center justify-center w-screen" id="verify-modal">
+        <div class="overlay topz flex items-center justify-center w-screen" id="verify-modal">
             <a href="#" class="cancel"></a>
-            <div class="modal flex flex-col space-y-8 rounded md:w-3/5 w-11/12 bg-gray-200 p-8">
+            <div class="modal flex flex-col space-y-8 rounded md:w-3/5 w-4/5 bg-gray-200 p-8">
                 <div class="modal-header flex justify-between">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">Verify Account</h1>
                     <!-- <a href="#" class="close text-xl">&times;</a> -->

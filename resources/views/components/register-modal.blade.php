@@ -5,7 +5,7 @@
         <form class="mt-8 space-y-6" action="/register" method="POST">
             @csrf
             <input type="hidden" name="remember" value="true">
-            <div class="rounded-md shadow-sm -space-y-px">
+            <div class="rounded-md shadow-sm">
                 <x-form.form-group type="text" label="First Name" name="f_name"></x-form.form-group>
                 <x-form.form-group type="text" label="Last Name" name="l_name"></x-form.form-group>
                 <x-form.form-group type="text" label="Phone Number" name="phone"></x-form.form-group>

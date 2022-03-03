@@ -3,17 +3,17 @@
     <div class="flex md:flex-row flex-col md:space-x-4 md:space-y-0 space-y-8 justify-between items-center w-full my-8">
         <x-page-title>Places</x-page-title>
         @if(!request()->routeIs('ind'))
-            <div class="flex space-x-4">
+            <div class="flex">
                 <a  href="{{URL::current()}}/?search=small"
-                    class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
+                    class="border-2 border-gray-300 text-sm font-medium text-gray-500 mx-2 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
                     Small Room
                 </a>
                 <a  href="{{URL::current()}}/?search=medium"
-                    class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
+                    class="border-2 border-gray-300 text-sm font-medium text-gray-500 mx-2 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
                     Medium Room
                 </a>
                 <a href="{{URL::current()}}/?search=large"
-                    class="border-2 border-gray-300 text-sm font-medium text-gray-500 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
+                    class="border-2 border-gray-300 text-sm font-medium text-gray-500 mx-2 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
                     Large Room
                 </a>
             </div>
@@ -517,7 +517,7 @@
                     const div = document.createElement('div');
                     div.classList.add('flex', 'items-center');
                     div.innerHTML = `<input id="${place.title}" value="${place.id}" name="place" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
-                                    <label for="${place.title}" class="ml-3 block text-sm font-medium text-gray-700">
+                                    <label for="${place.title}" class="ml-3 flex text-sm font-medium text-gray-700">
                                         <span class="mx-2">${place.title}</span>
                                         <span class="mx-2">${place.price} S.P / hour</span>
                                         <span class="mx-2 text-indigo-800 font-bold">${place.price * data.hours} S.P / ${data.hours} hours</span>

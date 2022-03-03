@@ -7,12 +7,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.dirrtl #calendar-overlay .action_date{
+	transform: rotate(180deg);
+}
+
 .overlay.hidden:target{
 	display: flex;
 }
 
 .overlay{
 	z-index: 10000;
+}
+
+.overlay.topz{
+	z-index: 9;
 }
 
 .logo-img{

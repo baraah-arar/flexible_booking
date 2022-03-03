@@ -1,9 +1,9 @@
 <x-userProfile>
     <div class='flex justify-between mb-2'>
     @if(!isset($reservations))
-    <h1 class="text-xl font-bold text-gray-700 sm:pr-12"> Page not found</h1>
+    <h1 class="text-xl font-bold text-gray-700"> Page not found</h1>
     @else    
-    <h1 class="text-xl font-bold text-gray-900 sm:pr-12"> Reservation Details</h1>
+    <h1 class="text-xl font-bold text-gray-900"> Reservation Details</h1>
     <h2 class="rounded-lg px-2 font-medium {{$reservations->status == 'canceled'? 'bg-red-200 ' : ''}}
                 {{$reservations->status == 'outofdate'? 'bg-gray-200 ' : ''}}
                 {{$reservations->status == 'pending'? 'bg-yellow-200 ' : ''}}

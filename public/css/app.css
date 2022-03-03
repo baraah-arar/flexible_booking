@@ -31889,12 +31889,20 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.dirrtl #calendar-overlay .action_date{
+  transform: rotate(180deg);
+}
+
 .overlay.hidden:target{
   display: flex;
 }
 
 .overlay{
   z-index: 10000;
+}
+
+.overlay.topz{
+  z-index: 9;
 }
 
 .logo-img{

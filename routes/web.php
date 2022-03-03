@@ -28,6 +28,8 @@ Route::get('/', function () {
     return view('components/mainContent');
 })->name('home');
 
+Route::get('/home', function(){return redirect('/');});
+
 Route::get('/services/Individual', [PlaceController::class, 'index'])->name('ind');
 Route::get('/services/private', [PlaceController::class, 'index']);
 Route::get('/services/meeting', [PlaceController::class, 'index']);
