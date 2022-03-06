@@ -7,6 +7,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.dirrtl{
+	direction: rtl;
+}
+
 .dirrtl #calendar-overlay .action_date{
 	transform: rotate(180deg);
 }

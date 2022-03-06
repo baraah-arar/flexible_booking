@@ -10,8 +10,12 @@
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
-    <body class="antialiased">
+    <body class="antialiased {{app()->getLocale() == 'ar'? 'dirrtl' : ''}}">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center px-4 md:px-0 py-8 md:pt-0">
+            <button class="ar_lan self-start mt-40 text-base text-white h-8 w-8 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" data-lan="{{app()->getLocale()}}" type="button">
+                {{app()->getLocale() == 'ar'? 'En' : 'Ar'}} 
+                {{isset($_COOKIE['lan']) && app()->setLocale($_COOKIE['lan'])}}
+            </button>
             <div class="flex flex-col min-h-screen w-4/5 max-w-6xl mx-auto">
                 <!-- nav -->
                 @include('_headerNav')
@@ -52,7 +56,7 @@
                 @if(auth()->user()->status == null)
                     <div class="flash-msg z-10 fixed bottom-14 flex w-full justify-center">
                         <p class="bg-red-400 opacity-95 shadow-md text-white justify-center flex items-center space-x-2 py-2 md:py-2 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto">
-                            <span>Your account is not verified.</span>
+                            <span>{{__('Your account is not verified.')}}</span>
                             <a href="/verify-account" id="verify-flash-msg" class="verify text-white text-sm md:text-lg items-center p-2 w-30 h-12 flex justify-center rounded bg-red-500">Verify Now</a>
                             <!-- <a href="#" id="close-flash-msg" class="close text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a> -->
                         </p>
@@ -67,7 +71,7 @@
         @if(session()->has('success'))
             <div class="flash-msg fixed top-3 z-10 flex w-full justify-center">
                 <p class="bg-green-400 opacity-95 shadow-md text-white flex items-center justify-between space-x-2 py-2 md:py-4 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto fixed top-3">
-                    {{session('success')}}
+                    {{__(session("success"))}}
                     <a id="close-flash-msg" class="close cursor-pointer text-white text-xl w-10 h-8 flex justify-center rounded bg-green-500">&times;</a>
                 </p>
             </div>
@@ -89,6 +93,18 @@
             //     btn.addEventListener('click', () => mob_nav.classList.toggle('hidden'));
             // });
 
+            // change language
+            document.querySelector('.ar_lan').addEventListener('click', (e)=>{
+                if(e.target.dataset.lan === 'en'){
+                    document.cookie = "lan=ar; expires=Thu, 18 Dec 9999 12:00:00 UTC";
+                    e.target.dataset.lan = 'ar';
+                    location.reload();
+                }else if(e.target.dataset.lan === 'ar'){
+                    document.cookie = "lan=en; expires=Thu, 18 Dec 9999 12:00:00 UTC";
+                    e.target.dataset.lan = 'en';
+                    location.reload();
+                }
+            });
             // toggling
             window.addEventListener('click', (e) => {
                 // console.log(e.target.parentElement);

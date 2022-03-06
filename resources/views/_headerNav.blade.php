@@ -6,18 +6,18 @@
         </a>
         <!-- main nav -->
         <div class="hidden md:flex">
-            <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>
+            <x-nav-item href="/" :active="request()->routeIs('home')">{{__('Home')}}</x-nav-item>
             <x-ddown-flex>
                 <x-nav-item :active="request()->is('*' . 'services' . '*')" class="dropdownButton flex h-full">
-                    <x-icons.down-arrow class="icon self-center"/><span>services</span>
+                    <x-icons.down-arrow class="icon self-center"/><span>{{__('services')}}</span>
                 </x-nav-item>
                 <x-dropdown>
-                    <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individual desktop</x-ddown-item>
-                    <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
-                    <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">Meeting Room</x-ddown-item>
+                    <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">{{__('Individual desktop')}}</x-ddown-item>
+                    <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">{{__('Private desktop')}}</x-ddown-item>
+                    <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">{{__('Meeting Room')}}</x-ddown-item>
                 </x-dropdown>
             </x-ddown-flex>
-            <x-nav-item href="/contact" :active="request()->is('contact')">contact us</x-nav-item>
+            <x-nav-item href="/contact" :active="request()->is('contact')">{{__('contact us')}}</x-nav-item>
             @auth
                 <x-ddown-flex>
                     <button class="dropdownButton uppercase text-base text-white rounded-full h-11 w-11 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" type="button">
@@ -26,14 +26,14 @@
                     </button>
                     <x-dropdown :auth="true">
                         @if(auth()->user()->role == 2 || auth()->user()->role == 3)
-                        <x-ddown-item href="/dashboard">dashboard</x-ddown-item>
+                        <x-ddown-item href="/dashboard">{{__('dashboard')}}</x-ddown-item>
                         @endif
-                        <x-ddown-item href="/profile" :active="request()->is('' . 'profile')">Profile</x-ddown-item>
-                        <x-ddown-item href="/reservations" :active="request()->is('reservations' . '*')">Reservations</x-ddown-item>
+                        <x-ddown-item href="/profile" :active="request()->is('' . 'profile')">{{__('Profile')}}</x-ddown-item>
+                        <x-ddown-item href="/reservations" :active="request()->is('reservations' . '*')">{{__('Reservations')}}</x-ddown-item>
                     </x-dropdown>
                 </x-ddown-flex>
             @else
-                <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
+                <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">{{__('Log in')}}</a>
             @endauth
         </div>
         <!-- humberger icon -->
@@ -55,18 +55,18 @@
                     <x-close-btn/>
                 </div>
                 <div class="flex flex-col px-2 flex-grow flex-shrink-0 pb-3 space-y-1">
-                    <x-nav-item href="/" :active="request()->routeIs('home')">Home</x-nav-item>
+                    <x-nav-item href="/" :active="request()->routeIs('home')">{{__('Home')}}</x-nav-item>
                     <x-ddown-flex>
                         <x-nav-item :active="request()->is('*' . 'services' . '*')" class="dropdownButton flex">
-                            <x-icons.down-arrow class="icon"/><span>services</span>
+                            <x-icons.down-arrow class="icon"/><span>{{__('services')}}</span>
                         </x-nav-item>
                         <x-dropdown>
-                            <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">Individual desktop</x-ddown-item>
-                            <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">Private desktop</x-ddown-item>
-                            <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">Meeting Room</x-ddown-item>
+                            <x-ddown-item href="/services/Individual" :active="request()->routeIs('ind')">{{__('Individual desktop')}}</x-ddown-item>
+                            <x-ddown-item href="/services/private" :active="request()->is('*' . 'private')">{{__('Private desktop')}}</x-ddown-item>
+                            <x-ddown-item href="/services/meeting" :active="request()->is('*' . 'meeting')">{{__('Meeting Room')}}</x-ddown-item>
                         </x-dropdown>
                     </x-ddown-flex>
-                    <x-nav-item href="/contact" :active="request()->is('contact')">contact us</x-nav-item>
+                    <x-nav-item href="/contact" :active="request()->is('contact')">{{__('contact us')}}</x-nav-item>
                 </div>
                 @auth
                     <x-ddown-flex  class="items-end">
@@ -76,14 +76,14 @@
                         </button>
                         <x-dropdown :auth="true">
                             @if(auth()->user()->role == 2 || auth()->user()->role == 3)
-                            <x-ddown-item href="/dashboard">dashboard</x-ddown-item>
+                            <x-ddown-item href="/dashboard">{{__('dashboard')}}</x-ddown-item>
                             @endif
-                            <x-ddown-item href="/profile" :active="request()->is('' . 'profile')">Profile</x-ddown-item>
-                            <x-ddown-item href="/reservations" :active="request()->is('reservations' . '*')">Reservations</x-ddown-item>
+                            <x-ddown-item href="/profile" :active="request()->is('' . 'profile')">{{__('Profile')}}</x-ddown-item>
+                            <x-ddown-item href="/reservations" :active="request()->is('reservations' . '*')">{{__('Reservations')}}</x-ddown-item>
                         </x-dropdown>
                     </x-ddown-flex>
                 @else
-                    <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Log in</a>
+                    <a href="#login-modal" class="py-2 text-base px-4 text-white font-medium bg-indigo-600 hover:bg-indigo-700">{{__('Log in')}}</a>
                 @endauth
             </div>
         </div>

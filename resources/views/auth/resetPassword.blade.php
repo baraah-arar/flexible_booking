@@ -5,20 +5,20 @@
             <a href="#" class="cancel"></a>
             <div class="modal flex flex-col space-y-8 rounded md:w-3/5 w-4/5 bg-gray-200 p-8">
                 <div class="modal-header flex justify-between">
-                    <h1 class="text-lg leading-6 font-medium text-gray-900">Reset Password</h1>
+                    <h1 class="text-lg leading-6 font-medium text-gray-900">{{__('Reset Password')}}</h1>
                     <!-- <a href="#" class="close text-xl">&times;</a> -->
                 </div>
                 <div class="modal-body">
-                    <p class="text-sm text-gray-500">Please Enter your Email so we can send reset link to your email.</p>
+                    <p class="text-sm text-gray-500">{{__('Please Enter your Email so we can send reset link to your email.')}}</p>
                     <form class="mt-8 space-y-6" action="/reset-password" method="POST">
                         @csrf
                         <input type="hidden" name="token" value="{{$token}}">
                         <div class="rounded-md shadow-sm -space-y-px">
-                            <x-form.form-group type="email" label="Email Adress" name="email"></x-form.form-group>
-                            <x-form.form-group type="password" label="password" name="password"></x-form.form-group>
-                            <x-form.form-group type="password" label="Confirm Password" name="password_confirmation"></x-form.form-group>
+                            <x-form.form-group type="email" label="{{__('Email Adress')}}" name="email"></x-form.form-group>
+                            <x-form.form-group type="password" label="{{__('password')}}" name="password"></x-form.form-group>
+                            <x-form.form-group type="password" label="{{__('Confirm Password')}}" name="password_confirmation"></x-form.form-group>
                         </div>
-                        <x-form.submit-btn>Reset</x-form.submit-btn>
+                        <x-form.submit-btn>{{__('Reset')}}</x-form.submit-btn>
                         <!-- <div class="flex justify-center">
                             <button type="submit" class="group relative h-12 w-1/2 flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="modal-footer flex justify-center items-center space-x-2 border-t border-gray-300 py-4">
                     <!-- <p class="text-sm text-gray-500">Or you don't have account</p> -->
-                    <a href='/' class="font-medium text-indigo-600 hover:text-indigo-500">Back Home</a>
+                    <a href='/' class="font-medium text-indigo-600 hover:text-indigo-500">{{__('Back Home')}}</a>
                 </div>
             </div>
         </div>

@@ -238,7 +238,8 @@ class UserProfileController extends Controller
             }
         }else{
             if(BookingService::where('srv_id', request()->srv_id)
-                ->where('bkg_id', request()->bkg_id)->first('status')['status'] == 'pending'){
+                ->where('bkg_id', request()->bkg_id)
+                ->where('status', 'pending')->first('status')['status'] == 'pending'){
                 BookingService::where('srv_id', request()->srv_id)
                 ->where('bkg_id', request()->bkg_id)->update(['status' => 'canceled']);
                 session()->flash('success', 'Your reservations updated successfully.');

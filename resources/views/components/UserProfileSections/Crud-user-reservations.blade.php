@@ -3,7 +3,7 @@
     <div class="flex flex-col">
         <div class="">
             <form method="GET" action="{{URL::current()}}">
-                <input type="text" name="search" placeholder="Search by reservation number"
+                <input type="text" name="search" placeholder="{{__('Search by reservation number')}}"
                     value="{{request('search')}}"
                     class="appearance-none rounded-none relative block mb-6 h-12 md:w-2/4 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
             </form>
@@ -13,31 +13,31 @@
                         <tr>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Reservation Number
+                                {{__("Reservation Number")}}
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Space / service
+                                {{__("Space / service")}}
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Start Date
+                                {{__("Start Date")}}
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                End Date
+                                {{__('End Date')}}
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Cost
+                                {{__('Cost')}}
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Status
+                                {{__('Status')}}
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Manage
+                                {{__('Manage')}}
                             </th>
                         </tr>
                     </thead>
@@ -46,7 +46,7 @@
                     @if($reservations->count() <= 0)
                     <tr>
                         <td class="p-6 whitespace-no-wrap border-b border-gray-200" colspan="7" >
-                        <h3>You don't have any reservation yet.</h3>
+                        <h3>{{__("You don't have any reservation yet.")}}</h3>
                         </td>
                     <tr>
                     @else
@@ -102,10 +102,10 @@
                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                             <span class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-800
                                 rounded-lg {{$coll->status == 'canceled'? 'bg-red-200 ' : ''}}
-                                {{$coll->status == 'outofdate'? 'bg-gray-200 ' : ''}}
+                                {{$coll->status == 'out_of_date'? 'bg-gray-200 ' : ''}}
                                 {{$coll->status == 'pending'? 'bg-yellow-200 ' : ''}}
-                                {{$coll->status == 'active'? 'bg-green-200 ' : ''}}">
-                                {{$coll->status}}
+                                {{$coll->status == 'confirmed'? 'bg-green-200 ' : ''}}">
+                                {{__($coll->status)}}
                             </span>
                         </td>
                         <td class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
@@ -119,7 +119,7 @@
                     @if($coll->services->count() > 0)
                         <tr>
                             <td class="px-6 whitespace-no-wrap text-sm leading-5 text-gray-500" colspan="7">
-                                Extra Services:
+                                {{__('Extra Services')}}:
                             </td>
                         </tr>
                         @foreach($coll->services as $serv)

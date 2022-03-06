@@ -4,11 +4,13 @@
         <div class="shadow overflow-hidden sm:rounded-md">
             <div class="px-4 py-5 bg-white sm:p-6">
                 @csrf
-                <x-form.form-group type="text" label="first name" name="f_name" value="{{auth()->user()->f_name}}"/>
-                <x-form.form-group type="text" label="last name" name="l_name" value="{{auth()->user()->l_name}}" />
-                <x-form.form-group type="text" label="phone number" name="phone" value="{{auth()->user()->phone}}"/>
-                <x-form.form-group type="email" label="email" name="email" value="{{auth()->user()->email}}"/>
-                <a href="/profile/resetPassword"class="reset-passowrd book mt-6 self-end py-2 px-6 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-indigo-800 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reset Passowrd</a>
+                <x-form.form-group type="text" label="{{__('first name')}}" name="f_name" value="{{auth()->user()->f_name}}"/>
+                <x-form.form-group type="text" label="{{__('last name')}}" name="l_name" value="{{auth()->user()->l_name}}" />
+                <x-form.form-group type="text" label="{{__('phone number')}}" name="phone" value="{{auth()->user()->phone}}"/>
+                <x-form.form-group type="email" label="{{__('email')}}" name="email" value="{{auth()->user()->email}}"/>
+                <a href="/profile/resetPassword"class="reset-passowrd book mt-6 self-end py-2 px-6 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-indigo-800 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {{__('Reset Passowrd')}}
+                </a>
                 <!-- <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-3">
                         <label for="first-name" class="block text-sm font-medium text-gray-700">First
@@ -54,7 +56,7 @@
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button type="submit"
                         class="submitEdit inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Save
+                    {{__('Save')}}
                 </button>
             </div>
         </div>

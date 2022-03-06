@@ -1,8 +1,8 @@
 <x-modal-overlay id="extras-overlay">
-    <x-modal-header closeDes=''>Pick any service you want.</x-modal-header>
+    <x-modal-header closeDes=''>{{__('Pick any service you want.')}}</x-modal-header>
     <div class="flex flex-wrap">
     @if($services->count() <= 0)
-        <h3>No Services Available.</h3>
+        <h3>{{__('No Services Available.')}}</h3>
     @else
     @foreach($services as $service)
         <a class="extra_elem w-nm lg:w-full m-2 shadow-lg border-2 border-transparent hover:border-indigo-300 hover:shadow" data-extraId="{{$service->id}}" data-name="{{$service->name}}">
@@ -15,7 +15,7 @@
                     <p>{{$service->description}}</p>
                 </div>
                 <div class="self-end font-medium min-w-max">
-                    <span>Price: </span> {{$service->price}} S.P
+                    <span>{{__('Price')}}: </span> {{$service->price}} S.P
                 </div>
             </div>
         </a>
@@ -23,7 +23,7 @@
     @endif   
         <div class="model-foter flex items-center justify-end w-full mt-4">
             <a class="book_extra_btn order-2 w-48 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Book Selected Services
+                {{__('Book Selected Services')}}
             </a>                     
         </div> 
     </div>

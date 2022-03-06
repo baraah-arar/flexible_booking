@@ -1,20 +1,20 @@
 <!-- use App\Http\Controllers\BookingController; -->
 <x-layout>
     <div class="flex md:flex-row flex-col md:space-x-4 md:space-y-0 space-y-8 justify-between items-center w-full my-8">
-        <x-page-title>Places</x-page-title>
+        <x-page-title>{{__('Places')}}</x-page-title>
         @if(!request()->routeIs('ind'))
             <div class="flex">
                 <a  href="{{URL::current()}}/?search=small"
                     class="border-2 border-gray-300 text-sm font-medium text-gray-500 mx-2 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
-                    Small Room
+                    {{__('Small Room')}}
                 </a>
                 <a  href="{{URL::current()}}/?search=medium"
                     class="border-2 border-gray-300 text-sm font-medium text-gray-500 mx-2 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
-                    Medium Room
+                    {{__('Medium Room')}}
                 </a>
                 <a href="{{URL::current()}}/?search=large"
                     class="border-2 border-gray-300 text-sm font-medium text-gray-500 mx-2 px-2 py-2 hover:text-gray-600 hover:border-gray-200 hover:bg-white">
-                    Large Room
+                    {{__('Large Room')}}
                 </a>
             </div>
         @endif
@@ -22,14 +22,15 @@
     @if(request()->routeIs('ind'))
         <div class="individ-sec">
             <div class="self-start w-full flex flex-col">
-                <h1 class="text-xl text-gray-900 dark:text-white">please select start, and end date for your
-                    reservation</h1>
+                <h1 class="text-xl text-gray-900 dark:text-white">
+                    {{__('please select start, and end date for your reservation')}}
+                </h1>
                 <div class="indivd_form mt-8 self-center flex flex-col items-center justify-center">
                     <form action="" method="put" class="flex flex-col md:flex-row items-center justify-center">
                         @csrf
                         <div class="flex items-center justify-center mx-2">
                             <label for="date-from" class="sr-only">from</label>
-                            <label for="date-from" class="p-4 w-1/5">from</label>
+                            <label for="date-from" class="p-4 w-1/5">{{__('from')}}</label>
                             <input type="text" value="" name="start_date" id="checkIn"
                                    class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                             <svg
@@ -42,7 +43,7 @@
                         </div>
                         <div class="flex items-center justify-center mx-2">
                             <label for="checkOut" class="sr-only">to</label>
-                            <label for="checkOut" class="p-4 w-1/5">to</label>
+                            <label for="checkOut" class="p-4 w-1/5">{{__('to')}}</label>
                             <input type="text" value="" name="end_date" id="checkOut"
                                    class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-transparent focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                             <svg
@@ -69,11 +70,11 @@
                     <div class="card-body my-4 flex flex-col">
                         <div class="border-b-2 border-gray-600 pb-8">
                             <div class="flex justify-between space-x-2 items-center">
-                                <h4 class="text-2xl font-medium text-gray-900 dark:text-white">Shared Spaces</h4>
+                                <h4 class="text-2xl font-medium text-gray-900 dark:text-white">{{__('Shared Spaces')}}</h4>
                                 <!-- <span class="text-base self-end text-indigo-600 text-base font-medium">Individual</span> -->
                             </div>
                             <p class="text-base mt-6 text-gray-900 dark:text-gray-300 sm:text-lg md:text-lg">
-                                Pick a desk in a room full of desks to lift your spirit up while studying, or working with the presence of others.
+                                {{__("Pick a desk in a room full of desks to lift your spirit up while studying, or working with the presence of others.")}}
                             </p>
                         </div>
                         <div class="flex items-center mt-6 text-gray-900 text-base text-lg font-medium">
@@ -121,25 +122,26 @@
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                         </svg>
                     </span>
-                            <span class="mx-4 font-sm text-gray-500"> {{$i}} votes</span>
+                            <span class="mx-4 font-sm text-gray-500"> {{$i}} {{__('votes')}}</span>
                         </div>
                         <div class="flex space-x-4 mt-8 text-gray-900 text-base text-md font-medium">
-                            <span>Please select your perfect time to load places available.</span>
+                            <span>{{__('Please select your perfect time to load places available.')}}</span>
                         </div>
                         <div class="md:self-center w-full flex flex-wrap justify-center mt-8">
                             <form class="select_indivi">
                                 <fieldset class="order-1 mb-8">
                                     <div class="select_cont flex flex-col">
                                         <p class="text-sm font-medium text-gray-600 dark:text-gray-400 sm:text-lg md:text-lg">
-                                            Places Available
+                                            {{__('Places Available')}}
                                         </p>
                                     </div>
                                 </fieldset>
                             </form>
                         </div>
                     </div>
-                    <a class="book_indvidual cursor-pointer mt-8 self-end py-2 text-base px-6 text-white font-medium bg-indigo-600 hover:bg-indigo-700">Book
-                        now</a>
+                    <a class="book_indvidual cursor-pointer mt-8 self-end py-2 text-base px-6 text-white font-medium bg-indigo-600 hover:bg-indigo-700">
+                        {{__('Book now')}}
+                    </a>
                 </div>
             </div>
         </div>
@@ -157,7 +159,7 @@
                 </div>
                 <div
                     class="hidden md:row-start-1 row-start-2 col-start-1 col-end-3 md:col-end-2 form-sec shadow-xl bg-gray-100 self-center w-full p-4 flex flex-col justify-start items-start">
-                    <p class="text-gray-900 text-base text-md font-medium pb-4">Your booking Information, please confirm it.</P>
+                    <p class="text-gray-900 text-base text-md font-medium pb-4">{{__('Your booking Information, please confirm it.')}}</P>
                     <form action="{{URL::current()}}" method="POST" class="confirm_form w-full p-4"
                           data-form-role="confirm_form" data-place-id="{{$place->id}}">
                         @csrf
@@ -167,7 +169,7 @@
                                 <div class="w-full flex flex-col justify-center items-center">
                                     <div class="w-full flex items-center justify-center mx-2">
                                         <label for="date-from" class="sr-only">from</label>
-                                        <label for="date-from" class="p-4 w-1/5">from</label>
+                                        <label for="date-from" class="p-4 w-1/5">{{__('from')}}</label>
                                         <input type="text" readonly="readonly" vlaue="" name="start_date" id="checkIn"
                                                class="input-date-focus select_time appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                                         <svg
@@ -180,7 +182,7 @@
                                     </div>
                                     <div class="w-full flex items-center justify-center mx-2">
                                         <label for="checkOut" class="sr-only">to</label>
-                                        <label for="checkOut" class="p-4 w-1/5">to</label>
+                                        <label for="checkOut" class="p-4 w-1/5">{{__('to')}}</label>
                                         <input type="text" readonly="readonly" vlaue="" name="end_date" id="checkOut"
                                                class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                                         <svg
@@ -193,9 +195,9 @@
                                     </div>
                                     <div class="w-full flex items-center justify-center mx-2">
                                         <label for="hoursNum"
-                                               class="sr-only">{{$place->plc_type == 'meeting'? 'Hours' : 'Days'}}</label>
+                                               class="sr-only">{{$place->plc_type == 'meeting'? __('Hours') : __('Days')}}</label>
                                         <label for="hoursNum"
-                                               class="p-4 w-1/5">{{$place->plc_type == 'meeting'? 'Hours' : 'Days'}}</label>
+                                               class="p-4 w-1/5">{{$place->plc_type == 'meeting'? __('Hours') : __('Days')}}</label>
                                         <input type="text" readonly="readonly" vlaue="" name="hoursNum" id="hoursNum"
                                                class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                                         <svg
@@ -209,7 +211,7 @@
                                     </div>
                                     <div class="w-full flex items-center justify-center mx-2">
                                         <label for="cost" class="sr-only">Cost</label>
-                                        <label for="cost" class="p-4 w-1/5">Cost</label>
+                                        <label for="cost" class="p-4 w-1/5">{{__('Cost')}}</label>
                                         <input type="text" readonly="readonly" vlaue="" name="cost" id="cost"
                                                class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                                         <svg
@@ -261,7 +263,7 @@
                             <div class="flex flex-col items-end mt-2">
                                 <a type="submit" data-placeid="{{$place->id}}"
                                    class="confirm_form_btn cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Confirm
+                                    {{__('Confirm')}}
                                 </a>
                             </div>
                         </div>
@@ -277,12 +279,12 @@
                             {{$place->description}}
                         </p>
                         <div class="flex space-x-4 mt-6 text-gray-900 text-base text-lg font-medium">
-                            <span>Guests to:</span><span>{{$place->capacity}}</span>
+                            <span>{{__('Guests to')}}: </span><span>{{$place->capacity}}</span>
                         </div>
                     </div>
                     <div class="flex space-x-4 mt-6 text-gray-900 text-base text-lg font-medium">
-                        <span>Price:</span><span>{{$place->price}} S.P <span
-                                class="text-gray-700">{{$place->plc_type == 'meeting'? '/hour' : '/day'}}</span></span>
+                        <span>{{__('Price')}}: </span><span>{{$place->price}} S.P <span
+                                class="text-gray-700">{{$place->plc_type == 'meeting'? __('/hour') : __('/day')}}</span></span>
                     </div>
                     <div class="flex items-center mt-6 text-gray-900 text-base text-lg font-medium">
                         @php
@@ -327,7 +329,7 @@
                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
             </span>
-                        <span class="mx-4 font-sm text-gray-500"> {{$i}} votes</span>
+                        <span class="mx-4 font-sm text-gray-500"> {{$i}} {{__('votes')}}</span>
                     </div>
                     <!-- <div class="md:self-center w-full flex flex-wrap justify-center mt-4">
                         <a href="" class="w-2/5 flex flex-col m-2 items-center justify-center md:py-2 md:text-lg md:px-4 border-2 border-gray-900 text-gray-900 font-medium py-3 px-8">
@@ -349,7 +351,7 @@
                     </div> -->
                     <button type="button" data-placeid="{{$place->id}}"
                             class="book mt-6 self-end py-2 px-6 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Book now
+                        {{__('Book now')}}
                     </button>
                 </div>
                 <!-- </div> -->
@@ -427,7 +429,7 @@
                             if (data.status == 'failed')
                                 window.location.reload();
                             else if (data.status == false)
-                                document.querySelector('.calendar_form  .error_message ').innerText = data.message;
+                                document.querySelector('.calendar_form  .error_message ').innerText = {{__('data.message')}};
                             else
                                 displayConfirmBookingForm(data);
                             // console.log(data);
@@ -499,7 +501,7 @@
 
             function displaySelectBookingForm(data) {
                 if(Object.keys(data.data).length === 0) 
-                    document.querySelector('.calendar_form  .error_message ').innerText = 'no places please select another time';
+                    document.querySelector('.calendar_form  .error_message ').innerText = `{{__('no places please select another time')}}`;
                 else
                     document.querySelector('.calendar_form  .error_message ').innerText = "";
                 // return 
@@ -519,8 +521,8 @@
                     div.innerHTML = `<input id="${place.title}" value="${place.id}" name="place" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
                                     <label for="${place.title}" class="ml-3 flex text-sm font-medium text-gray-700">
                                         <span class="mx-2">${place.title}</span>
-                                        <span class="mx-2">${place.price} S.P / hour</span>
-                                        <span class="mx-2 text-indigo-800 font-bold">${place.price * data.hours} S.P / ${data.hours} hours</span>
+                                        <span class="mx-2">${place.price} S.P {{__('/ hour')}}</span>
+                                        <span class="mx-2 text-indigo-800 font-bold">${place.price * data.hours} S.P / ${data.hours} {{__('hours')}}</span>
                                     </label>`;
                     select_cont.appendChild(div);
                 })
@@ -544,11 +546,11 @@
                 div.innerHTML = `<div class="confirm_succ_msg flex text-green-500 w-full justify-center">
                                     <svg class="w-12 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                     <p class="text-green-500 flex items-center justify-between px-2">
-                                        Reservation created successfully please wait until this reservation confirmed by admin.
+                                        {{__('Reservation created successfully please wait until this reservation confirmed by admin.')}}
                                     </p>
                                 </div>
                                 <a class="extraseervices book mt-6 self-end py-2 px-6 cursor-pointer inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-indigo-800 bg-indigo-200 hover:bg-indigo-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" data-bookID=${bookID}>
-                                    Pick Extras
+                                    {{__('Pick Extras')}}
                                 </a>`;
                 div.classList.add('extras-successbook');
                 form.querySelector('.confirm_sections').appendChild(div);
@@ -586,7 +588,7 @@
                 const extras_selected = document.querySelectorAll('.extras-selected');
                 const noselected_msg = document.createElement('div');
                 if (extras_selected.length <= 0) {
-                    noselected_msg.innerText = 'please select at least one service';
+                    noselected_msg.innerText = `{{__('please select at least one service')}}`;
                     noselected_msg.classList.add('noselected-msg');
                     if (document.querySelector('.noselected-msg'))
                         document.querySelector('.noselected-msg').parentElement.removeChild(document.querySelector('.noselected-msg'))
@@ -644,9 +646,9 @@
                     //                     To manage your reservation please visit your <a href="/reservations" class="underline"> profile </a>.
                     //                 </p>
                     info_elem.classList.add('text-gray-500', 'px-2', 'py-4', 'text-sm');
-                    info_elem.innerHTML = `To manage your reservation please visit your <a href="/reservations" class="underline"> profile </a>`;
+                    info_elem.innerHTML = `{{__('To manage your reservation please visit your')}} <a href="/reservations" class="underline"> {{__('profile')}} </a>`;
                     const done_btn = document.createElement('div');
-                    done_btn.innerText = 'done';
+                    done_btn.innerText = `{{__('done')}}`;
                     done_btn.classList.add('doneRefresh');
                     parent_div.appendChild(info_elem);
                     parent_div.appendChild(done_btn);
