@@ -17,6 +17,6 @@
         </div>
     </div>
     <div class="flex items-center justify-center my-8">
-        <image src="./images/hero-img-3.svg"/>
+        <image src="https://res.cloudinary.com/demo/image/upload/w_70,h_53,c_scale/turtles.jpg"/>
     </div>
 </div>
