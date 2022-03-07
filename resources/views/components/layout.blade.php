@@ -12,7 +12,7 @@
     </head>
     <body class="antialiased {{app()->getLocale() == 'ar'? 'dirrtl' : ''}}">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center px-4 md:px-0 py-8 md:pt-0">
-            <button class="ar_lan self-start mt-40 text-base text-white h-8 w-8 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" data-lan="{{app()->getLocale()}}" type="button">
+            <button class="ar_lan self-start absolute left-0 right-0 mt-40 text-base text-white h-8 w-8 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300" data-lan="{{app()->getLocale()}}" type="button">
                 {{app()->getLocale() == 'ar'? 'En' : 'Ar'}} 
                 {{isset($_COOKIE['lan']) && app()->setLocale($_COOKIE['lan'])}}
             </button>

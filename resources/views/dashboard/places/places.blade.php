@@ -28,7 +28,7 @@
           <a href="{{ route('places.show',$item->id)}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
 
             <div class="relative pb-48 overflow-hidden">
-            <img class="absolute inset-0 h-full w-full object-cover" src="{{asset('storage/' . $item->image)}}" alt="">
+            <img class="absolute inset-0 h-full w-full object-cover" src="{{asset($item->image)}}" alt="">
           </div>
           <div class="p-4">
             <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{{ $item->plc_type}}</span>

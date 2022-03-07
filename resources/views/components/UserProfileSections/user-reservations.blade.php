@@ -12,7 +12,7 @@
     </h2>
     </div>
     <div class="{{$reservations->status == 'canceled' || $reservations->status == 'outofdate'? 'bg-dotted-ver ': ''}} w-full h-full user-resv-card flex flex-col relative" data-status="{{$reservations->status}}">
-        <div class="thumbnail w-full h-60 md:h-80 bg-center bg-no-repeat {{$reservations->place->image != null ? 'bg-cover' : 'bg-50%'}}" style="background-image:url('{{$reservations->place->image != null ? asset('storage/' . $reservations->place->image) : '/images/noimage.svg'}}')">
+        <div class="thumbnail w-full h-60 md:h-80 bg-center bg-no-repeat {{$reservations->place->image != null ? 'bg-cover' : 'bg-50%'}}" style="background-image:url('{{$reservations->place->image != null ? asset($reservations->place->image) : '/images/noimage.svg'}}')">
         </div>
         <div class="resv-card-body flex flex-col flex-wrap md:flex-row my-8">
             <div class="flex flex-col w-full flex-grow">

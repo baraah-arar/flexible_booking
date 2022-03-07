@@ -68,7 +68,7 @@
                                                         <input accept="image/*" type='file' id="imgInp"  name="image" class="mt-0"/>
                                                        <div class="flex ">
                                                         <img id="blah" src="#" alt="click on above button to set new image" class="mx-6" width="150" height="100" />
-                                                        <img src="{{asset('storage/' . $place->image)}}" width="150" height="100"  alt="old image">
+                                                        <img src="{{asset($place->image)}}" width="150" height="100"  alt="old image">
                                                     </div>
                                                     </div>
                                                     @error('image')

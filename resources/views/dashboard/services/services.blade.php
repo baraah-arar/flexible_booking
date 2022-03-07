@@ -28,7 +28,7 @@
           <a href="{{ route('services.show',$item->id)}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
 
             <div class="relative pb-48 overflow-hidden">
-            <img class="absolute inset-0 h-full w-full object-cover" src="{{asset('storage/' . $item->image)}}" alt="">
+            <img class="absolute inset-0 h-full w-full object-cover" src="{{asset($item->image)}}" alt="">
           </div>
           <div class="p-4">
             <h2 class="mt-2 mb-2  font-bold">{{ $item->name}}</h2>

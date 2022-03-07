@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 
 class DashboardServicesController extends Controller
@@ -45,10 +46,13 @@ class DashboardServicesController extends Controller
             'status'=>'required',
             'price'=>'required|gt:-1',
             'description'=>'required|string',
-            'image' => 'required|image'
+            'image' => 'nullable|image'
 
         ]);
-        $attributes['image'] = request()->file('image')->store('images/service');
+        // $attributes['image'] = request()->file('image')->store('images/service');
+        $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
+            'folder' => 'service'
+        ])->getSecurePath();
         Service::create($attributes);
         return redirect()->route('dashboard.services_index')
         ->with('success','service added successfully');
@@ -99,10 +103,21 @@ class DashboardServicesController extends Controller
 
 
 
-       if ($request->hasFile('image')) {
-        $service->image !== null ? Storage::delete($service->image) : '';
-        $attributes['image'] = $request->file('image')->store('images/service');
-       }
+    //    if ($request->hasFile('image')) {
+    //     $service->image !== null ? Storage::delete($service->image) : '';
+    //     $attributes['image'] = $request->file('image')->store('images/service');
+    //    }
+        // store on cloudinary
+        if ($request->hasFile('image')) {
+            if($service->image !== null){
+                $temp = explode('/',$service->image);
+                $temp = str_replace(".png","", $temp[sizeof($temp)-1]);
+                cloudinary()->destroy($temp);
+            }
+            $attributes['image'] = Cloudinary::upload(request()->file('image')->getRealPath(), [
+            'folder' => 'service'
+            ])->getSecurePath();
+        }
        $service->update($attributes);
         return redirect()->route('dashboard.services_index')
         ->with('success','Service updated successfully');

@@ -153,7 +153,7 @@
                  data-num-plc="0{{$loop->index + 1}}">
                 <div class="img-sec row-start-1 col-start-1 md:col-end-2">
                     <div
-                        style="background-image:url('{{ $place->image != null ? asset('storage/' . $place->image) : '/images/noimage.svg'}}')"
+                        style="background-image:url('{{ $place->image != null ? asset($place->image) : '/images/noimage.svg'}}')"
                         class="{{$place->image != null ? 'bg-cover' : 'bg-50%'}} bg-no-repeat bg-center h-full w-full"></div>
                     <!-- <div style="background-image:url('/images/worker.png')" class="row-start-1 mt-10 col-start-2 col-span-2 bg-contain bg-no-repeat bg-center h-32 w-auto"></div> -->
                 </div>

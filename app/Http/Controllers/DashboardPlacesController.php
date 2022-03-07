@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class DashboardPlacesController extends Controller
 {
@@ -49,10 +50,13 @@ class DashboardPlacesController extends Controller
             'capacity'=>'required|gt:0',
             'price'=>'required|gt:-1',
             'description'=>'required|string',
-            'image' => 'required|image'
+            'image' => 'nullable|image'
 
         ]);
-        $attributes['image'] = request()->file('image')->store('images/place');
+        // $attributes['image'] = request()->file('image')->store('images/place');
+        $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
+            'folder' => 'place'
+        ])->getSecurePath();
         Place::create($attributes);
         return redirect()->route('dashboard.places_index')
         ->with('success','User added successfully');
@@ -110,13 +114,22 @@ class DashboardPlacesController extends Controller
             'image' => 'sometimes|nullable|image'
 
         ]);
-
-
-
-       if ($request->hasFile('image')) {
-        $place->image !== null ? Storage::delete($place->image) : '';
-        $attributes['image'] = $request->file('image')->store('images/place');
-       }
+        // storage
+    //    if ($request->hasFile('image')) {
+    //     $place->image !== null ? Storage::delete($place->image) : '';
+    //     $attributes['image'] = $request->file('image')->store('images/place');
+    //    }
+        // store on cloudinary
+        if ($request->hasFile('image')) {
+            if($place->image !== null){
+                $temp = explode('/',$place->image);
+                $temp = str_replace(".png","", $temp[sizeof($temp)-1]);
+                cloudinary()->destroy($temp);
+            }
+            $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
+            'folder' => 'place'
+            ])->getSecurePath();
+        }
        $place->update($attributes);
         return redirect()->route('dashboard.places_index')
         ->with('success','Place updated successfully');
