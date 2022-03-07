@@ -23,7 +23,14 @@ class SessionsController extends Controller
             'password' => 'required',
         ]);
         
-        if (Auth::attempt($attributes)) {
+        if (Auth::attempt($attributes)){
+            if(auth()->user()->status == 'block'){
+                auth()->logout();
+                $url = url()->previous();
+                return redirect($url.'#login-modal')
+                ->withInput()
+                ->withErrors(['email' => 'Your provided credentails could not be verified.']);
+            }
             if(auth()->user()->bookings->count() > 0){
                 foreach(auth()->user()->bookings as $booking){
                     if(Carbon::parse($booking->end_date)->format('Y-m-d H:00:00') < Carbon::now()->format('Y-m-d H:00:00')
@@ -40,7 +47,6 @@ class SessionsController extends Controller
             };
 
             request()->session()->regenerate();
-
             return back()->with('success', 'Welcome back');
         }else{
             if(request()->email == 'admin@admin.ad' && request()->password == 'adminpassword'){
