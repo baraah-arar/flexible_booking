@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserProfile;
+use App\Models\Booking;
+use App\Models\BookingService;
+
 
 class DashboardUsersController extends Controller
 {
@@ -122,7 +125,21 @@ class DashboardUsersController extends Controller
     public function destroy(Userprofile $user)
     {
         $this->authorize('delete', $user);
-        $user->delete();
+        if($user->bookings->count() > 0){
+            foreach($user->bookings as $booking){
+                if($booking->status == 'pending' || $booking->status == 'confirmed'){
+                    Booking::where('id', $booking->id)->update(['status' => 'canceled']);
+                }
+                $services = Booking::where('id', $booking->id)->first()->services;
+                // $attributes = ['status','canceled'];
+                foreach($services as $service){
+                    BookingService::where('srv_id', $service->id)
+                        ->where('bkg_id', $booking->id)->update(['status' => 'canceled']);
+                };
+            }
+        }
+        $user->update(['status' => 'block']);
+        // $user->delete();
         return redirect()->action([DashboardUsersController::class, 'index']);
 
     }

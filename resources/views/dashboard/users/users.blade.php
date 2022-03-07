@@ -136,7 +136,7 @@
                                  @csrf
                                  @method('DELETE')
                             <button type="submit" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                               Delete
+                               Block
                             </button>
                             </form>
                             @endcan
@@ -163,7 +163,7 @@
 
             Swal.fire({
               icon: 'warning',
-                title: 'Are you sure you want to delete this user?',
+                title: 'Are you sure you want to block this user?',
                 showDenyButton: false,
                 showCancelButton: true,
                 confirmButtonText: 'Yes'

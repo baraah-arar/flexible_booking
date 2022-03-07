@@ -87,7 +87,7 @@
 
                             <option value="active" {{ ($user->status=="active")? "selected" : "" }} {{ old('status') == "active" ? 'selected' : '' }} >Active</option>
                             <option value="dactive" {{ ($user->status=="dactive")? "selected" : "" }} {{ old('status') == "dactive" ? 'selected' : '' }}>Dactive</option>
-                            <option value="block" {{ ($user->status=="block")? "selected" : "" }} {{ old('status') == "block" ? 'selected' : '' }}>Block</option>
+                            <!-- <option value="block" {{ ($user->status=="block")? "selected" : "" }} {{ old('status') == "block" ? 'selected' : '' }}>Block</option> -->
                             </select>
                         </div>
 
