@@ -73,7 +73,7 @@
 
           Swal.fire({
             icon: 'warning',
-              title: 'Are you sure you want to delete this service?',
+              title: "Are you sure you want to delete this service, if there are pending booking this service will be unavailable and it's bookings will be canceled ?",
               showDenyButton: false,
               showCancelButton: true,
               confirmButtonText: 'Yes'
@@ -89,14 +89,26 @@
                   '_method': 'delete'
                 },
                 success: function (response, textStatus, xhr) {
-                  Swal.fire({
+                  if(response.status === true)
+                  {Swal.fire({
                       icon: 'success',
                       showDenyButton: false,
                       showCancelButton: false,
                       confirmButtonText: 'Yes'
                   }).then((result) => {
-                    window.location='/dashboard/services'
-                  });
+                    // window.location='/dashboard/services'
+                    console.log(response.data);
+                  });}
+                  else if(response.status === 'updated'){
+                    Swal.fire({
+                      icon: 'warning',
+                      title: "can't delete this service, this service is unavailable now and all of it's pending bookings canceled .",
+                      showDenyButton: false,
+                      showCancelButton: false,
+                      confirmButtonText: 'Ok'
+                    }).then((result) => {
+                      location.reload();
+                  }); }
                 }
               });
             }

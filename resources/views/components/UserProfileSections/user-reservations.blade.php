@@ -282,7 +282,7 @@
                 if(data.length>0){
                 bookedIDs.forEach(service => {                    
                     elem = document.querySelector('#extras-overlay').querySelector(`.extra_elem[data-extraid='${service.id}']`);
-                    elem.classList.add('booked');
+                    elem && elem.classList.add('booked');
                     });
                 }
                 // booked.forEach(item => console.log(item['id']));

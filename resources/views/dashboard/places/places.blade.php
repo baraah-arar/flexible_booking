@@ -121,7 +121,7 @@
 
           Swal.fire({
             icon: 'warning',
-              title: 'Are you sure you want to delete this place?',
+              title: 'If there are no bookings belongs to this place, place will be deleted or place will be out of date. Are you sure you want to complete?',
               showDenyButton: false,
               showCancelButton: true,
               confirmButtonText: 'Yes'
@@ -137,14 +137,35 @@
                   '_method': 'delete'
                 },
                 success: function (response, textStatus, xhr) {
-                  Swal.fire({
+                  // if deleted
+                  if(response.status === true)
+                  {Swal.fire({
                       icon: 'success',
                       showDenyButton: false,
                       showCancelButton: false,
-                      confirmButtonText: 'Yes'
+                      confirmButtonText: 'Ok'
                   }).then((result) => {
-                    window.location='/dashboard/places'
-                  });
+                    location.reload();
+                  });}
+                  else if(response.status === 'failed'){
+                    Swal.fire({
+                      icon: 'error',
+                      title: "can't delete this place, there are at least one booking is confirmed belong to this place",
+                      showDenyButton: false,
+                      showCancelButton: false,
+                      confirmButtonText: 'Ok'
+                    })
+                  }
+                  else if(response.status === 'updated'){
+                    Swal.fire({
+                      icon: 'warning',
+                      title: "can't delete this place, this place is out of service now and all of it's pending bookings will be canceled .",
+                      showDenyButton: false,
+                      showCancelButton: false,
+                      confirmButtonText: 'Ok'
+                    }).then((result) => {
+                      location.reload();
+                  }); }
                 }
               });
             }

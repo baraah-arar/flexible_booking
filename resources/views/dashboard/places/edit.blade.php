@@ -27,21 +27,21 @@
                                      @enderror
 
                                    <label for="plc_type" class="inline-block  text-gray-500">Type</label>
-                                  <select id="plc_type" name="plc_type" value="{{ $place->plc_type }}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none">
-                                      <option value="individual" {{ ($place->plc_type=="individual")? "selected" : "" }} {{ old('plc_type') == "individual" ? 'selected' : '' }} >Individual</option>
+                                  <select id="plc_type" name="plc_type" value="{{ $place->plc_type }}" class="placeType rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none">
                                       <option value="private" {{ ($place->plc_type=="private")? "selected" : "" }} {{ old('plc_type') == "private" ? 'selected' : '' }} >Private Office</option>
                                       <option value="meeting" {{ ($place->plc_type=="meeting")? "selected" : "" }} {{ old('plc_type') == "meeting" ? 'selected' : '' }} >Meeting Room</option>
+                                      <option value="individual" {{ ($place->plc_type=="individual")? "selected" : "" }} {{ old('plc_type') == "individual" ? 'selected' : '' }} >Individual</option>
                                   </select>
 
                                   <label for="status" class="inline-block  text-gray-500">Status</label>
                                   <select id="status" name="status" value="{{ $place->status }}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none">
-                                      <option value="out_of_service" {{ ($place->status=="out_of_service")? "selected" : "" }} {{ old('status') == "out_of_service" ? 'selected' : '' }} >Out Of Service</option>
+                                      <!-- <option value="out_of_service" {{ ($place->status=="out_of_service")? "selected" : "" }} {{ old('status') == "out_of_service" ? 'selected' : '' }} >Out Of Service</option> -->
                                       <option value="available"  {{ ($place->status=="available")? "selected" : "" }} {{ old('status') == "available" ? 'selected' : '' }} >Available</option>
                                       <option value="unavailable" {{ ($place->status=="unavailable")? "selected" : "" }} {{ old('status') == "unavailable" ? 'selected' : '' }} >Unavailable</option>
                                   </select>
 
                                   <label for="capacity"  class="inline-block text-gray-500">Capacity:</label>
-                                  <input id="capacity" name="capacity" type="number" value="{{ $place->capacity }}" value="{{ old('capacity')}}" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
+                                  <input id="capacity" name="capacity" type="number" value="{{ $place->capacity }}" value="{{ old('capacity')}}" class="capacity rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 mb-3 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none"/>
                                        @error('capacity')
                                          <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                                        @enderror
@@ -103,6 +103,17 @@
         blah.src = URL.createObjectURL(file)
       }
     }
+    const selectPlaceType = document.querySelector('.placeType');
+    if(selectPlaceType.value && selectPlaceType.value === 'individual')
+        document.querySelector('.capacity').setAttribute('max', 1);
+    else
+        document.querySelector('.capacity').setAttribute('max', 10000);
+    selectPlaceType.addEventListener('change', function(){
+        if(this.value === 'individual')
+            document.querySelector('.capacity').setAttribute('max', 1);
+        else
+            document.querySelector('.capacity').setAttribute('max', 10000);
+    }, false)
     </script>
 
 </x-layoutdashboard>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use Illuminate\Http\Request;
+use App\Models\Booking;
+use App\Models\BookingService;
 use Illuminate\Support\Facades\Storage;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -54,9 +56,11 @@ class DashboardPlacesController extends Controller
 
         ]);
         // $attributes['image'] = request()->file('image')->store('images/place');
-        $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
-            'folder' => 'place'
-        ])->getSecurePath();
+        if ($request->hasFile('image')){
+            $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
+                'folder' => 'place'
+            ])->getSecurePath();
+        };
         Place::create($attributes);
         return redirect()->route('dashboard.places_index')
         ->with('success','User added successfully');
@@ -145,8 +149,39 @@ class DashboardPlacesController extends Controller
     public function destroy(Place $place)
     {
         $this->authorize('delete', $place);
-        $place->delete();
-        return redirect()->action([DashboardPlacesController::class, 'index']);
+        if($place->bookings->count() <= 0){
+            $place->delete();
+            return response()->json([
+                "status" => true,
+                "data" => $place->bookings
+            ]);
+        }else{
+            foreach($place->bookings as $booking){
+                if($booking->status == 'confirmed'){
+                    return response()->json([
+                        "status" => 'failed',
+                        "data" => $place->bookings
+                    ]);
+                }
+            }
+            foreach($place->bookings as $booking){
+                if($booking->status == 'pending'){
+                    Booking::where('id', $booking->id)->update(['status' => 'canceled']);
+                    $services = Booking::where('id', $booking->id)->first()->services;
+                    foreach($services as $service){
+                        BookingService::where('srv_id', $service->id)
+                            ->where('bkg_id', $booking->id)->update(['status' => 'canceled']);
+                    };
+                }
+            }
+            Place::where('id', $place->id)->update(['status' => 'out_of_service']);
+            return response()->json([
+                "status" => 'updated',
+                "data" => $place->bookings
+            ]);
+        }
+        // 
+        // return redirect()->action([DashboardPlacesController::class, 'index']);
 
     }
 }

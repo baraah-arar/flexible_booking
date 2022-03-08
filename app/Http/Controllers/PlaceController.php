@@ -25,14 +25,14 @@ class PlaceController extends Controller
                         ->where('status', '!=', 'out_of_service')
                         ->whereBetween('capacity', [1,3])
                         ->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }if(request('search') && request('search') === 'medium'){
                     return view('components/services', 
                     ['places' => Place::where('plc_type', $type)
                         ->where('status', '!=', 'out_of_service')
                         ->whereBetween('capacity', [3,5])
                         ->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }
                 if(request('search') && request('search') === 'large'){
                     return view('components/services', 
@@ -40,11 +40,11 @@ class PlaceController extends Controller
                         ->where('status', '!=', 'out_of_service')
                         ->where('capacity', '>=', 5)
                         ->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }else{
                 return view('components/services', 
                     ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out_of_service')->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }
             }
             if(strpos(request()->fullurl(), 'meeting')){
@@ -55,14 +55,14 @@ class PlaceController extends Controller
                         ->where('status', '!=', 'out_of_service')
                         ->whereBetween('capacity', [1,25])
                         ->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }if(request('search') && request('search') === 'medium'){
                     return view('components/services', 
                     ['places' => Place::where('plc_type', $type)
                         ->where('status', '!=', 'out_of_service')
                         ->whereBetween('capacity', [26,50])
                         ->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }
                 if(request('search') && request('search') === 'large'){
                     return view('components/services', 
@@ -70,16 +70,16 @@ class PlaceController extends Controller
                         ->where('status', '!=', 'out_of_service')
                         ->where('capacity', '>=' , 51)
                         ->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }else{
                 return view('components/services', 
                     ['places' => Place::where('plc_type', $type)->where('status', '!=', 'out_of_service')->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
                 }
             }else{
                 return view('components/services', 
                     ['places' => Place::where('plc_type', 'individual')->where('status', '!=', 'out_of_service')->get(),
-                    'services' => Service::all()]);
+                    'services' => Service::where('status', 'available')->get()]);
             }
         }
     }

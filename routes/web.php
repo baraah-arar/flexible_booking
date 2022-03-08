@@ -116,6 +116,6 @@ Route::patch('/services/private', [BookingController::class, 'createextraservice
 Route::put('/services/Individual', [BookingController::class, 'checkAvailabilityIndivi']);
 Route::post('/services/Individual', [BookingController::class, 'createIndivi']);
 // extras booking
-Route::get('/services/extras', function(){
-    return view('components/extras-modal');
-});
+// Route::get('/services/extras', function(){
+//     return view('components/extras-modal');
+// });

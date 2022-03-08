@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\BookingService;
 use Illuminate\Support\Facades\Storage;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -50,9 +51,11 @@ class DashboardServicesController extends Controller
 
         ]);
         // $attributes['image'] = request()->file('image')->store('images/service');
-        $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
-            'folder' => 'service'
-        ])->getSecurePath();
+        if ($request->hasFile('image')){
+            $attributes['image'] = cloudinary()->upload(request()->file('image')->getRealPath(), [
+                'folder' => 'service'
+            ])->getSecurePath();
+        };
         Service::create($attributes);
         return redirect()->route('dashboard.services_index')
         ->with('success','service added successfully');
@@ -132,7 +135,29 @@ class DashboardServicesController extends Controller
     public function destroy(Service $service)
     {
         $this->authorize('delete', $service);
-        $service->delete();
-        return redirect()->action([DashboardServicesController::class, 'index']);
+        $bookingsService = BookingService::where('srv_id', $service->id)->get();
+        if($bookingsService->count() <= 0){
+            $service->delete();
+            return response()->json([
+                "status" => true,
+                "data" => $bookingsService
+            ]);
+        }else{
+           foreach($bookingsService as $booking){
+            BookingService::where('id' , $booking->id)->where('srv_id', $service->id)
+                ->where('status', 'pending')->update(['status' => 'canceled']);
+           }
+           Service::where('id', $service->id)->update(['status' => 'unavailable']);
+           return response()->json([
+            "status" => 'updated',
+            "data" => $bookingsService
+        ]);
+        }
+        // return response()->json([
+        //     "status" => true,
+        //     "data" => $bookingsService->count()
+        // ]);
+        // $service->delete();
+        // return redirect()->action([DashboardServicesController::class, 'index']);
     }
 }

@@ -91,7 +91,7 @@ class UserProfileController extends Controller
         $reservations = auth()->user()->bookings->where('id',$id)->first();
         if(!isset($reservations))
             abort(Response::HTTP_NOT_FOUND);
-        $allServices  = Service::all();
+        $allServices  = Service::where('status', 'available')->get();
         return view('components/UserProfileSections/user-reservations', 
                     ['reservations' => $reservations,
                     'allServices' => $allServices]);
