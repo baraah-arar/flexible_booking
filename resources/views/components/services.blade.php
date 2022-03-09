@@ -518,7 +518,8 @@
                 dataArr.forEach(place => {
                     const div = document.createElement('div');
                     div.classList.add('flex', 'items-center');
-                    div.innerHTML = `<input id="${place.title}" value="${place.id}" name="place" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
+                    disabled = (place.status === 'unavailable') ? 'disabled' : ' ';
+                    div.innerHTML = `<input id="${place.title}" ${disabled} value="${place.id}" name="place" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-indigo-300">
                                     <label for="${place.title}" class="ml-3 flex text-sm font-medium text-gray-700">
                                         <span class="mx-2">${place.title}</span>
                                         <span class="mx-2">${place.price} S.P {{__('/ hour')}}</span>
