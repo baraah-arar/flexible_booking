@@ -286,6 +286,11 @@
                         <span>{{__('Price')}}: </span><span>{{$place->price}} S.P <span
                                 class="text-gray-700">{{$place->plc_type == 'meeting'? __('/hour') : __('/day')}}</span></span>
                     </div>
+                    @if($place->status == 'unavailable')
+                    <div class="flex space-x-4 mt-6 text-gray-500 text-base text-lg font-medium">
+                        <span>{{__($place->status)}} </span>
+                    </div>
+                    @endif
                     <div class="flex items-center mt-6 text-gray-900 text-base text-lg font-medium">
                         @php
                             $i=0;

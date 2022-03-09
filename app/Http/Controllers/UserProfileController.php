@@ -106,6 +106,12 @@ class UserProfileController extends Controller
             $start  = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
             $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
             $plc_id = request()->plc_id;
+            if(Place::where('id', request()->plc_id)->first('status')['status'] == 'unavailable'){
+                return response()->json([
+                    "status" => false,
+                    "message" => "this place is not available, please choose another place"
+                ]); 
+            }
             // 1- check if two dates exist in booking table with same place
             $bookings_plc = Booking::where('plc_id' , $plc_id)->get();
             if($bookings_plc->count()>0){
