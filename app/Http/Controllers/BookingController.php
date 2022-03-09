@@ -67,17 +67,17 @@ class BookingController extends Controller
             }
         }
         $plc_cost = Place::where('id', request()->plc_id)->first('price');
-        if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
+        // if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
             $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
             $cost = number_format($plc_cost['price'] * intval($diff_in_hours),2);
             $attributes['duration'] = $diff_in_hours;
-        }
-        elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
-            $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));
-            if($diff_in_days == 0) $diff_in_days = 1;           
-            $cost = intval($plc_cost['price']) * intval($diff_in_days);
-            $attributes['duration'] = $diff_in_days;
-        };
+        // }
+        // elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
+        //     $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));
+        //     if($diff_in_days == 0) $diff_in_days = 1;           
+        //     $cost = intval($plc_cost['price']) * intval($diff_in_days);
+        //     $attributes['duration'] = $diff_in_days;
+        // };
 
         $attributes['plc_id'] = request()->plc_id;
         $attributes['cost']   = $cost;
@@ -242,19 +242,19 @@ class BookingController extends Controller
             }
         }
         $plc_cost = Place::where('id', request()->plc_id)->first('price');
-        if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
+        // if(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'meeting'){
             $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
             $cost = number_format($plc_cost['price'] * intval($diff_in_hours), 2);
             // $attributes['numberHours'] = $diff_in_hours;
             $attributes['payment_plan'] = 'hours';
-        }
-        elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
-            $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start)); 
-            if($diff_in_days == 0) $diff_in_days = 1;           
-            $cost = intval($plc_cost['price']) * intval($diff_in_days);
-            // $attributes['numberDays'] = $diff_in_days;
-            $attributes['payment_plan'] = 'days';
-        };
+        // }
+        // elseif(Place::where('id', request()->plc_id)->first('plc_type')['plc_type'] == 'private'){
+        //     $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start)); 
+        //     if($diff_in_days == 0) $diff_in_days = 1;           
+        //     $cost = intval($plc_cost['price']) * intval($diff_in_days);
+        //     // $attributes['numberDays'] = $diff_in_days;
+        //     $attributes['payment_plan'] = 'days';
+        // };
 
         $attributes['cost'] = $cost;
         $attributes['status'] = 'pending';

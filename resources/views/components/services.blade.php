@@ -194,10 +194,14 @@
                                         </svg>
                                     </div>
                                     <div class="w-full flex items-center justify-center mx-2">
-                                        <label for="hoursNum"
+                                        <!-- <label for="hoursNum"
                                                class="sr-only">{{$place->plc_type == 'meeting'? __('Hours') : __('Days')}}</label>
                                         <label for="hoursNum"
-                                               class="p-4 w-1/5">{{$place->plc_type == 'meeting'? __('Hours') : __('Days')}}</label>
+                                               class="p-4 w-1/5">{{$place->plc_type == 'meeting'? __('Hours') : __('Days')}}</label> -->
+                                        <label for="hoursNum"
+                                               class="sr-only">{{ __('Hours')}}</label>
+                                        <label for="hoursNum"
+                                               class="p-4 w-1/5">{{ __('Hours')}}</label>
                                         <input type="text" readonly="readonly" vlaue="" name="hoursNum" id="hoursNum"
                                                class="input-date-focus appearance-none rounded-none relative block h-10 w-full px-3 py-2 border-b border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md bg-gray-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                                         <svg
@@ -283,8 +287,11 @@
                         </div>
                     </div>
                     <div class="flex space-x-4 mt-6 text-gray-900 text-base text-lg font-medium">
-                        <span>{{__('Price')}}: </span><span>{{$place->price}} S.P <span
-                                class="text-gray-700">{{$place->plc_type == 'meeting'? __('/hour') : __('/day')}}</span></span>
+                        <span>{{__('Price')}}: </span>
+                        <span>{{$place->price}} S.P 
+                            <!-- <span class="text-gray-700">{{$place->plc_type == 'meeting'? __('/hour') : __('/day')}}</span> -->
+                            <span class="text-gray-700">{{__('/hour')}}</span>
+                        </span>
                     </div>
                     @if($place->status == 'unavailable')
                     <div class="flex space-x-4 mt-6 text-gray-500 text-base text-lg font-medium">
