@@ -3,7 +3,7 @@
         <div class="flex items-center">
             <div class="text-lg leading-7 font-semibold">
                 <p class="mb-4 text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">{{__('Book a space in a simple way to')}} </p>
-                <a href="" class=" mt-4 text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white">{{__('Step to new level.')}}</a>
+                <a href="" class="mt-4 text-4xl sm:text-5xl {{app()->getLocale() == 'en'? 'md:text-6xl' : ''}} text-gray-900 dark:text-white">{{__('Step to new level.')}}</a>
             </div>
         </div>
         <div class="mt-4">
