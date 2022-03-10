@@ -106,6 +106,12 @@ class UserProfileController extends Controller
             $start  = Carbon::parse(request()->start_date)->format('Y-m-d H:00:00');
             $end    = Carbon::parse(request()->end_date)->format('Y-m-d H:00:00');
             $plc_id = request()->plc_id;
+            if(Place::where('id', request()->plc_id)->first('status')['status'] == 'unavailable'){
+                return response()->json([
+                    "status" => false,
+                    "message" => "this place is not available, please choose another place"
+                ]); 
+            }
             // 1- check if two dates exist in booking table with same place
             $bookings_plc = Booking::where('plc_id' , $plc_id)->get();
             if($bookings_plc->count()>0){
@@ -127,16 +133,16 @@ class UserProfileController extends Controller
                         // calculate number of hours && cost
                         $cost = 0;
                         $plc_cost = Place::where('id', request()->plc_id)->first('price');
-                        if(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'hours'){
+                        // if(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'hours'){
                             $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
                             $cost = intval($plc_cost['price']) * intval($diff_in_hours);
                             $attributes['numberHours'] = $diff_in_hours;
-                        }
-                        elseif(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'days'){
-                            $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));            
-                            $cost = intval($plc_cost['price']) * intval($diff_in_days);
-                            $attributes['numberDays'] = $diff_in_days;
-                        }
+                        // }
+                        // elseif(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'days'){
+                        //     $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));            
+                        //     $cost = intval($plc_cost['price']) * intval($diff_in_days);
+                        //     $attributes['numberDays'] = $diff_in_days;
+                        // }
                         $attributes['cost'] = $cost;
                         $attributes['plc_id'] = $plc_id;
                         return response()->json([
@@ -168,16 +174,16 @@ class UserProfileController extends Controller
             $cost = 0;
             $plc_cost = Place::where('id', request()->plc_id)->first('price');
             
-            if(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'hours'){
+            // if(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'hours'){
                 $diff_in_hours = Carbon::parse($end)->diffInHours(Carbon::parse($start));            
                 $cost = intval($plc_cost['price']) * intval($diff_in_hours);
                 // $attributes['numberHours'] = $diff_in_hours;
-            }
-            elseif(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'days'){
-                $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));            
-                $cost = intval($plc_cost['price']) * intval($diff_in_days);
-                // $attributes['numberDays'] = $diff_in_days;
-            }
+            // }
+            // elseif(Booking::where('id', request()->bkg_id)->first('payment_plan')['payment_plan'] == 'days'){
+            //     $diff_in_days = Carbon::parse($end)->diffInDays(Carbon::parse($start));            
+            //     $cost = intval($plc_cost['price']) * intval($diff_in_days);
+            //     // $attributes['numberDays'] = $diff_in_days;
+            // }
             // $attributes['cost'] = $cost;
             // $attributes['plc_id'] = $plc_id;
             Booking::where('id', request()->bkg_id)->update(['start_date' => $start, 'end_date' => $end, 'cost' => $cost]);
