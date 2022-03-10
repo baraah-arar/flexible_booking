@@ -53,6 +53,20 @@ class DashboardBookingController extends Controller
         ->with('success','Booking confirmed successfully');
     }
 
+    public function cancel($id)
+    {
+        $booking = Booking::find($id);
+        $booking->status = 'canceled';
+        $booking->save();
+        $services = Booking::where('id', $booking->id)->first()->services;
+           foreach($services as $service){
+             BookingService::where('srv_id', $service->id)
+                           ->where('bkg_id', $booking->id)
+                           ->update(['status' => 'canceled']);
+                    };
+         return redirect()->route('dashboard.bookings_index')
+        ->with('success','Booking canceled successfully');
+    }
     /**
      * Display the specified resource.
      *

@@ -44,6 +44,9 @@
                     <th scope="col" class="relative px-6 py-3">
                           <span class="sr-only">Confirm</span>
                     </th>
+                  <th scope="col" class="relative px-6 py-3">
+                          <span class="sr-only">Cancel</span>
+                    </th>
                     <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Services</span>
                   </th>
@@ -175,8 +178,13 @@
                             <a href="{{ route('dashboard.booking.confirm',$item->id)}}" class=" {{ $item->status=="pending" ? "active-button bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500" : "disable bg-gray-400 cursor-default " }} inline-flex w-16 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm</a>
                             @endcan
                           </td>
+                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            @can('update', $item)
+                            <a href="{{ route('dashboard.booking.cancel',$item->id)}}" class=" {{ $item->status=="pending" ? "active-button bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300" : "disable bg-gray-400 cursor-default " }} inline-flex w-16 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 ">Cancel</a>
+                            @endcan
+                          </td>
                           <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{ route('dashboard.booking.services',$item->id)}}"  class="{{ $item->place->plc_type!="individual" ? "active-service bg-indigo-100 hover:bg-indigo-200 focus:ring-indigo-500" : "disable-service bg-gray-400 cursor-default " }}   inline-flex w-30 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm Services</a>
+                            <a href="{{ route('dashboard.booking.services',$item->id)}}"  class=" @if ($item->place->plc_type!="individual") {{"active-service bg-indigo-100 hover:bg-indigo-200 focus:ring-indigo-500"}} @else {{"disable-service bg-gray-400 cursor-default " }}  @endif inline-flex w-30 justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ">Confirm Services</a>
                           </td>
                          </tr>
                     @endforeach

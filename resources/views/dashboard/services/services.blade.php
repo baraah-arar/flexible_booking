@@ -98,6 +98,7 @@
                   }).then((result) => {
                     // window.location='/dashboard/services'
                     console.log(response.data);
+                    location.reload();
                   });}
                   else if(response.status === 'updated'){
                     Swal.fire({
