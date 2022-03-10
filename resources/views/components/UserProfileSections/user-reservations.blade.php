@@ -136,6 +136,11 @@
                 var form_data = $(".calendar_form form").serialize();
                 // var plc_id = $(".calender_btn").attr('data-placeid'); 
                 console.log(form_data);
+                if(!(document.querySelector(".calendar_form form #checkOut").value) || !(document.querySelector(".calendar_form form #checkIn").value))
+                {
+                    document.querySelector('.calendar_form  .error_message ').innerText = `{{__('Please, choose your perfect time')}}`;
+                    return;
+                }
                 $.ajax({
                     url: url,
                     type: 'put',
