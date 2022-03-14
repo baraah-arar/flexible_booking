@@ -11,18 +11,19 @@ class Opinion extends Model
 
 
     protected $fillable = [
-        'title','body','user_id','type',
+        'title', 'body', 'user_id', 'type',
     ];
 
-    public function scopeFilter($query, array $filters){
-        $query->when($filters['type'] ?? false, fn($query, $filter)=> 
-            $query->where('type', $filter)
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['type'] ?? false, fn($query, $filter) => ($filter == 'all') ? $query :
+            $query->where('type', 'like', '%' . $filter . '%')
         );
     }
 
     public function author()
     {
-        return $this->belongsTo('App\Models\UserProfile','user_id');
+        return $this->belongsTo('App\Models\UserProfile', 'user_id');
     }
 
 }

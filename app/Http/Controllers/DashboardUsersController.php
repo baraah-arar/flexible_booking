@@ -18,10 +18,13 @@ class DashboardUsersController extends Controller
      */
     public function index()
     {
-        $users = UserProfile::latest()->paginate(15);
+        $users = UserProfile::latest()->where('email', '!=', 'admin@admin.ad')
+            ->where('id', '!=', auth()->user()->id)
+            ->paginate(15);
         return view('dashboard.users.users', compact('users'));
 
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +39,7 @@ class DashboardUsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,33 +47,34 @@ class DashboardUsersController extends Controller
         $this->authorize('create', UserProfile::class);
         //ddd($request->all());
         $attributes = request()->validate([
-         'f_name'=>'required|max:255',
-         'l_name'=>'required|max:255',
-         'phone'=>'required|min:9|max:20|unique:user_profiles,phone',
-         'email'=>'required|email|max:255|unique:user_profiles,email',
-         'password'=>'required|min:8|max:255',
-         'role'=>'required',
-         'status'=>'required',
+            'f_name' => 'required|max:255',
+            'l_name' => 'required|max:255',
+            'phone' => 'required|min:9|max:20|unique:user_profiles,phone',
+            'email' => 'required|email|max:255|unique:user_profiles,email',
+            'password' => 'required|min:8|max:255',
+            'role' => 'required',
+            'status' => 'required',
         ]);
 
         UserProfile::create($attributes);
         return redirect()->route('dashboard.users')
-        ->with('success','User added successfully');
+            ->with('success', 'User added successfully');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Userprofile $user)
     {
-      //ddd($user->all());
-         return view('dashboard.users.show',compact('user'));
+        //ddd($user->all());
+        return view('dashboard.users.show', compact('user'));
 
     }
+
     public function author($id)
     {
 
@@ -82,57 +86,57 @@ class DashboardUsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Userprofile $user)
     {
         $this->authorize('update', $user);
-        return view('dashboard.users.edit',compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Userprofile $user)
     {
         $this->authorize('update', $user);
-           $attributes = request()->validate([
-            'f_name'=>'required|max:255',
-            'l_name'=>'required|max:255',
-            'phone'=>'required|min:9|max:20',
-            'email'=>'required|email|max:255',
-            'role'=>'required',
-            'status'=>'required',
+        $attributes = request()->validate([
+            'f_name' => 'required|max:255',
+            'l_name' => 'required|max:255',
+            'phone' => 'required|min:9|max:20',
+            'email' => 'required|email|max:255',
+            'role' => 'required',
+            'status' => 'required',
         ]);
         // dd($attributes);
-       $user->update($attributes);
+        $user->update($attributes);
         return redirect()->route('dashboard.users')
-        ->with('success','User updated successfully');
+            ->with('success', 'User updated successfully');
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Userprofile $user)
     {
         $this->authorize('delete', $user);
-        if($user->bookings->count() > 0){
-            foreach($user->bookings as $booking){
-                if($booking->status == 'pending' || $booking->status == 'confirmed'){
+        if ($user->bookings->count() > 0) {
+            foreach ($user->bookings as $booking) {
+                if ($booking->status == 'pending' || $booking->status == 'confirmed') {
                     Booking::where('id', $booking->id)->update(['status' => 'canceled']);
                 }
                 $services = Booking::where('id', $booking->id)->first()->services;
                 // $attributes = ['status','canceled'];
-                foreach($services as $service){
+                foreach ($services as $service) {
                     BookingService::where('srv_id', $service->id)
                         ->where('bkg_id', $booking->id)->update(['status' => 'canceled']);
                 };
