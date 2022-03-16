@@ -111,6 +111,7 @@ class DashboardUsersController extends Controller
             'l_name' => 'required|max:255',
             'phone' => 'required|min:9|max:20',
             'email' => 'required|email|max:255',
+            'password'=>'required|min:8|max:255',
             'role' => 'required',
             'status' => 'required',
         ]);
