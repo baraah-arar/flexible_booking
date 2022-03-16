@@ -19,7 +19,7 @@ class DashboardPlacesController extends Controller
      */
     public function index()
     {
-        $places = Place::latest()->get();
+        $places = Place::latest()->filter(request(['status','type']))->get();
         return view('dashboard.places.places', compact('places'));
     }
 

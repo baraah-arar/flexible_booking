@@ -8,6 +8,7 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <div class="flex-col">
               @can('create', \App\Models\UserProfile::class)
                 <div class= "m-2 ">
                     <a href="{{ route('users.create')}}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -15,10 +16,25 @@
                             <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                           </svg>
                          Add Person
-
                     </a>
                 </div>
               @endcan
+              <div class="flex justify-start m-2">
+                <form method="GET" action="{{URL::current()}}" class="mb-3 w-96 flex">
+                    <select name="status"
+                            class="filter-select appearance-none block w-full px-3  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            aria-label="Default select">
+                        <option disabled selected>Select status to filter users</option>
+                        <option value="all" {{request('status') == 'all'? 'selected' : ''}}>all</option>
+                        <option value="block" {{request('status') == 'block'? 'selected' : ''}}>block
+                        </option>
+                        <option value="active" {{request('status') == 'Complaint'? 'selected' : ''}}>active</option>
+                    </select>
+                    <input type="submit" value="Filter"
+                           class="text-base px-2 cursor-pointer text-white rounded-sm h-11 -mx-2 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
+                </form>
+              </div>
+              </div>
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>

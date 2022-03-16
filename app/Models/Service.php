@@ -17,6 +17,14 @@ class Service extends Model
     //     return $this->BelongsToMany('App\Models\booking', 'bkg_id');
     // }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['status'] ?? false, fn($query, $filter) => 
+            (strtolower($filter) == 'all') ? $query :
+            $query->where('status', 'like', strtolower($filter))
+        );
+    }
+
     public function bookings()
     {
         return $this->BelongsToMany(Booking::class, BookingService::class ,'srv_id','bkg_id')->withPivot('status');

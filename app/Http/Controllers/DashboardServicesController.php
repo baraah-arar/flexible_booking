@@ -18,7 +18,7 @@ class DashboardServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::latest()->get();
+        $services = Service::latest()->filter(request(['status']))->get();
         return view('dashboard.services.services', compact('services'));
     }
 

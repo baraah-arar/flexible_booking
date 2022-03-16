@@ -4,6 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="flex-col">
     @can('create', \App\Models\Service::class)
     <div class= "m-2 ">
         <a href="{{ route('services.create')}}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -14,6 +15,21 @@
         </a>
     </div>
     @endcan
+    <div class="flex justify-start m-2">
+      <form method="GET" action="{{URL::current()}}" class="mb-3 w-96 flex">
+        <select name="status"
+                class="filter-select appearance-none block w-full px-3  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                aria-label="Default select">
+          <option disabled selected>Select status to filter services</option>
+          <option value="all" {{request('status') == 'all'? 'selected' : ''}}>all</option>
+          <option value="available" {{request('status') == 'available'? 'selected' : ''}}>available</option>
+          <option value="unavailable" {{request('status') == 'unavailable'? 'selected' : ''}}>unavailable</option>
+        </select>
+        <input type="submit" value="Filter"
+                class="text-base px-2 cursor-pointer text-white rounded-sm h-11 -mx-2 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">
+      </form>
+    </div>
+    </div>
 <body class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
     <div class="container mx-auto">
       <div class="flex flex-wrap -mx-4">

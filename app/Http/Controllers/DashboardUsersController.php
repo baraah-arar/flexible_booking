@@ -20,6 +20,7 @@ class DashboardUsersController extends Controller
     {
         $users = UserProfile::latest()->where('email', '!=', 'admin@admin.ad')
             ->where('id', '!=', auth()->user()->id)
+            ->filter(request(['status']))
             ->paginate(15);
         return view('dashboard.users.users', compact('users'));
 

@@ -14,6 +14,14 @@ class UserProfile extends Authenticatable
         'f_name','l_name','phone','email','password','role','status',
     ];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['status'] ?? false, fn($query, $filter) => 
+            (strtolower($filter) == 'all') ? $query :
+            $query->where('status', 'like', '%' . strtolower($filter) . '%')
+        );
+    }
+
     // public function getUser_idAttribute($f_name){
     //     return ucwords($f_name);
     // }
