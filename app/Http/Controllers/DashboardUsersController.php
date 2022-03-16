@@ -129,6 +129,13 @@ class DashboardUsersController extends Controller
     public function destroy(Userprofile $user)
     {
         $this->authorize('delete', $user);
+        if($user->status == 'block'){
+            $user->update(['status' => 'active']);
+            return response()->json([
+                "status" => 'failed',
+                "data" => $user
+            ]);
+        }  
         if ($user->bookings->count() > 0) {
             foreach ($user->bookings as $booking) {
                 if ($booking->status == 'pending' || $booking->status == 'confirmed') {

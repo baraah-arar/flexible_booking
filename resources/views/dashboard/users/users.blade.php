@@ -135,8 +135,8 @@
                             <form data-route="{{ route('users.destroy',$item->id)}}" method="post" class="delete-form text-indigo-600 hover:text-indigo-900" >
                                  @csrf
                                  @method('DELETE')
-                            <button type="submit" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                               Block
+                            <button type="submit"  data-role="{{$item->status == 'block'? 'Unblock' : 'Block'}}" class="inline-flex w-16 justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white {{$item->status == 'block'? 'bg-gray-600 hover:bg-gray-700' : 'bg-red-600 hover:bg-red-700'}} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{$item->status == 'block'? 'Unblock' : 'Block'}}
                             </button>
                             </form>
                             @endcan
@@ -160,10 +160,10 @@
           $('.delete-form').on('submit', function(e) {
             e.preventDefault();
             var button = $(this);
-
+            role = e.target.querySelector('button[type="submit"]').dataset.role;
             Swal.fire({
               icon: 'warning',
-                title: 'Are you sure you want to block this user?',
+                title: `Are you sure you want to ${role} this user?`,
                 showDenyButton: false,
                 showCancelButton: true,
                 confirmButtonText: 'Yes'
@@ -179,6 +179,17 @@
                     '_method': 'delete'
                   },
                   success: function (response, textStatus, xhr) {
+                    if(response.status === 'failed'){
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'this account is Unblocked',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                      window.location='/dashboard/users'
+                    });
+                    }else
                     Swal.fire({
                         icon: 'success',
                         showDenyButton: false,

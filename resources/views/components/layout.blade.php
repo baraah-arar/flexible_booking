@@ -53,7 +53,7 @@
             </div>
             <!-- flash message with sessions -->
             @auth
-                @if(auth()->user()->status == null)
+                @if(auth()->user()->status == null || auth()->user()->status == 'dactive')
                     <div class="flash-msg z-10 fixed bottom-14 flex w-full justify-center">
                         <p class="bg-red-400 opacity-95 shadow-md text-white justify-center flex items-center space-x-2 py-2 md:py-2 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto">
                             <span>{{__('Your account is not verified.')}}</span>
