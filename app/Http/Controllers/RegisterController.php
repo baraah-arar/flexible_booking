@@ -15,10 +15,14 @@ class RegisterController extends Controller
     protected $redirect = '/#register';
 
     public function create(){
-        return redirect('/#register');
+        // request()->session()
+        return redirect('/#register')->with('prevent' , 'This process is not allowed for you. sooooooooooory');
     }
 
     public function store(){
+        // prevent this process
+        return back()
+            ->with(['prevent' => 'This process is not allowed for you. sooooooooooory']);
         // var_dump(request()->url());
         $rules =[
             'f_name'   => 'required|max:255',
@@ -57,6 +61,9 @@ class RegisterController extends Controller
     }
 
     public function sendCodeVerify(){
+        // prevent this process
+        return back()
+            ->with(['prevent' => 'This process is not allowed for you. sooooooooooory']);
         // insert new row to password_resets
         $userEmail = auth()->user()->email;
         $code = random_int(1000, 9999);
@@ -74,7 +81,9 @@ class RegisterController extends Controller
     }
 
     public function verifyByEmail()
-    {
+    {   // prevent this process
+        return back()
+            ->with(['prevent' => 'This process is not allowed for you. sooooooooooory']);
         // validate request
         $attributes = request()->validate([
             'ver_code' => 'required|min:4|max:4'

@@ -34,7 +34,6 @@ class UserProfileController extends Controller
      */
     public function displayresetForm()
     {
-        //
         return view('components/UserProfileSections.reset-password');
     }
 
@@ -66,6 +65,10 @@ class UserProfileController extends Controller
      */
     public function profileResetPassword(){
         // ddd(bcrypt(request()->old_password));
+        // prevent this process
+        return back()
+            ->with(['prevent' => 'This process is not allowed for you. sooooooooooory']);
+        // reset password
         $attributes = [
             'old_password' => 'required',
             'password' => 'required|min:8|max:255|confirmed',
@@ -204,6 +207,9 @@ class UserProfileController extends Controller
      */
     public function update()
     {
+        // prevent this process
+        return back()
+            ->with(['prevent' => 'This process is not allowed for you. sooooooooooory']);
         // ddd(request()->all());
         $rules =[
             'f_name'   => 'required|max:255',

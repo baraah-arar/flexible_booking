@@ -17,7 +17,7 @@
                     </label>
                 </div> -->
                 <div class="text-sm self-end">
-                    <a href="forget-password" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    <a href="/forget-password" class="font-medium text-indigo-600 hover:text-indigo-500">
                         {{__('Forgot your password?')}}
                     </a>
                 </div>

@@ -15,10 +15,10 @@
                             class="filter-select appearance-none block w-full px-3  py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             aria-label="Default select">
                         <option disabled selected>Select type to filter opinions</option>
-                        <option value="all" {{request('type') == 'all'? 'selected' : ''}}>ALL</option>
-                        <option value="Complement" {{request('type') == 'Complement'? 'selected' : ''}}>Complement
+                        <option value="all" {{request('type') == 'all'? 'selected' : ''}}>all</option>
+                        <option value="complement" {{request('type') == 'complement'? 'selected' : ''}}>complement
                         </option>
-                        <option value="Complaint" {{request('type') == 'Complaint'? 'selected' : ''}}>Complaint</option>
+                        <option value="complaint" {{request('type') == 'complaint'? 'selected' : ''}}>complaint</option>
                     </select>
                     <input type="submit" value="Filter"
                            class="text-base px-2 cursor-pointer text-white rounded-sm h-11 -mx-2 font-medium bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300">

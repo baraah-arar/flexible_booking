@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Mail;
 class ForgotPasswordController extends Controller
 {
     public function showForgetPasswordForm(){
+        // request()->session()->flash('prevent' , 'This process is not allowed for you. sooooooooooory');
         return view('auth.forgetPassword');
     }
 
     public function submitForgetPasswordForm(Request $requset){
+        // prevent this process
+        return back()
+            ->with(['prevent' => 'This process is not allowed for you. sooooooooooory']);
         // validate the email
         $attributes = request()->validate([
             'email' => 'required|email',

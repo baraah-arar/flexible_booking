@@ -17,7 +17,7 @@ class Opinion extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['type'] ?? false, fn($query, $filter) => ($filter == 'all') ? $query :
-            $query->where('type', 'like', '%' . $filter . '%')
+            $query->where('type', 'like', '%' . strtolower($filter) . '%')
         );
     }
 

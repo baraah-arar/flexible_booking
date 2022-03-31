@@ -84,6 +84,15 @@
                 </p>
             </div>
         @endif
+
+        @if(session()->has('prevent'))
+            <div class="flash-msg fixed top-3 z-10 flex w-full justify-center">
+                <p class="bg-red-400 opacity-95 shadow-md text-white flex items-center justify-between space-x-2 py-2 md:py-4 px-4 text-lg md:text-xl md:w-2/4 w-4/5 mx-auto fixed top-3">
+                    {{__(session('prevent'))}}
+                    <a id="close-flash-msg" class="close cursor-pointer text-white text-xl w-10 h-8 flex justify-center rounded bg-red-500">&times;</a>
+                </p>
+            </div>
+        @endif
         <script type="text/javascript">
             // toggle mob nav
             // const mob_nav_btn = document.querySelectorAll('.mob-btn');
